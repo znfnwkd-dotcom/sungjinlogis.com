@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Downloads | 성진로지스';
+const description = '회사소개서(PDF) 다운로드 — 이메일 입력 후 링크 발송';
+---
+<BaseLayout title={title} description={description} lang="ko" pathPrefix="/kr">
+  <section class="rounded-xl2 border border-stroke bg-surface p-8 shadow-soft">
+    <h1 class="text-2xl font-semibold">Downloads</h1>
+    <p class="mt-2 text-sm text-sub">
+      회사소개서 PDF는 이메일 입력 후 다운로드 링크를 발송하는 방식으로 제공합니다.
+    </p>
+
+    <form id="brochureForm" class="mt-8 grid gap-4 md:max-w-xl">
+      <label class="grid gap-2">
+        <span class="text-sm text-sub">이메일 *</span>
+        <input class="rounded-xl border border-stroke bg-base px-4 py-3 text-sm" type="email" name="email" required placeholder="name@company.com" />
+      </label>
+      <label class="grid gap-2">
+        <span class="text-sm text-sub">회사명</span>
+        <input class="rounded-xl border border-stroke bg-base px-4 py-3 text-sm" type="text" name="company" placeholder="Company" />
+      </label>
+      <label class="grid gap-2">
+        <span class="text-sm text-sub">성함</span>
+        <input class="rounded-xl border border-stroke bg-base px-4 py-3 text-sm" type="text" name="name" placeholder="Name" />
+      </label>
+      <!-- Honeypot (spam bot trap) -->
+      <label class="hidden">
+        <span>Leave this field empty</span>
+        <input type="text" name="hp" />
+      </label>
+
+      <button class="rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition" type="submit">
+        다운로드 링크 요청
+      </button>
+
+      <p id="brochureStatus" class="text-sm text-sub"></p>
+      <p class="text-xs text-sub">
+        * 제출 시 입력하신 이메일로 회사소개서 링크를 발송합니다.
+      </p>
+    </form>
+  </section>
+
+  <script>
+    const form = document.getElementById('brochureForm');
+    const statusEl = document.getElementById('brochureStatus');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = '전송 중...';
+
+      const fd = new FormData(form);
+      try {
+        const res = await fetch('/api/brochure', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: fd.get('email'),
+            company: fd.get('company'),
+            name: fd.get('name'),
+            hp: fd.get('hp')
+          })
+        });
+
+        if (!res.ok) {
+          const msg = await res.text();
+          throw new Error(msg || 'Request failed');
+        }
+
+        statusEl.textContent = '완료! 이메일을 확인해주세요. (스팸함도 확인 권장)';
+        form.reset();
+      } catch (err) {
+        statusEl.textContent = '오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+      }
+    });
+  </script>
+</BaseLayout>

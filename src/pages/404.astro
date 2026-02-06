@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="404 | SUNGJINLOGIS" description="Not found" lang="en" pathPrefix="/kr">
+  <section class="rounded-xl2 border border-stroke bg-surface p-8 shadow-soft">
+    <h1 class="text-2xl font-semibold">Page not found</h1>
+    <p class="mt-2 text-sm text-sub">The page you requested does not exist.</p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a class="rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition" href="/kr/">Go to Home (KR)</a>
+      <a class="rounded-xl border border-stroke bg-base px-4 py-3 text-sm text-text hover:border-accent transition" href="/en/">Go to Home (EN)</a>
+    </div>
+  </section>
+</BaseLayout>

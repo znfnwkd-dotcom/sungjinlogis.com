@@ -1,0 +1,73 @@
+---
+const { pathPrefix = '/kr', lang = 'ko' } = Astro.props;
+
+const navKR = [
+  { label: '회사소개', href: `${pathPrefix}/company/` },
+  { label: '공정/역량', href: `${pathPrefix}/capabilities/` },
+  { label: '품질/인증', href: `${pathPrefix}/quality/` },
+  { label: '설비/라인', href: `${pathPrefix}/facilities/` },
+  { label: '적용산업', href: `${pathPrefix}/industries/` },
+  { label: '자료실', href: `${pathPrefix}/downloads/` },
+  { label: '문의', href: `${pathPrefix}/contact/` }
+];
+
+const navEN = [
+  { label: 'Company', href: `${pathPrefix}/company/` },
+  { label: 'Capabilities', href: `${pathPrefix}/capabilities/` },
+  { label: 'Quality', href: `${pathPrefix}/quality/` },
+  { label: 'Facilities', href: `${pathPrefix}/facilities/` },
+  { label: 'Industries', href: `${pathPrefix}/industries/` },
+  { label: 'Downloads', href: `${pathPrefix}/downloads/` },
+  { label: 'Contact', href: `${pathPrefix}/contact/` }
+];
+
+const isKR = lang === 'ko' || pathPrefix === '/kr';
+const nav = isKR ? navKR : navEN;
+const otherLangHref = isKR ? '/en/' : '/kr/';
+const otherLangLabel = isKR ? 'EN' : 'KR';
+const tagline = isKR ? '프리미엄 도금·표면처리' : 'Premium Plating & Surface Finishing';
+---
+<header class="sticky top-0 z-50 border-b border-stroke/60 bg-base/80 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+    <a href={pathPrefix + '/'} class="flex items-center gap-3">
+      <div class="h-9 w-9 rounded-xl border border-stroke bg-surface shadow-soft"></div>
+      <div class="leading-tight">
+        <div class="text-sm font-semibold tracking-wide">SUNGJINLOGIS</div>
+        <div class="text-xs text-sub">{tagline}</div>
+      </div>
+    </a>
+
+    <nav class="hidden items-center gap-6 lg:flex">
+      {nav.map((i) => (
+        <a href={i.href} class="text-sm text-sub hover:text-text transition">
+          {i.label}
+        </a>
+      ))}
+      <a
+        href={otherLangHref}
+        class="ml-2 rounded-xl border border-stroke bg-surface px-3 py-2 text-sm text-text hover:border-accent transition"
+        aria-label="Switch language"
+      >
+        {otherLangLabel}
+      </a>
+    </nav>
+
+    <details class="lg:hidden">
+      <summary class="cursor-pointer rounded-xl border border-stroke bg-surface px-3 py-2 text-sm text-text">
+        Menu
+      </summary>
+      <div class="mt-2 rounded-xl border border-stroke bg-base p-4 shadow-soft">
+        <div class="flex flex-col gap-3">
+          {nav.map((i) => (
+            <a href={i.href} class="text-sm text-sub hover:text-text transition">
+              {i.label}
+            </a>
+          ))}
+          <a href={otherLangHref} class="mt-2 w-fit rounded-xl border border-stroke bg-surface px-3 py-2 text-sm text-text">
+            {otherLangLabel}
+          </a>
+        </div>
+      </div>
+    </details>
+  </div>
+</header>

@@ -1,0 +1,33 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const {
+  title = 'SUNGJINLOGIS',
+  description = '프리미엄 표면처리·도금 — 재현성과 컬러 일치로 증명되는 품질',
+  lang = 'ko',
+  pathPrefix = '/kr'
+} = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0B0F14" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body class="min-h-screen bg-base text-text antialiased">
+    <Header pathPrefix={pathPrefix} lang={lang} />
+    <main class="mx-auto w-full max-w-6xl px-5 pb-20 pt-10">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
