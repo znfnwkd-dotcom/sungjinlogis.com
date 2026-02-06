@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="SUNGJINLOGIS" description="Premium Plating & Surface Finishing" lang="en" pathPrefix="/kr">
+  <section class="mt-10 rounded-xl2 border border-stroke bg-surface p-8 shadow-soft">
+    <h1 class="text-2xl font-semibold">Choose your language</h1>
+    <p class="mt-2 text-sub">
+      If your browser language is Korean, you will be redirected to /kr automatically.
+    </p>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a class="rounded-xl border border-stroke bg-base px-4 py-3 text-sm text-text hover:border-accent transition" href="/kr/">
+        한국어 (KR)
+      </a>
+      <a class="rounded-xl border border-stroke bg-base px-4 py-3 text-sm text-text hover:border-accent transition" href="/en/">
+        English (EN)
+      </a>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      try {
+        const lang = (navigator.language || '').toLowerCase();
+        if (lang.startsWith('ko')) {
+          window.location.replace('/kr/');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</BaseLayout>
