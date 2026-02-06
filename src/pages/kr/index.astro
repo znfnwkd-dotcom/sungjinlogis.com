@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const title = '성진로지스 | 프리미엄 도금·표면처리';
-const description = '로봇 전처리와 공정 안정화로 재현성과 컬러 일치, 낮은 불량을 증명하는 프리미엄 도금 파트너';
+const title = '성진로지스 | 플라스틱 도금·표면처리';
+const description = '로봇 전처리와 공정 안정화로 재현성과 컬러 일치성, 고품질 표면을 반복 재현하는 플라스틱 도금·표면처리 전문 기업';
+
 ---
 <BaseLayout title={title} description={description} lang="ko" pathPrefix="/kr">
   <!-- Hero -->
@@ -13,42 +14,60 @@ const description = '로봇 전처리와 공정 안정화로 재현성과 컬러
       class="absolute inset-0 h-full w-full object-cover opacity-60"
     />
     <div class="absolute inset-0 bg-gradient-to-r from-base via-base/70 to-base/20"></div>
+
     <div class="relative p-8 md:p-12">
       <h1 class="max-w-2xl text-3xl font-semibold tracking-tight md:text-5xl">
-        명품 도금은 <span class="text-accent">재현성</span>에서 시작됩니다.
+        <span class="text-accent">재현성</span>으로 증명하는 프리미엄 도금.
       </h1>
+
       <p class="mt-4 max-w-2xl text-sm text-sub md:text-base">
-        산업용 로봇 전처리와 롱라이프 여과 기반 무광 공정, 친환경 3가크롬 등
-        공정 안정화로 컬러 일치성과 낮은 불량을 구현합니다.
+        로봇 전처리와 공정 안정화로 <span class="text-white/90">컬러 일치성·표면 품질</span>을 반복 재현합니다.<br />
+        자동차 내장 및 모바일 부품용 <span class="text-white/90">플라스틱 도금/표면처리</span> 전문.
       </p>
-      <div class="mt-6 flex flex-wrap gap-3">
+
+      <p class="mt-2 max-w-2xl text-xs text-sub">
+        Robot Pretreatment · Process Stabilization · In-house Verification
+      </p>
+
+      <div class="mt-6 flex flex-wrap items-center gap-3">
         <a
           class="rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition"
           href="/kr/downloads/"
         >회사소개서 다운로드</a>
+
         <a
           class="rounded-xl border border-accent bg-base px-4 py-3 text-sm font-semibold text-accent hover:text-white hover:bg-accent transition"
           href="/kr/capabilities/"
-        >공정/기술 보기</a>
+        >공정/역량 보기</a>
+
+        <a class="ml-1 text-sm text-accent hover:text-accent-hover" href="/kr/quality/">
+          품질/시험 설비 보기 →
+        </a>
       </div>
 
-      <!-- Trust badges -->
+      <!-- Key Proof (Hero badges) -->
       <div class="mt-10 grid gap-3 md:grid-cols-3">
         <div class="rounded-xl border border-stroke bg-surface p-4">
-          <div class="text-xs text-sub">Certification</div>
-          <div class="mt-1 text-sm font-semibold">SQ</div>
+          <div class="text-xs text-sub">Key Proof</div>
+          <div class="mt-1 text-sm font-semibold">로봇 전처리 자동화</div>
+          <div class="mt-1 text-xs text-sub">균일 전처리로 재현성 기반 구축</div>
         </div>
+
         <div class="rounded-xl border border-stroke bg-surface p-4">
-          <div class="text-xs text-sub">Certification</div>
-          <div class="mt-1 text-sm font-semibold">CQI-11</div>
+          <div class="text-xs text-sub">Key Proof</div>
+          <div class="mt-1 text-sm font-semibold">공정 안정화 + 롱라이프 여과</div>
+          <div class="mt-1 text-xs text-sub">이물 저감·외관 균일·컬러 편차 최소화</div>
         </div>
+
         <div class="rounded-xl border border-stroke bg-surface p-4">
-          <div class="text-xs text-sub">Certification</div>
-          <div class="mt-1 text-sm font-semibold">ISO 9001</div>
+          <div class="text-xs text-sub">Key Proof</div>
+          <div class="mt-1 text-sm font-semibold">사내 시험·인증 기반 검증</div>
+          <div class="mt-1 text-xs text-sub">SQ / ISO 9001 / GM 요구사항(CQI-11) 대응</div>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- Capabilities -->
   <section class="mt-12">
