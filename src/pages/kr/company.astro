@@ -1,34 +1,104 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const title = 'Company | 성진로지스';
-const description = '성진로지스 회사 소개 — 프리미엄 도금·표면처리 전문';
+const title = '회사소개 | 성진로지스';
+const description =
+  '성진로지스는 자동차 내장 및 모바일 부품을 위한 플라스틱 도금·표면처리 전문 기업입니다. 로봇 전처리, 공정 안정화, 사내 검증으로 재현성과 컬러 일치성을 구현합니다.';
 ---
+
 <BaseLayout title={title} description={description} lang="ko" pathPrefix="/kr">
   <section class="rounded-xl2 border border-stroke bg-surface p-8 shadow-soft">
-    <h1 class="text-2xl font-semibold">Company</h1>
-    <p class="mt-2 text-sm text-sub">
-      이 페이지는 현재 임시 텍스트입니다. 회사소개서(PDF) 내용을 기반으로 문구를 정교화할 예정입니다.
-    </p>
+    <div class="max-w-4xl">
+      <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">플라스틱 도금·표면처리 전문</h1>
+      <p class="mt-3 text-sm text-sub md:text-base">
+        성진로지스는 <span class="text-white">재현성</span>을 기준으로 공정을 설계하고,
+        <span class="text-white">컬러 일치성·표면 품질</span>을 안정적으로 구현합니다.
+        자동차 내장 및 모바일 부품용 프리미엄 도금/표면처리를 제공합니다.
+      </p>
 
-    <div class="mt-6 grid gap-4 md:grid-cols-3">
-      <div class="rounded-xl border border-stroke bg-base p-5">
-        <div class="text-sm font-semibold">Mission</div>
-        <p class="mt-1 text-sm text-sub">"명품 도금"을 표준 공정으로 구현</p>
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <div class="rounded-xl border border-stroke bg-base p-5">
+          <div class="text-sm font-semibold">재현성 기반 공정</div>
+          <p class="mt-1 text-sm text-sub">조건 표준화와 변동 요인 통제로 동일 품질을 반복 구현</p>
+        </div>
+        <div class="rounded-xl border border-stroke bg-base p-5">
+          <div class="text-sm font-semibold">프리미엄 표면 품질</div>
+          <p class="mt-1 text-sm text-sub">외관·촉감·색상 일치성을 목표로 한 품질 중심 운영</p>
+        </div>
+        <div class="rounded-xl border border-stroke bg-base p-5">
+          <div class="text-sm font-semibold">친환경 공정 대응</div>
+          <p class="mt-1 text-sm text-sub">6가 크롬이 아닌 친환경 3가 크롬(Trivalent Chromium) 운영</p>
+        </div>
       </div>
-      <div class="rounded-xl border border-stroke bg-base p-5">
-        <div class="text-sm font-semibold">Value</div>
-        <p class="mt-1 text-sm text-sub">재현성 · 컬러 일치 · 낮은 불량</p>
-      </div>
-      <div class="rounded-xl border border-stroke bg-base p-5">
-        <div class="text-sm font-semibold">ESG</div>
-        <p class="mt-1 text-sm text-sub">친환경 3가 크롬 및 책임 경영</p>
-      </div>
-    </div>
 
-    <div class="mt-8 rounded-xl border border-stroke bg-base p-5">
-      <div class="text-sm font-semibold">Certificates</div>
-      <p class="mt-1 text-sm text-sub">SQ · CQI-11 · ISO 9001 (추후 이미지/스캔본으로 교체)</p>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="rounded-xl border border-stroke bg-base p-6">
+          <h2 class="text-lg font-semibold">핵심 역량</h2>
+          <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-sub">
+            <li><span class="text-white">산업용 로봇 전처리</span>로 균일한 기반 품질 확보</li>
+            <li><span class="text-white">롱라이프 여과 기반 무광/반무광 공정</span>으로 공정 안정화</li>
+            <li><span class="text-white">친환경 3가 크롬</span> 라인 운영(규제 대응)</li>
+            <li><span class="text-white">유산동</span> 및 <span class="text-white">광택/반광 니켈</span> 캐리어 공정 운영</li>
+          </ul>
+        </div>
+
+        <div class="rounded-xl border border-stroke bg-base p-6">
+          <h2 class="text-lg font-semibold">주요 적용 분야</h2>
+          <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-sub">
+            <li>자동차 내장 부품(Interior parts)</li>
+            <li>모바일 부품(예: 카메라 브라켓 등)</li>
+          </ul>
+
+          <div class="mt-6 rounded-xl border border-stroke bg-surface p-5">
+            <div class="text-sm font-semibold">품질·인증</div>
+            <p class="mt-1 text-sm text-sub">
+              현대 SQ · ISO 9001 · GM 인증(요구사항 대응, CQI-11)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 rounded-xl border border-stroke bg-base p-6">
+        <h2 class="text-lg font-semibold">사내 검증(Verification) 설비</h2>
+        <p class="mt-2 text-sm text-sub">
+          공정 신뢰를 “측정 가능한 데이터”로 관리합니다.
+        </p>
+        <div class="mt-4 grid gap-3 md:grid-cols-2">
+          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">도금두께 측정기</div>
+          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">열충격 시험기</div>
+          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">염수분무 시험기</div>
+          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">항온항습조</div>
+          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">Peel Test 장비</div>
+        </div>
+      </div>
+
+      <div class="mt-10 rounded-xl border border-stroke bg-base p-6">
+        <h2 class="text-lg font-semibold">연혁(요약)</h2>
+        <div class="mt-4 grid gap-3">
+          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2006</span> · 플라스틱 도금 사업 시작</div>
+          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2010</span> · 모바일 부품 도금</div>
+          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2016</span> · 자동차 내장 부품 도금</div>
+          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2020</span> · 생산 역량 확장(라인/설비 확충)</div>
+        </div>
+        <p class="mt-3 text-xs text-sub">
+          ※ 연혁 문구는 추후 실제 표기(공장/라인 명칭, 연도 등)에 맞춰 손보면 됩니다.
+        </p>
+      </div>
+
+      <div class="mt-10 flex flex-wrap items-center gap-3">
+        <a class="rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition"
+           href="/kr/downloads/">
+          회사소개서 다운로드
+        </a>
+        <a class="rounded-xl border border-stroke bg-base px-5 py-3 text-sm font-semibold text-white hover:bg-surface transition"
+           href="/kr/capabilities/">
+          공정/역량 보기
+        </a>
+        <a class="text-sm text-accent hover:text-accent-hover"
+           href="mailto:chiwon1@kakao.net">
+          문의: chiwon1@kakao.net →
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>
