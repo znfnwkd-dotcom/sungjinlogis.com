@@ -72,7 +72,7 @@ const gallery = [
       친환경 3가 크롬
     </h1>
 
-    <p class="mt-3 text-sm md:text-base leading-relaxed !text-sub drop-shadow-md">
+    <p class="mt-3 text-sm md:text-base leading-relaxed text-sub drop-shadow-md">
       성진로지스는 <span class="text-white font-semibold">Hex-free 3가 크롬</span> 공정과
       <span class="text-white font-semibold"> 후처리(패시베이션)</span> 시스템을 기반으로
       <span class="text-white font-semibold"> 규제 대응</span>과
@@ -81,7 +81,7 @@ const gallery = [
 
     <div class="mt-6 grid gap-4 md:grid-cols-3">
       {highlights.map((h) => (
-        <section class="rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+        <div class="rounded-2xl border border-stroke bg-surface p-5 shadow-soft">
           <div class="text-sm font-semibold text-white">{h.title}</div>
           <p class="mt-2 text-sm text-sub leading-relaxed">{h.desc}</p>
         </div>
@@ -90,7 +90,7 @@ const gallery = [
   </section>
 
   {/* 관리 포인트 */}
-  <section class="mt-10 rounded-2x1 border border-stroke bg-base p-6 shadow-soft">
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <h2 class="text-lg font-semibold">관리 포인트</h2>
     <p class="mt-2 text-sm text-sub">
       3가 크롬 외관·내식 품질을 위한 핵심 관리 항목을 요약했습니다.
@@ -98,7 +98,7 @@ const gallery = [
 
     <div class="mt-4 grid gap-3 md:grid-cols-2">
       {controlPoints.map((t) => (
-        <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">
+        <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">
           • {t}
         </div>
       ))}
@@ -106,7 +106,7 @@ const gallery = [
   </section>
 
   {/* 검증 근거 */}
-  <section class="mt-10 rounded-2x1 border border-stroke bg-base p-6 shadow-soft">
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <h2 class="text-lg font-semibold">검증 근거</h2>
     <p class="mt-2 text-sm text-sub">
       측정 가능한 데이터와 시스템으로 공정 신뢰성을 확보합니다.
@@ -114,7 +114,7 @@ const gallery = [
 
     <div class="mt-4 grid gap-3">
       {evidence.map((t) => (
-        <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">
+        <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">
           • {t}
         </div>
       ))}
@@ -122,38 +122,45 @@ const gallery = [
   </section>
 
   {/* 대표 적용 */}
-  <section class="mt-10 rounded-2x1 border border-stroke bg-base p-6 shadow-soft">
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <h2 class="text-lg font-semibold">대표 적용</h2>
-    <p class="mt-2 text-sm text-sub">규제 대응과 외관/내식 요구가 높은 제품군에 적용합니다.</p>
+    <p class="mt-2 text-sm text-sub">
+      규제 대응과 외관/내식 요구가 높은 제품군에 적용합니다.
+    </p>
 
     <div class="mt-4 grid gap-3 md:grid-cols-2">
       {applications.map((t) => (
-        <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">
+        <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">
           • {t}
         </div>
       ))}
     </div>
   </section>
 
-    {/* 설비 사진 */}
-  <section class="mt-10 rounded-2x1 border border-stroke bg-base p-6 shadow-soft">
+  {/* 설비 사진 */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <h2 class="text-lg font-semibold">설비 사진</h2>
-    <p class="mt-2 text-sm text-sub">3가 크롬 및 후처리/정류기 설비 예시입니다.</p>
+    <p class="mt-2 text-sm text-sub">
+      3가 크롬 및 후처리/정류기 설비 예시입니다.
+    </p>
 
     <div class="mt-4 grid gap-4 md:grid-cols-3">
       {gallery.map((g) => (
-        <figure class="rounded-2xl border border-stroke bg-surface shadow-soft overflow-hidden">
-          {/* 이미지 영역: 비율 고정 */}
-          <div class="relative w-full" style="aspect-ratio: 16 / 9;">
+        <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
+          {/* 16:9 프레임 유지 + 이미지 안 잘리게(contain) */}
+          <div
+            class="flex w-full items-center justify-center bg-base"
+            style="aspect-ratio: 16 / 9;"
+          >
             <img
               src={g.src}
               alt={g.alt}
-              class="absolute inset-0 h-full w-full object-cover"
+              class="max-h-full max-w-full object-contain p-2"
               loading="lazy"
+              decoding="async"
             />
           </div>
 
-          {/* 캡션 영역 */}
           <figcaption class="p-3 text-xs text-white/70">
             {g.caption}
           </figcaption>
@@ -161,5 +168,4 @@ const gallery = [
       ))}
     </div>
   </section>
-
 </BaseLayout>
