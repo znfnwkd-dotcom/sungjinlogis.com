@@ -1,32 +1,113 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-const pageTitle = '로봇 전처리 | 성진로지스';
-const description = '산업용 로봇 기반 전처리로 균일성과 재현성 확보';
+
+const title = '로봇 전처리 | 공정/역량 | 성진로지스';
+const description =
+  '로봇 자동화 전처리로 조건 편차를 줄이고, 도금 밀착과 외관 재현성을 안정적으로 확보합니다.';
+
+const highlights = [
+  { title: '표준 조건 운영', desc: '시간·온도·농도 등 핵심 변수를 표준화하여 작업 편차 최소화' },
+  { title: '재현성 기반 품질', desc: '전처리 균일도를 확보해 컬러/외관 편차를 낮추는 기반 공정' },
+  { title: '생산 안정화', desc: '연속 생산 환경에서 공정 흔들림을 줄여 불량 리스크를 관리' },
+];
+
+const controlPoints = [
+  '전처리 각 탱크 조건(시간/온도/농도) 표준 레시피 운영',
+  '교반/여과/순환 상태 점검으로 처리 균일도 유지',
+  '린스(수질/오염도) 관리로 이월(Drag-out)·오염 리스크 최소화',
+  '치구/랙 세척·정비 기준 운영으로 접촉/오염 요인 통제',
+  '로봇 동작(침적/이송/드립 타임) 표준화로 공정 편차 감소',
+];
+
+const evidence = [
+  '사내 두께/외관/밀착 평가 및 공정 데이터 기반 이력 관리',
+  '품질 시스템 운영: SQ / ISO 9001 / 고객 요구사항 대응(예: CQI-11)',
+  '이슈 발생 시 원인 분석 → 조건 보정 → 재발 방지(표준서/점검표 반영)',
+];
+
+const applications = [
+  '자동차 내장 부품(Interior parts): 외관/톤 균일도 요구 대응',
+  '모바일 부품: 장식부품/브라켓 등 외관 품질 중심 제품',
+];
+
+const photos = [
+  { src: '/images/capabilities/robotic-pretreatment/robot-01.jpg', alt: '로봇 자동화 전처리 라인(로봇 암)' },
+  { src: '/images/capabilities/robotic-pretreatment/robot-02.jpg', alt: '로봇 자동화 전처리 라인(다수 로봇 구성)' },
+  { src: '/images/capabilities/robotic-pretreatment/robot-03.jpg', alt: '로봇 전처리/도금 공정 자동화 현장' },
+];
 ---
-<BaseLayout title={pageTitle} description={description} lang="ko" pathPrefix="/kr">
-  <section class="rounded-xl2 border border-stroke bg-surface p-8 shadow-soft">
-    <a class="text-sm text-accent hover:text-accent-hover" href="/kr/capabilities/">← Capabilities</a>
-    <h1 class="mt-3 text-2xl font-semibold">로봇 전처리</h1>
-    <p class="mt-2 text-sm text-sub">산업용 로봇 기반 전처리로 균일성과 재현성 확보</p>
 
-    <div class="mt-8 grid gap-4 md:grid-cols-3">
-      <div class="rounded-xl border border-stroke bg-base p-5">
-        <div class="text-sm font-semibold">Why it matters</div>
-        <p class="mt-1 text-sm text-sub">불량과 편차의 원인을 줄이는 핵심 공정 요소를 정리합니다.</p>
-      </div>
-      <div class="rounded-xl border border-stroke bg-base p-5">
-        <div class="text-sm font-semibold">Process control</div>
-        <p class="mt-1 text-sm text-sub">관리 포인트(조건/여과/교반/시험)를 공개 가능한 범위에서 제공.</p>
-      </div>
-      <div class="rounded-xl border border-stroke bg-base p-5">
-        <div class="text-sm font-semibold">Evidence</div>
-        <p class="mt-1 text-sm text-sub">시험성적/인증서/검사 설비로 신뢰를 뒷받침합니다.</p>
-      </div>
+<BaseLayout title={title} description={description} lang="ko" pathPrefix="/kr">
+  <section class="rounded-x12 border border-stroke bg-surface p-8 shadow-soft">
+    <a class="text-sm text-accent hover:underline" href="/kr/capabilities/">← Capabilities</a>
+    <h1 class="mt-3 text-3xl md:text-4xl font-semibold tracking-tight">로봇 전처리</h1>
+    <p class="mt-3 text-sm md:text-base text-white/80 leading-relaxed">
+      성진로지스는 <span class="text-white font-semibold">로봇 자동화 전처리</span>로 공정 조건을 표준화하고,
+      <span class="text-white font-semibold">도금 밀착</span>과 <span class="text-white font-semibold">외관 재현성</span>을
+      안정적으로 확보합니다.
+    </p>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      {highlights.map((h) => (
+        <div class="rounded-x12 border border-stroke bg-base p-5">
+          <div class="text-sm font-semibold text-white">{h.title}</div>
+          <p class="mt-2 text-sm text-sub leading-relaxed">{h.desc}</p>
+        </div>
+      ))}
     </div>
+  </section>
 
-    <div class="mt-8 rounded-xl border border-stroke bg-base p-5">
-      <div class="text-sm font-semibold">대표 적용</div>
-      <p class="mt-1 text-sm text-sub">자동차 내장재, 모바일 카메라 브라켓 등 정밀 외관 부품</p>
+  <section class="mt-10 rounded-x12 border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">관리 포인트</h2>
+    <p class="mt-2 text-sm text-sub">전처리 균일도를 만드는 핵심 관리 항목을 요약했습니다.</p>
+    <ul class="mt-4 grid gap-2 md:grid-cols-2">
+      {controlPoints.map((t) => (
+        <li class="rounded-xl border border-stroke bg-surface p-4 text-sm text-white/85">• {t}</li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="mt-10 rounded-x12 border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">검증 근거</h2>
+    <p class="mt-2 text-sm text-sub">측정 가능한 데이터와 시스템으로 공정 신뢰를 확보합니다.</p>
+    <ul class="mt-4 grid gap-2">
+      {evidence.map((t) => (
+        <li class="rounded-xl border border-stroke bg-surface p-4 text-sm text-white/85">• {t}</li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="mt-10 rounded-x12 border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">대표 적용</h2>
+    <div class="mt-4 grid gap-3 md:grid-cols-2">
+      {applications.map((a) => (
+        <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-white/85">{a}</div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-10 rounded-x12 border border-stroke bg-surface p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">설비/라인 사진</h2>
+    <p class="mt-2 text-sm text-sub">로봇 기반 자동화 전처리 라인 운영 사례</p>
+    <div class="mt-5 grid gap-4 md:grid-cols-2">
+      {photos.map((p) => (
+        <figure class="rounded-x12 border border-stroke bg-base overflow-hidden">
+          <img src={p.src} alt={p.alt} loading="lazy" class="w-full h-auto object-cover" />
+          <figcaption class="p-3 text-xs text-white/70">{p.alt}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-10 rounded-x12 border border-stroke bg-surface p-6 shadow-soft">
+    <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <div>
+        <div class="text-lg font-semibold">로봇 전처리 적용/견적 문의</div>
+        <p class="mt-1 text-sm text-sub">제품 규격과 외관 요구사항을 기준으로 공정 구성을 제안드립니다.</p>
+      </div>
+      <a class="rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition" href="/kr/contact/">
+        문의하기
+      </a>
     </div>
   </section>
 </BaseLayout>
