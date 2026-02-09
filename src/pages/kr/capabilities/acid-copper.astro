@@ -1,5 +1,9 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+const SCALE = 2 / 3; // ✅ 2/3 축소
+const singleMinH = Math.round(420 * SCALE); // 280
+const multiMinH = Math.round(300 * SCALE);  // 200
+const imgMaxPct = Math.round(100 * SCALE);  // 67
 
 const title = '유산동 | 성진로지스';
 const description =
@@ -157,5 +161,4 @@ const imgMaxPct = Math.round(100 * SCALE);  // 67
     ))}
   </div>
 </section>
-
 </BaseLayout>
