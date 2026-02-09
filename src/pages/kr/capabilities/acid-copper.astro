@@ -115,34 +115,63 @@ const gallery = [
   </section>
 
       {/* 설비 사진 */}
-  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
-    <h2 class="text-lg font-semibold">설비 사진</h2>
-    <p class="mt-2 text-sm text-sub">유산동 공정 설비 예시입니다.</p>
+  ---
+// 예시: 원본 크기를 파일 속성에서 확인해서 입력하세요.
+const gallery = [
+  {
+    src: '/images/capabilities/acid-copper/acid-copper-01.png',
+    alt: '유산동 라인(예시)',
+    caption: 'Acid Copper 라인(예시)',
+    width: 297,
+    height: 184,
+  },
+];
 
-    {/* 1장이면 1열 + 최대폭 제한(업스케일 방지), 2장 이상이면 기존 그리드 */}
-    <div class={`mt-4 grid gap-4 ${gallery.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'}`}>
-      {gallery.map((g) => (
-        <figure
-          class={`overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft ${
-            gallery.length === 1 ? 'mx-auto w-full' : ''
-          }`}
-          style={gallery.length === 1 ? 'max-width: 920px;' : undefined}
-        >
-          {/* 이미지: 원본보다 과확대되지 않도록, 자연비율 유지 */}
-          <div class="bg-base">
+const isSingle = gallery.length === 1;
+---
+
+<section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+  <h2 class="text-lg font-semibold">설비 사진</h2>
+  <p class="mt-2 text-sm text-sub">유산동 공정 설비 예시입니다.</p>
+
+  <div class={isSingle ? "mt-4 flex justify-center" : "mt-4 grid gap-4 md:grid-cols-3"}>
+    {gallery.map((g) => (
+      <figure
+        class={[
+          "overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft",
+          isSingle ? "w-fit" : ""
+        ].join(" ")}
+        style={isSingle ? `max-width: min(100%, ${g.width}px);` : undefined}
+      >
+        {/* ✅ 단일: 원본 크기 표시 (업스케일 금지) */}
+        {isSingle ? (
+          <div class="p-4 flex justify-center">
             <img
               src={g.src}
               alt={g.alt}
-              class="block w-full h-auto"
-              style={gallery.length === 1 ? 'max-height: 520px; object-fit: contain;' : 'object-fit: cover;'}
+              width={g.width}
+              height={g.height}
               loading="lazy"
-              decoding="async"
+              class="block w-auto h-auto max-w-full rounded-2xl"
             />
           </div>
+        ) : (
+          /* ✅ 다중: 동일한 카드 높이를 원하면(잘림 방지) object-contain 권장 */
+          <div class="relative aspect-[16/9] bg-black/10">
+            <img
+              src={g.src}
+              alt={g.alt}
+              loading="lazy"
+              class="absolute inset-0 h-full w-full object-contain"
+            />
+          </div>
+        )}
 
-          <figcaption class="p-3 text-xs text-white/70">{g.caption}</figcaption>
-        </figure>
-      ))}
-    </div>
-  </section>
+        <figcaption class="px-4 pb-4 text-xs text-white/70">
+          {g.caption}
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+</section>
 </BaseLayout>
