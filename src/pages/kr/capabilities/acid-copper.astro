@@ -115,63 +115,47 @@ const gallery = [
   </section>
 
       {/* 설비 사진 */}
-  ---
-// 예시: 원본 크기를 파일 속성에서 확인해서 입력하세요.
-const gallery = [
-  {
-    src: '/images/capabilities/acid-copper/acid-copper-01.png',
-    alt: '유산동 라인(예시)',
-    caption: 'Acid Copper 라인(예시)',
-    width: 297,
-    height: 184,
-  },
-];
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 
-const isSingle = gallery.length === 1;
+const SCALE = 2 / 3; // ✅ 2/3 축소
+const singleMinH = Math.round(420 * SCALE); // 280
+const multiMinH = Math.round(300 * SCALE);  // 200
+const imgMaxPct = Math.round(100 * SCALE);  // 67
+
+// gallery는 기존 그대로 사용
+// const gallery = [...]
 ---
 
+{/* 설비 사진 */}
 <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
   <h2 class="text-lg font-semibold">설비 사진</h2>
   <p class="mt-2 text-sm text-sub">유산동 공정 설비 예시입니다.</p>
 
-  <div class={isSingle ? "mt-4 flex justify-center" : "mt-4 grid gap-4 md:grid-cols-3"}>
+  {/* 1장이면 1열(전체폭), 2장 이상이면 2열 */}
+  <div class={`mt-4 grid gap-4 ${gallery.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'}`}>
     {gallery.map((g) => (
-      <figure
-        class={[
-          "overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft",
-          isSingle ? "w-fit" : ""
-        ].join(" ")}
-        style={isSingle ? `max-width: min(100%, ${g.width}px);` : undefined}
-      >
-        {/* ✅ 단일: 원본 크기 표시 (업스케일 금지) */}
-        {isSingle ? (
-          <div class="p-4 flex justify-center">
-            <img
-              src={g.src}
-              alt={g.alt}
-              width={g.width}
-              height={g.height}
-              loading="lazy"
-              class="block w-auto h-auto max-w-full rounded-2xl"
-            />
-          </div>
-        ) : (
-          /* ✅ 다중: 동일한 카드 높이를 원하면(잘림 방지) object-contain 권장 */
-          <div class="relative aspect-[16/9] bg-black/10">
-            <img
-              src={g.src}
-              alt={g.alt}
-              loading="lazy"
-              class="absolute inset-0 h-full w-full object-contain"
-            />
-          </div>
-        )}
+      <figure class={`overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft ${gallery.length === 1 ? 'max-w-5xl mx-auto w-full' : ''}`}>
+        {/* 프레임: 16:9 유지 + min-height 2/3로 축소 */}
+        <div
+          class="flex w-full items-center justify-center bg-base"
+          style={`aspect-ratio: 16 / 9; min-height: ${gallery.length === 1 ? singleMinH : multiMinH}px;`}
+        >
+          {/* ✅ 중요: h-full w-full 제거하고, 이미지 최대 크기를 2/3로 제한 */}
+          <img
+            src={g.src}
+            alt={g.alt}
+            class="object-contain w-auto h-auto"
+            style={`max-width: ${imgMaxPct}%; max-height: ${imgMaxPct}%;`}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
 
-        <figcaption class="px-4 pb-4 text-xs text-white/70">
-          {g.caption}
-        </figcaption>
+        <figcaption class="p-3 text-xs text-white/70">{g.caption}</figcaption>
       </figure>
     ))}
   </div>
 </section>
+
 </BaseLayout>
