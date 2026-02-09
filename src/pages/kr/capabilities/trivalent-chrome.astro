@@ -63,7 +63,7 @@ const gallery = [
 
 <BaseLayout title={title} description={description} lang="ko" pathPrefix="/kr">
   {/* HERO */}
-  <section class="rounded-2x1 border border-stroke bg-base p-6 shadow-soft">
+  <section class="rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <a class="text-sm text-accent hover:underline" href="/kr/capabilities/">
       ← Capabilities
     </a>
@@ -81,7 +81,7 @@ const gallery = [
 
     <div class="mt-6 grid gap-4 md:grid-cols-3">
       {highlights.map((h) => (
-        <div class="rounded-2x1 border border-stroke bg-surface p-5 shadow-soft">
+        <section class="rounded-2xl border border-stroke bg-base p-6 shadow-soft">
           <div class="text-sm font-semibold text-white">{h.title}</div>
           <p class="mt-2 text-sm text-sub leading-relaxed">{h.desc}</p>
         </div>
@@ -142,7 +142,7 @@ const gallery = [
 
     <div class="mt-4 grid gap-4 md:grid-cols-3">
       {gallery.map((g) => (
-        <figure class="rounded-2x1 border border-stroke bg-surface shadow-soft overflow-hidden">
+        <figure class="rounded-2xl border border-stroke bg-surface shadow-soft overflow-hidden">
           {/* 이미지 영역: 비율 고정 */}
           <div class="relative w-full" style="aspect-ratio: 16 / 9;">
             <img
