@@ -1,39 +1,52 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
-const title = '로봇 전처리 | 공정/역량 | 성진로지스';
+const title = '무광 + 롱라이프 연속여과장치 | 성진로지스';
 const description =
-  '로봇 자동화 전처리로 조건 편차를 줄이고, 도금 밀착과 외관 재현성을 안정적으로 확보합니다.';
+  '롱라이프 연속 여과로 이물/부유물을 관리해 무광 외관 균일과 컬러 편차를 안정적으로 유지합니다.';
 
 const highlights = [
-  { title: '표준 조건 운영', desc: '시간·온도·농도 등 핵심 변수를 표준화하여 작업 편차 최소화' },
-  { title: '재현성 기반 품질', desc: '전처리 균일도를 확보해 컬러/외관 편차를 낮추는 기반 공정' },
-  { title: '생산 안정화', desc: '연속 생산 환경에서 공정 흔들림을 줄여 불량 리스크를 관리' },
+  {
+    title: '롱라이프 연속 여과',
+    desc: '미세 이물·부유물을 실시간 저감해 표면 결점(점/흐림/색 얼룩) 리스크를 줄입니다.',
+  },
+  {
+    title: '외관·컬러 균일',
+    desc: '욕(浴) 청정도와 안정화를 유지해 무광 질감·색상 편차를 최소화합니다.',
+  },
+  {
+    title: '생산 안정화',
+    desc: '연속 생산 환경에서 공정 흔들림을 줄여 불량률과 재작업 리스크를 관리합니다.',
+  },
 ];
 
 const controlPoints = [
-  '전처리 각 탱크 조건(시간/온도/농도) 표준 레시피 운영',
-  '교반/여과/순환 상태 점검으로 처리 균일도 유지',
-  '린스(수질/오염도) 관리로 이월(Drag-out)·오염 리스크 최소화',
-  '치구/랙 세척·정비 기준 운영으로 접촉/오염 요인 통제',
-  '로봇 동작(침적/이송/드립 타임) 표준화로 공정 편차 감소',
+  '연속 순환 여과로 작업 중 발생하는 미세 이물·부유물 저감',
+  '여과기 유량/턴오버(순환량) 기준 운영으로 청정도 유지',
+  '차압(ΔP) 상승 시 필터 교체/세정 등 즉시 대응(막힘/포화 관리)',
+  '탱크 바닥 슬러지/부유물 정기 제거로 재부유 방지',
+  '샘플링 위치·시간 표준화로 분석값 흔들림 최소화(데이터 신뢰성)',
+  '필요 시 카본/여과 강화로 유기 오염·미세입자 동시 저감',
 ];
 
 const evidence = [
-  '사내 두께/외관/밀착 평가 및 공정 데이터 기반 이력 관리',
-  '품질 시스템 운영: SQ / ISO 9001 / 고객 요구사항 대응',
-  '이슈 발생 시 원인 분석 → 조건 보정 → 재발 방지(표준서/점검표 반영)',
+  '사내 두께/외관/밀착 평가로 조건 변경 전·후 데이터 기반 관리',
+  '염수분무(필요 시 CASS 포함)·열충격·항온항습 등 신뢰성 시험 대응',
+  '여과 교체 이력/차압/유량 등 관리 기록으로 공정 추적성 확보',
+  '품질 시스템(SQ/ISO 등) 요구사항 기반 공정 관리 및 대응',
 ];
 
 const applications = [
-  '자동차 내장 부품(Interior parts): 외관/톤 균일도 요구 대응',
+  '자동차 내장 트림/버튼류 등 무광 외관 민감 부품',
+  '모바일 브라켓/장식부품 등 외관 품질 요구 제품',
+  '후단 니켈/크롬 외관 품질 안정화가 중요한 제품군',
 ];
 
-const photos = [
-  { src: '/images/capabilities/robotic-pretreatment/robot-00.jpg', alt: '로봇 자동화 전처리 라인(로봇 암)' },
-  { src: '/images/capabilities/robotic-pretreatment/robot-01.jpg', alt: '로봇 자동화 전처리 라인(다수 로봇 구성)' },
-  { src: '/images/capabilities/robotic-pretreatment/robot-02.jpg', alt: '로봇 전처리/도금 공정 자동화 현장(탈지, 엣칭)' },
-  { src: '/images/capabilities/robotic-pretreatment/robot-03.jpg', alt: '로봇 전처리/도금 공정 자동화 현장(화학니켈)' },
+const gallery = [
+  {
+    src: '/images/capabilities/matte-satin/longlife-filter-01.png',
+    alt: '롱라이프 연속 여과 장치',
+  },
 ];
 ---
 
@@ -45,13 +58,14 @@ const photos = [
     </a>
 
     <h1 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-      로봇 전처리
+      무광/반무광 + 롱라이프 여과
     </h1>
 
-    <p class="mt-3 text-sm leading-relaxed text-white/80 md:text-base">
-      성진로지스는 <span class="text-white font-semibold">로봇 자동화 전처리</span>로 공정 조건을 표준화하고,
-      <span class="text-white font-semibold"> 도금 밀착</span>과
-      <span class="text-white font-semibold"> 외관 재현성</span>을 안정적으로 확보합니다.
+    <p class="mt-3 text-sm md:text-base leading-relaxed !text-sub drop-shadow-md">
+      성진로지스는 <span class="text-white font-semibold">롱라이프 연속 여과</span>로 욕(浴) 내
+      <span class="text-white font-semibold"> 이물·부유물</span>을 관리하고,
+      <span class="text-white font-semibold"> 무광 외관 균일</span>과
+      <span class="text-white font-semibold"> 컬러 편차</span>를 안정적으로 유지합니다.
     </p>
 
     <div class="mt-6 grid gap-4 md:grid-cols-3">
@@ -68,7 +82,7 @@ const photos = [
   <section class="mt-10 rounded-3xl border border-stroke bg-base p-6 shadow-soft">
     <h2 class="text-lg font-semibold">관리 포인트</h2>
     <p class="mt-2 text-sm text-sub">
-      전처리 균일도를 만드는 핵심 관리 항목을 요약했습니다.
+      무광/반무광 외관 균일을 위한 핵심 관리 항목을 요약했습니다.
     </p>
 
     <div class="mt-4 grid gap-3 md:grid-cols-2">
@@ -84,7 +98,7 @@ const photos = [
   <section class="mt-10 rounded-3xl border border-stroke bg-base p-6 shadow-soft">
     <h2 class="text-lg font-semibold">검증 근거</h2>
     <p class="mt-2 text-sm text-sub">
-      측정 가능한 데이터와 시스템으로 공정 신뢰를 확보합니다.
+      측정 가능한 데이터와 시스템으로 공정 신뢰성을 확보합니다.
     </p>
 
     <div class="mt-4 grid gap-3">
@@ -110,27 +124,20 @@ const photos = [
     </div>
   </section>
 
-  <!-- 설비/라인 사진 -->
+  <!-- 설비 사진 -->
   <section class="mt-10 rounded-3xl border border-stroke bg-base p-6 shadow-soft">
-    <h2 class="text-lg font-semibold">설비/라인 사진</h2>
-    <p class="mt-2 text-sm text-sub">로봇 기반 자동화 전처리 라인 운영 사례</p>
+    <h2 class="text-lg font-semibold">설비 사진</h2>
+    <p class="mt-2 text-sm text-sub">롱라이프 연속 여과 설비 예시입니다.</p>
 
     <div class="mt-4 grid gap-4 md:grid-cols-2">
-      {photos.map((p) => (
-        <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface">
-          <img
-            src={p.src}
-            alt={p.alt}
-            loading="lazy"
-            class="w-full object-cover"
-          />
-          <figcaption class="p-3 text-xs text-sub">
-            {p.alt}
-          </figcaption>
-        </figure>
+      {gallery.map((g) => (
+        <img
+          src={g.src}
+          alt={g.alt}
+          class="w-full rounded-2xl border border-stroke bg-surface object-cover"
+          loading="lazy"
+        />
       ))}
     </div>
   </section>
-
-
 </BaseLayout>
