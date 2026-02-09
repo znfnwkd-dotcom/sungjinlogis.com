@@ -114,24 +114,27 @@ const gallery = [
     </div>
   </section>
 
-    {/* 설비 사진 */}
+      {/* 설비 사진 */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <h2 class="text-lg font-semibold">설비 사진</h2>
     <p class="mt-2 text-sm text-sub">유산동 공정 설비 예시입니다.</p>
 
-    {/* 1장이면 1열(전체폭), 2장 이상이면 2열 */}
+    {/* 1장이면 1열 + 최대폭 제한(업스케일 방지), 2장 이상이면 기존 그리드 */}
     <div class={`mt-4 grid gap-4 ${gallery.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'}`}>
       {gallery.map((g) => (
-        <figure class={`overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft ${gallery.length === 1 ? 'max-w-5xl mx-auto w-full' : ''}`}>
-          {/* 프레임 높이를 키워서 더 크게 보이게 */}
-          <div
-            class="flex w-full items-center justify-center bg-base"
-            style={`aspect-ratio: 16 / 9; ${gallery.length === 1 ? 'min-height: 420px;' : 'min-height: 300px;'}`}
-          >
+        <figure
+          class={`overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft ${
+            gallery.length === 1 ? 'mx-auto w-full' : ''
+          }`}
+          style={gallery.length === 1 ? 'max-width: 920px;' : undefined}
+        >
+          {/* 이미지: 원본보다 과확대되지 않도록, 자연비율 유지 */}
+          <div class="bg-base">
             <img
               src={g.src}
               alt={g.alt}
-              class="h-full w-full object-contain"
+              class="block w-full h-auto"
+              style={gallery.length === 1 ? 'max-height: 520px; object-fit: contain;' : 'object-fit: cover;'}
               loading="lazy"
               decoding="async"
             />
