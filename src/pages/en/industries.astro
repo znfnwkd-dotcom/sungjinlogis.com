@@ -5,28 +5,20 @@ const title = 'Industries | SUNGJINLOGIS';
 const description =
   'From premium automotive interior appearance parts to mobile/IT, home appliances, and industrial HMI housings—an overview of industries where plastic plating and surface finishing are applied based on appearance, corrosion resistance, and reliability requirements.';
 
-/**
- * (Optional) One-line SEO keywords
- * - Best placed right under the HERO section as sr-only.
- */
+/** (Optional) SEO keywords (hidden) */
 const seoKeywords =
   'automotive interior plating, premium appearance parts, plastic plating (POP), trivalent chrome, nickel plating, mobile camera bracket, industrial HMI housing, surface finishing, corrosion resistance, color consistency';
 
-/**
- * Current focus industries (in production / proven)
- * - status badge:
- *   - "In Production" => highlighted badge
- *   - others => neutral badge
- */
+/** Key industries to highlight (production/proven) */
 const inProduction = [
   {
     title: 'Automotive Interior Decor',
     subtitle: 'Premium appearance parts',
     status: 'In Production',
-    desc: 'Interior trim and control parts designed to meet premium appearance, tactile feel, and corrosion-resistance requirements.',
+    desc: 'Interior decorative and control parts designed to meet premium appearance, tactile feel, and corrosion-resistance requirements.',
     points: [
-      'Control-panel metal deco such as switch panels, dial bezels, and knobs',
-      'Simultaneously meet appearance (gloss/color) + corrosion (salt spray, etc.) requirements',
+      'Metal deco for switch panels, dial bezels, knobs, and control interfaces',
+      'Meets both appearance (gloss/color) and corrosion requirements (salt spray, etc.)',
       'Specification-driven operation (e.g., semi-bright base + bright top nickel stack)',
     ],
   },
@@ -36,27 +28,25 @@ const inProduction = [
     status: 'In Production',
     desc: 'Small precision parts where appearance, dimensional consistency, and scratch durability are critical.',
     points: [
-      'Color and gloss consistency management for precision appearance parts',
+      'Color and gloss consistency control for precision appearance parts',
       'Thickness/dimension/appearance standards considering downstream and assembly processes',
-      'Standardized conditions and traceability based on required specifications',
+      'Standardized process conditions and traceability based on required specifications',
     ],
   },
   {
     title: 'Home Appliances',
     subtitle: 'Premium appearance trim',
     status: 'Applicable',
-    desc: 'Premium appliance trims requiring strong appearance quality and corrosion resistance in daily environments.',
+    desc: 'Premium appliance trims that require strong appearance quality and corrosion resistance in daily environments.',
     points: [
-      'Applicable to control/trim and decorative appearance parts',
-      'Supports corrosion, stain resistance, and cleaning durability requirements',
+      'Applicable to control panels and decorative trim parts',
+      'Supports corrosion resistance, stain resistance, and cleaning durability requirements',
       'Repeatability-first control for mass production stability',
     ],
   },
 ];
 
-/**
- * Expandable industries (future/additional)
- */
+/** Expandable industries (future/additional) */
 const expandable = [
   {
     title: 'Industrial HMI / Control Panels / Housings',
@@ -65,7 +55,7 @@ const expandable = [
     points: [
       'Decorative control panels, button housings, and cover parts',
       'Supports durability, corrosion resistance, and surface-quality requirements',
-      'Surface specs can be aligned to brand/grade requirements',
+      'Surface specs can be aligned to equipment brand/grade requirements',
     ],
   },
   {
@@ -75,13 +65,13 @@ const expandable = [
     points: [
       'Standardized processes for premium gloss and color consistency',
       'Defect-focused control (pinhole/marks/uniformity)',
-      'Can consider downstream processes (printing/laser/coating) integration',
+      'Can consider downstream integration (printing/laser/coating)',
     ],
   },
   {
     title: 'Smart Home & Premium Appliances',
     subtitle: 'UI trim / decorative parts',
-    desc: 'Products where appearance, touch feel, and durability in user-contact areas are important.',
+    desc: 'Products where appearance, tactile feel, and durability in user-contact areas are important.',
     points: [
       'Applicable to control and decorative parts',
       'Supports corrosion and stain resistance in daily environments',
@@ -94,37 +84,36 @@ const expandable = [
     desc: 'Parts with high requirements for durability, appearance, and reliability at the same time.',
     points: [
       'Applicable to dial controls, button bezels, and general control appearance parts',
-      'Supports reliability test requirements such as salt spray',
-      'Process operation based on spec targets (thickness/appearance/downstream)',
+      'Supports reliability requirements such as salt spray testing',
+      'Operated based on spec targets (thickness/appearance/downstream process)',
     ],
   },
 ];
 
 /**
  * Production examples (Automotive interior)
- * Recommended path:
  * public/images/industries/automotive-interior/production/
  */
 const automotiveProducts = [
   {
     name: 'Center fascia switch panel (keyboard type) - 01',
     src: '/images/industries/automotive-interior/production/keyboard-switch-panel-01.png',
-    alt: 'Center fascia switch panel (keyboard type) production example',
+    alt: 'Center fascia switch panel production example',
   },
   {
     name: 'Center fascia switch panel (keyboard type) - 02',
     src: '/images/industries/automotive-interior/production/keyboard-switch-panel-02.png',
-    alt: 'Center fascia switch panel (keyboard type) production example',
+    alt: 'Center fascia switch panel production example',
   },
   {
     name: 'Center fascia switch panel (keyboard type) - 03',
     src: '/images/industries/automotive-interior/production/keyboard-switch-panel-03.png',
-    alt: 'Center fascia switch panel (keyboard type) production example',
+    alt: 'Center fascia switch panel production example',
   },
   {
     name: 'Center fascia switch panel (keyboard type) - 04',
     src: '/images/industries/automotive-interior/production/keyboard-switch-panel-04.png',
-    alt: 'Center fascia switch panel (keyboard type) production example',
+    alt: 'Center fascia switch panel production example',
   },
   {
     name: 'Center console switch trim',
@@ -168,7 +157,7 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
     </h1>
 
     <p class="mt-3 text-sm md:text-base leading-relaxed !text-sub drop-shadow-md">
-      SUNGJINLOGIS plating/surface finishing can be applied across a wide range of premium appearance parts—from
+      SUNGJINLOGIS plating/surface finishing is applicable across a wide range of premium appearance parts—from
       automotive interiors and mobile/IT to home appliances and industrial housings.
       <br />
       <span class="text-white/80">
@@ -176,16 +165,13 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
       </span>
     </p>
 
-    {/* (Optional) SEO keywords (hidden) */}
     <p class="sr-only">SEO: {seoKeywords}</p>
   </section>
 
   {/* Key industries */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <h2 class="text-lg font-semibold">Key Industries</h2>
-    <p class="mt-2 text-sm text-sub">
-      A summary of primary application areas.
-    </p>
+    <p class="mt-2 text-sm text-sub">Primary application areas.</p>
 
     <div class="mt-4 grid gap-4 md:grid-cols-3">
       {inProduction.map((item) => (
@@ -222,15 +208,12 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
     </div>
   </section>
 
-  {/* Production photos (Automotive interior) */}
+  {/* Production photos */}
   {hasAutomotiveProducts && (
     <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
       <h2 class="text-lg font-semibold">Production Examples (Photos)</h2>
-      <p class="mt-2 text-sm text-sub">
-        Production examples for premium automotive interior appearance parts.
-      </p>
+      <p class="mt-2 text-sm text-sub">Premium automotive interior appearance parts.</p>
 
-      {/* Click events delegated on this container */}
       <div id="production-examples" class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {automotiveProducts.map((p) => (
           <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
@@ -252,7 +235,6 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
                 decoding="async"
               />
 
-              {/* Hover overlay */}
               <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
                 <div class="flex items-center gap-2 rounded-full border border-stroke bg-black/40 px-3 py-1.5 text-xs text-white/90 backdrop-blur">
                   <span aria-hidden="true">🔍</span>
@@ -271,7 +253,7 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
         ))}
       </div>
 
-      {/* Lightbox (modal) */}
+      {/* Lightbox modal */}
       <div
         id="lightbox"
         class="fixed inset-0 z-50 hidden flex items-center justify-center p-4"
@@ -304,7 +286,7 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
         </div>
       </div>
 
-      {/* Script: bind once, works with Astro page transitions */}
+      {/* Single, reliable script */}
       <script is:inline>
         {`
           (() => {
@@ -394,7 +376,7 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
     </div>
   </section>
 
-  {/* Consultation CTA */}
+  {/* CTA */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <h2 class="text-lg font-semibold">Application Review</h2>
     <p class="mt-2 text-sm text-sub leading-relaxed">
