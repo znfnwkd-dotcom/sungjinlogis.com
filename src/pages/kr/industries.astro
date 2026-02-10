@@ -292,10 +292,10 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
 
     {/* ✅ 라이트박스(모달) */}
     <div
-      id="lightbox"
-      class="fixed inset-0 z-50 hidden items-center justify-center p-4"
-      aria-hidden="true"
-    >
+  id="lightbox"
+  class="fixed inset-0 z-50 hidden flex items-center justify-center p-4"
+  aria-hidden="true"
+>
       {/* 바깥 클릭 닫기용 배경 */}
       <div data-lightbox-backdrop class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
 
@@ -324,54 +324,66 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
 
     {/* ✅ 동작 스크립트: 이 섹션에만 적용 */}
     <script is:inline>
-      {`
-        (() => {
-          const scope = document.getElementById('production-examples');
-          const lb = document.getElementById('lightbox');
-          if (!scope || !lb) return;
+  {`
+    (() => {
+      const init = () => {
+        const scope = document.getElementById('production-examples');
+        const lb = document.getElementById('lightbox');
+        if (!scope || !lb) return;
 
-          const img = lb.querySelector('[data-lightbox-img]');
-          const cap = lb.querySelector('[data-lightbox-caption]');
-          const backdrop = lb.querySelector('[data-lightbox-backdrop]');
+        // 중복 바인딩 방지 (Astro 페이지 전환/재실행 대비)
+        if (lb.dataset.bound === '1') return;
+        lb.dataset.bound = '1';
 
-          const open = (src, alt, caption) => {
-            img.setAttribute('src', src);
-            img.setAttribute('alt', alt || '');
-            cap.textContent = caption || '';
-            lb.classList.remove('hidden');
-            lb.classList.add('flex');
-            lb.setAttribute('aria-hidden', 'false');
-            document.documentElement.style.overflow = 'hidden';
-          };
+        const img = lb.querySelector('[data-lightbox-img]');
+        const cap = lb.querySelector('[data-lightbox-caption]');
+        const backdrop = lb.querySelector('[data-lightbox-backdrop]');
 
-          const close = () => {
-            lb.classList.add('hidden');
-            lb.classList.remove('flex');
-            lb.setAttribute('aria-hidden', 'true');
-            img.setAttribute('src', '');
-            document.documentElement.style.overflow = '';
-          };
+        const open = (src, alt, caption) => {
+          img.src = src;
+          img.alt = alt || '';
+          cap.textContent = caption || '';
+          lb.classList.remove('hidden');
+          lb.setAttribute('aria-hidden', 'false');
+          document.documentElement.style.overflow = 'hidden';
+        };
 
-          // 썸네일 클릭 → 열기
-          scope.addEventListener('click', (e) => {
-            const btn = e.target.closest('[data-lightbox-trigger]');
-            if (!btn) return;
-            open(btn.dataset.src, btn.dataset.alt, btn.dataset.caption);
-          });
+        const close = () => {
+          lb.classList.add('hidden');
+          lb.setAttribute('aria-hidden', 'true');
+          img.src = '';
+          document.documentElement.style.overflow = '';
+        };
 
-          // 배경 클릭/닫기 버튼 → 닫기
-          lb.addEventListener('click', (e) => {
-            if (e.target === backdrop) close();
-            if (e.target.closest('[data-lightbox-close]')) close();
-          });
+        scope.addEventListener('click', (e) => {
+          const btn = e.target.closest('[data-lightbox-trigger]');
+          if (!btn) return;
+          open(btn.dataset.src, btn.dataset.alt, btn.dataset.caption);
+        });
 
-          // ESC → 닫기
-          document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !lb.classList.contains('hidden')) close();
-          });
-        })();
-      `}
-    </script>
+        lb.addEventListener('click', (e) => {
+          if (e.target === backdrop) close();
+          if (e.target.closest('[data-lightbox-close]')) close();
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !lb.classList.contains('hidden')) close();
+        });
+      };
+
+      // ✅ DOM 준비 후 실행 (가장 중요)
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+      // ✅ Astro에서 페이지 전환/재로드 훅이 있을 때도 대비
+      document.addEventListener('astro:page-load', init);
+    })();
+  `}
+</script>
+
   </section>
 )}
 
