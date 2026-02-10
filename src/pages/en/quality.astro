@@ -1,81 +1,90 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro'; // ✅ 프로젝트 경로에 맞게 조정하세요 (예: ../../../layouts/BaseLayout.astro)
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const title = '품질/인증 | 성진로지스';
+const title = 'Quality & Certifications | SUNGJINLOGIS';
 const description =
-  '고객사 승인·시스템 인증·지식재산 및 사내 시험/검사 설비를 기반으로 공정 신뢰성과 품질 추적성을 확보합니다.';
+  'We ensure process trust and quality traceability through customer/spec approvals, system certifications, intellectual property, and in-house testing & inspection capabilities.';
 
-/** 상단 Key Proof 카드 */
+/** Top Key Proof cards */
 const highlights = [
-  { title: '고객사/규격 승인', desc: 'OEM/고객사 규격 기반 승인·요구사항을 체계적으로 관리합니다.' },
-  { title: '시스템 인증', desc: 'ISO/IATF 등 품질·환경 시스템을 기반으로 운영 표준을 유지합니다.' },
-  { title: '검증 설비', desc: '두께·내식·공정성·현미경 분석 등 사내 검증으로 신뢰성을 확보합니다.' },
+  {
+    title: 'Customer / Specification Approvals',
+    desc: 'We manage OEM and customer specifications, approvals, and requirements in a controlled system.',
+  },
+  {
+    title: 'Management System Certifications',
+    desc: 'We maintain operating standards based on quality, environmental, and automotive quality systems.',
+  },
+  {
+    title: 'Verification Capability',
+    desc: 'We secure reliability through in-house verification: thickness, corrosion, process control, and microscopy analysis.',
+  },
 ];
 
-/** 1) 고객사/인증기관 승인(표) */
+/** 1) Customer / certification approvals (table) */
 const customerApprovals = [
   {
     customer: 'General Motors (GM)',
     spec: 'GMW14668 (CODEA TYPE2)',
-    note: 'Bright Chrome, Nebular Chrome, Galvano Silver 외 승인',
+    note: 'Approved items include Bright Chrome, Nebular Chrome, Galvano Silver, and others',
   },
   {
     customer: 'Mercedes-Benz',
     spec: 'DBL 1665.51',
-    note: '3가 크롬 도금 시스템(Trivalent Chrome System) 승인',
+    note: 'Approved for trivalent chrome plating system (Trivalent Chrome System)',
   },
   {
-    customer: '현대자동차·기아',
-    spec: 'SQ 인증 (Supplier Quality)',
-    note: '도금(Plating) 부문 획득',
+    customer: 'Hyundai · Kia',
+    spec: 'SQ Certification (Supplier Quality)',
+    note: 'Certified in the plating category',
   },
 ];
 
-/** 2) 시스템/기업 인증(표) */
+/** 2) System / company certifications (table) */
 const systemCerts = [
   {
-    category: '품질경영',
+    category: 'Quality',
     name: 'ISO 9001',
     issuer: '—',
     validity: '—',
-    scope: '품질경영시스템',
-    note: '고객 요구사항 기반 운영 표준화',
+    scope: 'Quality management system',
+    note: 'Standardized operations based on customer requirements',
   },
   {
-    category: '환경경영',
+    category: 'Environment',
     name: 'ISO 14001',
     issuer: '—',
     validity: '—',
-    scope: '환경경영시스템',
-    note: '친환경 공정/법규 준수 체계',
+    scope: 'Environmental management system',
+    note: 'Compliance framework for eco-friendly processes and regulations',
   },
   {
-    category: '자동차 품질',
+    category: 'Automotive Quality',
     name: 'IATF 16949',
     issuer: '—',
     validity: '—',
-    scope: '자동차 산업 품질경영',
-    note: '고객사 품질 요구 대응 체계',
+    scope: 'Automotive quality management',
+    note: 'System readiness to meet OEM quality requirements',
   },
   {
-    category: '기업 인증',
+    category: 'Company Certification',
     name: 'Inno-Biz',
     issuer: '—',
     validity: '—',
-    scope: '기술혁신형 중소기업',
+    scope: 'Technology-innovative SME',
     note: '—',
   },
   {
-    category: '기업 인증',
-    name: '소재·부품 전문기업 확인',
+    category: 'Company Certification',
+    name: 'Materials & Components Specialized Company',
     issuer: '—',
     validity: '—',
-    scope: 'materials & components',
+    scope: 'Materials & components',
     note: '—',
   },
   {
-    category: '기업 인증',
-    name: '기업부설연구소 인증',
+    category: 'Company Certification',
+    name: 'In-house R&D Center Certification',
     issuer: '—',
     validity: '—',
     scope: 'R&D Center',
@@ -83,7 +92,7 @@ const systemCerts = [
   },
 ];
 
-/** 3) 특허/디자인등록(표) */
+/** 3) Patents / design registration (table) */
 const ipList = [
   { type: 'Design', title: 'Plating Tanks Design Registration', no: '30-2029-0005341', note: '—' },
   { type: 'Patent', title: 'How to operate a satin nickel tank with improved productivity', no: '10-2034466', note: '—' },
@@ -97,20 +106,20 @@ const ipList = [
   { type: 'Patent', title: 'Plating method using laser and UV coating', no: '10-2572581', note: '—' },
 ];
 
-/** 4) 시험/검사 장비(사진 카드) - src 경로만 실제 파일에 맞게 넣으시면 됩니다 */
+/** 4) Testing / inspection equipment (image cards) */
 const testEquipments = [
-  { name: '도금두께 측정기', en: 'Thickness Tester (2 set)', src: '/images/quality/equipment/thickness-tester.png' },
-  { name: 'CASS 시험기', en: 'CASS Tester', src: '/images/quality/equipment/cass-tester.png' },
-  { name: 'Hull Cell 시험기', en: 'Hull Cell Tester', src: '/images/quality/equipment/hull-cell-tester.png' },
-  { name: '전자현미경', en: 'Electron Microscope', src: '/images/quality/equipment/electron-microscope.png' },
-  { name: '온습도 사이클 시험기', en: 'Heat & Humidity Cycle Tester', src: '/images/quality/equipment/heat-humidity-cycle.png' },
-  { name: 'XRF 두께 측정기', en: 'XRF Thickness Tester', src: '/images/quality/equipment/xrf-thickness.png' },
-  { name: '광학 현미경', en: 'Optical Microscope', src: '/images/quality/equipment/optical-microscope.png' },
-  { name: '폴리싱(연마) 장비', en: 'Polishing Machine', src: '/images/quality/equipment/polishing-machine.png' },
-  { name: '항온항습기', en: 'Thermohygrostat', src: '/images/quality/equipment/thermohygrostat.png' },
-  { name: 'Peel 시험기', en: 'Peel-off Tester', src: '/images/quality/equipment/peel-off-tester.png' },
-  { name: '급속 열충격 시험기', en: 'Quick Thermal Tester', src: '/images/quality/equipment/quick-thermal.png' },
-  { name: 'STEP 시험기', en: 'STEP Tester', src: '/images/quality/equipment/step-tester.png' },
+  { name: 'Plating Thickness Tester', detail: '2 sets', src: '/images/quality/equipment/thickness-tester.png' },
+  { name: 'CASS Tester', detail: '', src: '/images/quality/equipment/cass-tester.png' },
+  { name: 'Hull Cell Tester', detail: '', src: '/images/quality/equipment/hull-cell-tester.png' },
+  { name: 'Electron Microscope', detail: '', src: '/images/quality/equipment/electron-microscope.png' },
+  { name: 'Heat & Humidity Cycle Tester', detail: '', src: '/images/quality/equipment/heat-humidity-cycle.png' },
+  { name: 'XRF Thickness Tester', detail: '', src: '/images/quality/equipment/xrf-thickness.png' },
+  { name: 'Optical Microscope', detail: '', src: '/images/quality/equipment/optical-microscope.png' },
+  { name: 'Polishing Machine', detail: '', src: '/images/quality/equipment/polishing-machine.png' },
+  { name: 'Thermohygrostat', detail: 'Constant temperature & humidity chamber', src: '/images/quality/equipment/thermohygrostat.png' },
+  { name: 'Peel-off Tester', detail: 'Adhesion', src: '/images/quality/equipment/peel-off-tester.png' },
+  { name: 'Quick Thermal Shock Tester', detail: '', src: '/images/quality/equipment/quick-thermal.png' },
+  { name: 'STEP Tester', detail: '', src: '/images/quality/equipment/step-tester.png' },
 ];
 ---
 
@@ -119,8 +128,8 @@ const testEquipments = [
   <section class="rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">Quality & Trust</h1>
     <p class="mt-2 text-sm text-sub md:text-base leading-relaxed">
-      고객사 승인·시스템 인증·지식재산 및 사내 시험/검사 설비를 기반으로
-      공정 신뢰성과 품질 추적성을 확보합니다.
+      We secure process trust and quality traceability through customer approvals, system certifications,
+      intellectual property, and in-house testing/inspection capabilities.
     </p>
 
     <div class="mt-6 grid gap-4 md:grid-cols-3">
@@ -133,18 +142,20 @@ const testEquipments = [
     </div>
   </section>
 
-  {/* 1) 고객사/인증기관 승인 */}
+  {/* 1) Customer / certification approvals */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
-    <h2 class="text-lg font-semibold">고객사 / 인증기관 승인</h2>
-    <p class="mt-2 text-sm text-sub">외부 공개 시 민감할 수 있는 원본 인증서 대신, 승인 정보만 표로 정리합니다.</p>
+    <h2 class="text-lg font-semibold">Customer / Certification Approvals</h2>
+    <p class="mt-2 text-sm text-sub">
+      To avoid disclosing sensitive documents, we provide an overview of approval information in a summarized table.
+    </p>
 
     <div class="mt-4 overflow-x-auto">
       <table class="min-w-[900px] w-full border-separate border-spacing-0 rounded-2xl overflow-hidden">
         <thead>
           <tr class="bg-surface">
-            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">고객사 / 인증기관</th>
-            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">인증 사양 및 규격</th>
-            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">비고 (인증 범위/등급)</th>
+            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">Customer / Organization</th>
+            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">Specification / Standard</th>
+            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">Notes (Scope / Grade)</th>
           </tr>
         </thead>
         <tbody>
@@ -160,21 +171,23 @@ const testEquipments = [
     </div>
   </section>
 
-  {/* 2) 시스템/기업 인증 */}
+  {/* 2) System / company certifications */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
-    <h2 class="text-lg font-semibold">시스템 인증 / 기업 인증</h2>
-    <p class="mt-2 text-sm text-sub">품질·환경·자동차 품질 시스템 및 기업 인증을 표로 관리합니다.</p>
+    <h2 class="text-lg font-semibold">Management System & Company Certifications</h2>
+    <p class="mt-2 text-sm text-sub">
+      We manage quality/environment/automotive systems and company-level certifications in a structured manner.
+    </p>
 
     <div class="mt-4 overflow-x-auto">
       <table class="min-w-[1100px] w-full border-separate border-spacing-0 rounded-2xl overflow-hidden">
         <thead>
           <tr class="bg-surface">
-            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">구분</th>
-            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">인증명</th>
-            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">발급기관</th>
-            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">유효기간</th>
-            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">적용 범위</th>
-            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">비고</th>
+            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">Category</th>
+            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">Certification</th>
+            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">Issuer</th>
+            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">Validity</th>
+            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">Scope</th>
+            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">Notes</th>
           </tr>
         </thead>
         <tbody>
@@ -193,19 +206,21 @@ const testEquipments = [
     </div>
   </section>
 
-  {/* 3) 특허/디자인등록 */}
+  {/* 3) Patents / design registration */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
-    <h2 class="text-lg font-semibold">특허 / 디자인 등록</h2>
-    <p class="mt-2 text-sm text-sub">핵심 기술/설비 관련 등록 정보를 표로 정리합니다.</p>
+    <h2 class="text-lg font-semibold">Patents & Design Registration</h2>
+    <p class="mt-2 text-sm text-sub">
+      We list key registrations related to core technologies and equipment.
+    </p>
 
     <div class="mt-4 overflow-x-auto">
       <table class="min-w-[950px] w-full border-separate border-spacing-0 rounded-2xl overflow-hidden">
         <thead>
           <tr class="bg-surface">
-            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">구분</th>
-            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">명칭</th>
-            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">등록번호</th>
-            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">비고</th>
+            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">Type</th>
+            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">Title</th>
+            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">Registration No.</th>
+            <th class="text-left text-sm font-semibold text-white px-4 py-3 border-b border-stroke">Notes</th>
           </tr>
         </thead>
         <tbody>
@@ -222,71 +237,67 @@ const testEquipments = [
     </div>
   </section>
 
-{/* R&D / Chemical Analysis Laboratory */}
-<section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
-  <h2 class="text-lg font-semibold">Chemical Analysis Laboratory</h2>
-  <p class="mt-2 text-sm text-sub">
-    공정 분석·원인 규명·재현성 개선을 위한 사내 실험실 기반으로
-    품질 관리와 불량 저감을 지속적으로 수행합니다.
-  </p>
+  {/* R&D / Chemical Analysis Laboratory */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">Chemical Analysis Laboratory</h2>
+    <p class="mt-2 text-sm text-sub">
+      With an in-house laboratory for process analysis and root-cause investigation,
+      we continuously strengthen quality control and defect reduction—focused on repeatability.
+    </p>
 
-  <div class="mt-5 grid gap-4 lg:grid-cols-2">
-    {/* 이미지 카드 */}
-    <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
-      <div class="flex items-center justify-center bg-base" style="aspect-ratio: 16 / 10;">
-        <img
-          src="/images/quality/lab/chemical-analysis-lab.png"
-          alt="Chemical Analysis Laboratory"
-          class="h-full w-full object-cover"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
-      <figcaption class="p-3">
-        <div class="text-sm font-semibold text-white">사내 화학 분석 실험실</div>
-        <div class="mt-1 text-xs text-white/60">Chemical Analysis Laboratory</div>
-      </figcaption>
-    </figure>
+    <div class="mt-5 grid gap-4 lg:grid-cols-2">
+      {/* Image card */}
+      <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
+        <div class="flex items-center justify-center bg-base" style="aspect-ratio: 16 / 10;">
+          <img
+            src="/images/quality/lab/chemical-analysis-lab.png"
+            alt="Chemical Analysis Laboratory"
+            class="h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <figcaption class="p-3">
+          <div class="text-sm font-semibold text-white">In-house Chemical Analysis Lab</div>
+          <div class="mt-1 text-xs text-white/60">Process analysis · root-cause investigation · repeatability improvement</div>
+        </figcaption>
+      </figure>
 
-    {/* 설명 카드 */}
-    <div class="rounded-2xl border border-stroke bg-surface p-5 shadow-soft">
-      <div class="text-sm font-semibold text-white">R&D intensive research investment</div>
-      <ul class="mt-3 space-y-2 text-sm text-sub leading-relaxed">
-        <li>• 공정 조건 최적화 및 결함(불량) 원인 분석</li>
-        <li>• 양산 품질 안정화를 위한 지속적 개선 활동(재현성 중심)</li>
-        <li>• 부서별 품질관리 절차 구축/정착 및 교육 운영</li>
-      </ul>
+      {/* Description card */}
+      <div class="rounded-2xl border border-stroke bg-surface p-5 shadow-soft">
+        <div class="text-sm font-semibold text-white">R&D-driven continuous improvement</div>
+        <ul class="mt-3 space-y-2 text-sm text-sub leading-relaxed">
+          <li>• Process optimization and defect (root cause) analysis</li>
+          <li>• Continuous improvement for stable mass-production quality (repeatability-first)</li>
+          <li>• Quality procedures by department, implementation, and training</li>
+        </ul>
 
-      <div class="mt-4 rounded-2xl border border-stroke bg-base p-4">
-        <div class="text-xs font-semibold text-white/80">활용 포인트</div>
-        <p class="mt-2 text-sm text-sub leading-relaxed">
-          분석 데이터 → 개선안 도출 → 현장 적용 → 장비/시험으로 검증까지
-          사내에서 일관되게 수행해 공정 추적성과 고객 신뢰를 강화합니다.
-        </p>
+        <div class="mt-4 rounded-2xl border border-stroke bg-base p-4">
+          <div class="text-xs font-semibold text-white/80">How it supports customers</div>
+          <p class="mt-2 text-sm text-sub leading-relaxed">
+            Data analysis → improvement actions → on-site application → verification with equipment and testing.
+            This internal loop strengthens traceability and customer trust.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-
-
-
-  {/* 4) 시험/검사 장비 (사진 카드 그리드) */}
+  {/* 4) Testing / inspection equipment */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <h2 class="text-lg font-semibold">Testing & Inspection Equipment</h2>
     <p class="mt-2 text-sm text-sub">
-      사내 시험/검사 설비를 통해 두께·내식·공정성·분석 데이터를 확보하고 품질 신뢰성을 강화합니다.
+      With in-house testing and inspection, we secure data for thickness, corrosion reliability, process control,
+      and analysis—strengthening overall quality confidence.
     </p>
 
     <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {testEquipments.map((e) => (
         <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
-          {/* 이미지 프레임: 과도한 확대 방지 + 선명도 유지 */}
           <div class="flex items-center justify-center bg-base" style="aspect-ratio: 16 / 10;">
             <img
               src={e.src}
-              alt={`${e.name} (${e.en})`}
+              alt={e.detail ? `${e.name} (${e.detail})` : e.name}
               class="h-full w-full object-contain"
               loading="lazy"
               decoding="async"
@@ -295,7 +306,7 @@ const testEquipments = [
 
           <figcaption class="p-3">
             <div class="text-sm font-semibold text-white">{e.name}</div>
-            <div class="mt-1 text-xs text-white/60">{e.en}</div>
+            {e.detail ? <div class="mt-1 text-xs text-white/60">{e.detail}</div> : <div class="mt-1 text-xs text-white/60">&nbsp;</div>}
           </figcaption>
         </figure>
       ))}
@@ -306,7 +317,7 @@ const testEquipments = [
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <h2 class="text-lg font-semibold">ESG</h2>
     <p class="mt-2 text-sm text-sub">
-      친환경 3가크롬 등 규제 대응 공정 운영과 시스템 기반 관리를 통해 ESG 경영을 실천합니다.
+      We practice ESG management through eco-friendly processes (including trivalent chrome) and system-based compliance and control.
     </p>
   </section>
 </BaseLayout>
