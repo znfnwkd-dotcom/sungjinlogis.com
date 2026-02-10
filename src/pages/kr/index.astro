@@ -17,9 +17,17 @@ const description = '로봇 전처리와 공정 안정화로 재현성과 컬러
 
 <div class="relative z-20 p-8 md:p-12">
   <div class="relative z-20 inline-block max-w-2xl rounded-2xl border border-white/10 bg-black/45 p-6 backdrop-blur-sm">
-    <h1 class="text-3xl font-semibold tracking-tight md:text-5xl">
-      <span class="text-accent">재현성</span>으로 증명하는 프리미엄 도금.
-    </h1>
+  <!-- ✅ Brand line 추가 -->
+  <div class="text-lg md:text-2xl font-semibold tracking-[0.22em] text-white/90">
+    SUNGJINLOGIS
+  </div>
+  <div class="mt-1 text-xs md:text-sm text-white/70">
+    프리미엄 도금·표면처리
+  </div>
+
+  <h1 class="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
+    <span class="text-accent">재현성</span>으로 증명하는 프리미엄 도금.
+  </h1>
 
     <p class="mt-4 max-w-2xl text-sm md:text-base font-medium !text-white/90 leading-relaxed drop-shadow">
   로봇 전처리와 공정 안정화로 컬러 일치성과 표면 품질을 반복 재현합니다.<br />
@@ -127,24 +135,58 @@ const description = '로봇 전처리와 공정 안정화로 재현성과 컬러
     </div>
   </section>
 
-  <!-- Testing equipment -->
-  <section class="mt-12">
-    <h2 class="text-xl font-semibold">Testing & Inspection</h2>
-    <p class="mt-1 text-sm text-sub">보유 시험/검사 설비</p>
+  <!-- In-house Verification (Testing & Inspection) -->
+  <section class="mt-12 rounded-xl2 border border-stroke bg-surface p-8">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <h2 class="text-xl font-semibold">In-house Verification</h2>
+        <p class="mt-1 text-sm text-sub">
+          사양을 ‘감’이 아니라 <span class="text-white/90 font-semibold">데이터</span>로 검증합니다
+        </p>
+      </div>
+      <a class="text-sm text-accent hover:text-accent-hover" href="/kr/quality/">
+        자세히 보기 →
+      </a>
+    </div>
 
-    <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {[
-        '도금두께 측정기',
-        '열충격시험기',
-        '염수분무시험기',
-        '항온항습조',
-        'Peel Test'
-      ].map((t) => (
-        <div class="rounded-xl2 border border-stroke bg-surface p-5 shadow-soft">
-          <div class="text-sm font-semibold">{t}</div>
-          <div class="mt-1 text-sm text-sub">시험성적/인증서 자료로 검증</div>
-        </div>
-      ))}
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      <div class="rounded-xl border border-stroke bg-base p-5">
+        <div class="text-sm font-semibold">내식·환경 신뢰성</div>
+        <p class="mt-1 text-sm text-sub">사용 환경을 가정한 내구/부식 조건 검증</p>
+        <ul class="mt-4 space-y-2 text-sm text-sub">
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>염수분무시험</span></li>
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>열충격시험</span></li>
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>항온항습(온·습도)</span></li>
+        </ul>
+      </div>
+
+      <div class="rounded-xl border border-stroke bg-base p-5">
+        <div class="text-sm font-semibold">막두께·외관 관리</div>
+        <p class="mt-1 text-sm text-sub">프리미엄 외관 부품의 균일도/재현성 확인</p>
+        <ul class="mt-4 space-y-2 text-sm text-sub">
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>도금 두께 측정</span></li>
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>외관 품질 기준 운영</span></li>
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>공정 조건 표준화/이력 관리</span></li>
+        </ul>
+      </div>
+
+      <div class="rounded-xl border border-stroke bg-base p-5">
+        <div class="text-sm font-semibold">밀착·기계적 성능</div>
+        <p class="mt-1 text-sm text-sub">표면처리 핵심인 밀착 안정성 검증</p>
+        <ul class="mt-4 space-y-2 text-sm text-sub">
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>Peel Test(밀착)</span></li>
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>불량 원인 추적/재발 방지</span></li>
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>고객 사양 기준 대응</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-xl border border-stroke bg-base p-5">
+      <div class="text-sm font-semibold">시험성적서 기반 대응</div>
+      <p class="mt-1 text-sm text-sub">
+        사내 시험 데이터를 기반으로 <span class="text-white/90 font-semibold">양산 안정화</span>와
+        <span class="text-white/90 font-semibold">인증/요구사항</span> 대응을 지원합니다.
+      </p>
     </div>
   </section>
 
