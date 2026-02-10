@@ -226,166 +226,151 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
   </section>
 
   {/* 양산 제품 사진(자동차 내장) */}
-{hasAutomotiveProducts && (
-  <section
-    id="production-examples"
-    class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft"
-  >
-    <h2 class="text-lg font-semibold">양산 적용 제품 사진</h2>
-    <p class="mt-2 text-sm text-sub">
-      자동차 내장 프리미엄 외관 부품 사진입니다.
-    </p>
+  {hasAutomotiveProducts && (
+    <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+      <h2 class="text-lg font-semibold">양산 적용 제품 사진</h2>
+      <p class="mt-2 text-sm text-sub">
+        자동차 내장 프리미엄 외관 부품 사진입니다.
+      </p>
 
-    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {automotiveProducts.map((p) => (
-        <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
-          {/* ✅ 클릭 확대 트리거 */}
-          <button
-            type="button"
-            class="group relative block w-full"
-            data-lightbox-trigger
-            data-src={p.src}
-            data-alt={p.alt}
-            data-caption={p.name}
-            aria-label={`${p.name} 확대보기`}
-          >
-            <div
-              class="flex w-full items-center justify-center bg-base"
-              style="aspect-ratio: 16 / 9; min-height: 220px;"
+      {/* ✅ 클릭 이벤트는 이 컨테이너에 위임됨 */}
+      <div id="production-examples" class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {automotiveProducts.map((p) => (
+          <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
+            {/* ✅ 클릭 트리거(버튼) 추가 */}
+            <button
+              type="button"
+              class="group relative block w-full"
+              data-lightbox-trigger
+              data-src={p.src}
+              data-alt={p.alt}
+              data-caption={p.name}
+              aria-label={`${p.name} 확대 보기`}
             >
-              <img
-                src={p.src}
-                alt={p.alt}
-                class="h-full w-full object-contain"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-
-            {/* ✅ 마우스 올리면 돋보기 안내 */}
-            <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
-              <div class="flex items-center gap-2 rounded-full bg-black/55 px-4 py-2 text-xs text-white">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path
-                    d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
-                    stroke="currentColor" stroke-width="2"
-                  />
-                  <path
-                    d="M16.5 16.5 21 21"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                  />
-                </svg>
-                클릭하여 확대
+              <div
+                class="flex w-full items-center justify-center bg-base"
+                style="aspect-ratio: 16 / 9; min-height: 220px;"
+              >
+                <img
+                  src={p.src}
+                  alt={p.alt}
+                  class="h-full w-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
-            </div>
-          </button>
 
-          <figcaption class="p-3 text-xs text-white/70">
-            {p.name}
-            <span class="ml-2 rounded-full border border-stroke bg-accent/10 px-2 py-0.5 text-[10px] text-accent">
-              양산 적용
-            </span>
-          </figcaption>
-        </figure>
-      ))}
-    </div>
+              {/* ✅ 호버 시 돋보기/안내(클릭 막지 않도록 pointer-events-none) */}
+              <div class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition group-hover:bg-black/35 group-hover:opacity-100">
+                <div class="flex items-center gap-2 rounded-full border border-white/20 bg-black/50 px-3 py-1.5 text-xs text-white">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="opacity-90">
+                    <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                  확대 보기
+                </div>
+              </div>
+            </button>
 
-    {/* ✅ 라이트박스(모달) */}
-    <div
-  id="lightbox"
-  class="fixed inset-0 z-50 hidden flex items-center justify-center p-4"
-  aria-hidden="true"
->
-      {/* 바깥 클릭 닫기용 배경 */}
-      <div data-lightbox-backdrop class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+            <figcaption class="p-3 text-xs text-white/70">
+              {p.name}
+              <span class="ml-2 rounded-full border border-stroke bg-accent/10 px-2 py-0.5 text-[10px] text-accent">
+                양산 적용
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
 
-      <div class="relative z-10 w-full max-w-6xl">
-        <button
-          type="button"
-          data-lightbox-close
-          class="absolute -top-3 right-0 rounded-full border border-stroke bg-base/80 px-3 py-2 text-xs text-white hover:bg-base"
-          aria-label="닫기"
-        >
-          닫기 ✕
-        </button>
+      {/* ✅ 라이트박스(모달) */}
+      <div
+        id="lightbox"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-hidden="true"
+      >
+        <div data-lightbox-backdrop class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
 
-        <div class="overflow-hidden rounded-2xl border border-stroke bg-base shadow-soft">
-          <img
-            data-lightbox-img
-            src=""
-            alt=""
-            class="max-h-[80vh] w-full object-contain bg-black/10"
-            decoding="async"
-          />
-          <div data-lightbox-caption class="p-3 text-sm text-white/75"></div>
+        <div class="relative z-10 w-full max-w-5xl overflow-hidden rounded-2xl border border-stroke bg-base shadow-soft">
+          <div class="flex items-center justify-between gap-3 border-b border-stroke/60 px-4 py-3">
+            <p data-lightbox-caption class="text-sm text-white/80"></p>
+            <button
+              type="button"
+              class="rounded-full border border-stroke bg-white/5 px-3 py-1.5 text-xs text-white/80 hover:bg-white/10"
+              data-lightbox-close
+            >
+              닫기 ✕
+            </button>
+          </div>
+
+          <div class="flex items-center justify-center p-3 md:p-4">
+            <img data-lightbox-img src="" alt="" class="max-h-[78vh] w-auto max-w-full object-contain" />
+          </div>
         </div>
       </div>
-    </div>
 
-    {/* ✅ 동작 스크립트: 이 섹션에만 적용 */}
-    <script is:inline>
-  {`
-    (() => {
-      const init = () => {
-        const scope = document.getElementById('production-examples');
-        const lb = document.getElementById('lightbox');
-        if (!scope || !lb) return;
+      {/* ✅ 스크립트: DOM 준비 후 이벤트 바인딩 */}
+      <script is:inline>
+        {`
+          (() => {
+            const init = () => {
+              const scope = document.getElementById('production-examples');
+              const lb = document.getElementById('lightbox');
+              if (!scope || !lb) return;
 
-        // 중복 바인딩 방지 (Astro 페이지 전환/재실행 대비)
-        if (lb.dataset.bound === '1') return;
-        lb.dataset.bound = '1';
+              if (lb.dataset.bound === '1') return;
+              lb.dataset.bound = '1';
 
-        const img = lb.querySelector('[data-lightbox-img]');
-        const cap = lb.querySelector('[data-lightbox-caption]');
-        const backdrop = lb.querySelector('[data-lightbox-backdrop]');
+              const img = lb.querySelector('[data-lightbox-img]');
+              const cap = lb.querySelector('[data-lightbox-caption]');
+              const backdrop = lb.querySelector('[data-lightbox-backdrop]');
 
-        const open = (src, alt, caption) => {
-          img.src = src;
-          img.alt = alt || '';
-          cap.textContent = caption || '';
-          lb.classList.remove('hidden');
-          lb.setAttribute('aria-hidden', 'false');
-          document.documentElement.style.overflow = 'hidden';
-        };
+              const open = (src, alt, caption) => {
+                img.src = src;
+                img.alt = alt || '';
+                cap.textContent = caption || '';
+                lb.classList.remove('hidden');
+                lb.setAttribute('aria-hidden', 'false');
+                document.documentElement.style.overflow = 'hidden';
+              };
 
-        const close = () => {
-          lb.classList.add('hidden');
-          lb.setAttribute('aria-hidden', 'true');
-          img.src = '';
-          document.documentElement.style.overflow = '';
-        };
+              const close = () => {
+                lb.classList.add('hidden');
+                lb.setAttribute('aria-hidden', 'true');
+                img.src = '';
+                document.documentElement.style.overflow = '';
+              };
 
-        scope.addEventListener('click', (e) => {
-          const btn = e.target.closest('[data-lightbox-trigger]');
-          if (!btn) return;
-          open(btn.dataset.src, btn.dataset.alt, btn.dataset.caption);
-        });
+              scope.addEventListener('click', (e) => {
+                const btn = e.target.closest('[data-lightbox-trigger]');
+                if (!btn) return;
+                open(btn.dataset.src, btn.dataset.alt, btn.dataset.caption);
+              });
 
-        lb.addEventListener('click', (e) => {
-          if (e.target === backdrop) close();
-          if (e.target.closest('[data-lightbox-close]')) close();
-        });
+              lb.addEventListener('click', (e) => {
+                if (e.target === backdrop) close();
+                if (e.target.closest('[data-lightbox-close]')) close();
+              });
 
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && !lb.classList.contains('hidden')) close();
-        });
-      };
+              document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !lb.classList.contains('hidden')) close();
+              });
+            };
 
-      // ✅ DOM 준비 후 실행 (가장 중요)
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-      } else {
-        init();
-      }
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', init);
+            } else {
+              init();
+            }
 
-      // ✅ Astro에서 페이지 전환/재로드 훅이 있을 때도 대비
-      document.addEventListener('astro:page-load', init);
-    })();
-  `}
-</script>
+            document.addEventListener('astro:page-load', init);
+          })();
+        `}
+      </script>
+    </section>
+  )}
 
-  </section>
-)}
 
   {/* 확장 가능한 적용산업(미래/추가) */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
