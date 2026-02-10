@@ -4,35 +4,149 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const title = '회사소개 | 성진로지스';
 const description =
   '성진로지스는 자동차 내장 및 모바일 부품을 위한 플라스틱 도금·표면처리 전문 기업입니다. 로봇 전처리, 공정 안정화, 사내 검증으로 재현성과 컬러 일치성을 구현합니다.';
+
+const companyImages = {
+  map: {
+    src: '/images/about/location-map.png',
+    alt: '성진로지스 위치(인천) 안내 지도',
+  },
+  exterior: {
+    src: '/images/about/factory-exterior.jpg',
+    alt: '성진로지스 공장 전경',
+  },
+};
+
+const companyInfo = [
+  { label: '법인명', value: '㈜성진로지스' },
+  { label: '주소', value: '인천광역시 서구 중봉대로240번길 24' },
+  { label: '대표', value: '지원석' },
+  { label: '임직원', value: '60명' },
+  { label: 'Tel', value: '+82-32-573-4789' },
+  { label: 'Fax', value: '+82-32-573-4790' },
+  { label: 'Email', value: 'chiwon1@kakao.net', href: 'mailto:chiwon1@kakao.net' },
+];
+
+const mapLink =
+  'https://www.google.com/maps/search/?api=1&query=%EC%9D%B8%EC%B2%9C%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%84%9C%EA%B5%AC%20%EC%A4%91%EB%B4%89%EB%8C%80%EB%A1%9C240%EB%B2%88%EA%B8%B8%2024';
 ---
 
 <BaseLayout title={title} description={description} lang="ko" pathPrefix="/kr">
-  <section class="rounded-xl2 border border-stroke bg-surface p-8 shadow-soft">
-    <div class="max-w-4xl">
-      <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">플라스틱 도금·표면처리 전문</h1>
+  <section class="rounded-2xl border border-stroke bg-surface p-8 shadow-soft">
+    <div class="max-w-5xl">
+      <a class="text-sm text-accent hover:underline" href="/kr/">
+        ← Home
+      </a>
+
+      <h1 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+        플라스틱 도금·표면처리 전문
+      </h1>
+
       <p class="mt-3 text-sm md:text-base leading-relaxed !text-sub drop-shadow-md">
-  성진로지스는 <span class="text-white font-semibold">재현성</span>을 기준으로 공정을 설계하고,
-  <span class="text-white font-semibold">컬러 일치성·표면 품질</span>을 안정적으로 구현합니다.<br />
-  자동차 내장 및 모바일 부품용 프리미엄 도금/표면처리를 제공합니다.
-</p>
+        성진로지스는 <span class="text-white font-semibold">재현성</span>을 기준으로 공정을 설계하고,
+        <span class="text-white font-semibold">컬러 일치성·표면 품질</span>을 안정적으로 구현합니다.<br />
+        자동차 내장 및 모바일 부품용 <span class="text-white font-semibold">프리미엄 외관 부품</span> 도금/표면처리를 제공합니다.
+      </p>
 
       <div class="mt-6 grid gap-4 md:grid-cols-3">
-        <div class="rounded-xl border border-stroke bg-base p-5">
+        <div class="rounded-2xl border border-stroke bg-base p-5">
           <div class="text-sm font-semibold">재현성 기반 공정</div>
           <p class="mt-1 text-sm text-sub">조건 표준화와 변동 요인 통제로 동일 품질을 반복 구현</p>
         </div>
-        <div class="rounded-xl border border-stroke bg-base p-5">
+        <div class="rounded-2xl border border-stroke bg-base p-5">
           <div class="text-sm font-semibold">프리미엄 표면 품질</div>
           <p class="mt-1 text-sm text-sub">외관·촉감·색상 일치성을 목표로 한 품질 중심 운영</p>
         </div>
-        <div class="rounded-xl border border-stroke bg-base p-5">
+        <div class="rounded-2xl border border-stroke bg-base p-5">
           <div class="text-sm font-semibold">친환경 공정 대응</div>
-          <p class="mt-1 text-sm text-sub">6가 크롬이 아닌 친환경 3가 크롬(Trivalent Chromium) 운영</p>
+          <p class="mt-1 text-sm text-sub">친환경 3가 크롬(Trivalent Chromium) 라인 운영</p>
         </div>
       </div>
 
+      {/* ✅ 회사 전경 · 회사 정보 섹션 추가 */}
+      <div class="mt-10 grid gap-6 lg:grid-cols-5">
+        {/* 이미지 영역 */}
+        <div class="lg:col-span-3 grid gap-4">
+          <figure class="overflow-hidden rounded-2xl border border-stroke bg-base shadow-soft">
+            <div class="flex items-center justify-center bg-black/10" style="aspect-ratio: 16 / 10;">
+              <img
+                src={companyImages.map.src}
+                alt={companyImages.map.alt}
+                class="h-full w-full object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption class="px-4 py-3 text-xs text-white/70">
+              Location · Incheon, Korea
+            </figcaption>
+          </figure>
+
+          <figure class="overflow-hidden rounded-2xl border border-stroke bg-base shadow-soft">
+            <div class="flex items-center justify-center bg-black/10" style="aspect-ratio: 16 / 10;">
+              <img
+                src={companyImages.exterior.src}
+                alt={companyImages.exterior.alt}
+                class="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption class="px-4 py-3 text-xs text-white/70">
+              Factory Exterior · 성진로지스 전경
+            </figcaption>
+          </figure>
+        </div>
+
+        {/* 회사 정보 영역 */}
+        <div class="lg:col-span-2 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+          <h2 class="text-lg font-semibold">회사 정보</h2>
+          <p class="mt-2 text-sm text-sub">
+            상담/방문 시 필요한 기본 정보를 정리했습니다.
+          </p>
+
+          <dl class="mt-4 divide-y divide-stroke/60">
+            {companyInfo.map((row) => (
+              <div class="flex items-start justify-between gap-4 py-3">
+                <dt class="text-sm text-white/70">{row.label}</dt>
+                <dd class="text-sm text-white text-right">
+                  {row.href ? (
+                    <a class="text-accent hover:underline" href={row.href}>
+                      {row.value}
+                    </a>
+                  ) : (
+                    <span>{row.value}</span>
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <div class="mt-5 flex flex-wrap gap-3">
+            <a
+              class="inline-flex items-center rounded-2xl border border-stroke bg-accent/15 px-4 py-2 text-sm font-semibold text-accent hover:bg-accent/20"
+              href={mapLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              지도에서 보기 →
+            </a>
+            <a
+              class="inline-flex items-center rounded-2xl border border-stroke bg-white/5 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10"
+              href="/kr/contact/"
+            >
+              문의하기 →
+            </a>
+          </div>
+
+          <p class="mt-3 text-xs text-white/60">
+            * 주소: 인천광역시 서구 중봉대로240번길 24
+          </p>
+        </div>
+      </div>
+
+      {/* 기존 섹션 유지 */}
       <div class="mt-10 grid gap-6 md:grid-cols-2">
-        <div class="rounded-xl border border-stroke bg-base p-6">
+        <div class="rounded-2xl border border-stroke bg-base p-6">
           <h2 class="text-lg font-semibold">핵심 역량</h2>
           <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-sub">
             <li><span class="text-white">산업용 로봇 전처리</span>로 균일한 기반 품질 확보</li>
@@ -42,14 +156,14 @@ const description =
           </ul>
         </div>
 
-        <div class="rounded-xl border border-stroke bg-base p-6">
+        <div class="rounded-2xl border border-stroke bg-base p-6">
           <h2 class="text-lg font-semibold">주요 적용 분야</h2>
           <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-sub">
             <li>자동차 내장 부품(Interior parts)</li>
             <li>모바일 부품(예: 카메라 브라켓 등)</li>
           </ul>
 
-          <div class="mt-6 rounded-xl border border-stroke bg-surface p-5">
+          <div class="mt-6 rounded-2xl border border-stroke bg-surface p-5">
             <div class="text-sm font-semibold">품질·인증</div>
             <p class="mt-1 text-sm text-sub">
               현대 SQ · ISO 9001 · GM 인증(요구사항 대응, CQI-11)
@@ -58,54 +172,51 @@ const description =
         </div>
       </div>
 
-      <div class="mt-10 rounded-xl border border-stroke bg-base p-6">
+      <div class="mt-10 rounded-2xl border border-stroke bg-base p-6">
         <h2 class="text-lg font-semibold">사내 검증(Verification) 설비</h2>
         <p class="mt-2 text-sm text-sub">
           공정 신뢰를 “측정 가능한 데이터”로 관리합니다.
         </p>
         <div class="mt-4 grid gap-3 md:grid-cols-2">
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">도금두께 측정기(Thickness Tester, 2 set)</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">CASS 시험기 (CASS Tester)</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">Hull Cell 시험기 (Hull Cell Tester)</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">전자현미경 (Electron Microscope)</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">온·습도 사이클 시험기 (Heat & Humidity Cycle Tester)</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">XRF 두께 측정기 (XRF Thickness Tester)</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">광학 현미경 (Optical Microscope)</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">폴리싱(연마) 장비 (Polishing Machine)</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">항온항습기 (Thermohygrostat)</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">박리(밀착) 시험기 (Peel-off Tester)</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">퀵 열충격 시험기 (Quick Thermal Tester)</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">STEP 시험기 (STEP Tester)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">도금두께 측정기(Thickness Tester, 2 set)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">CASS 시험기 (CASS Tester)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">Hull Cell 시험기 (Hull Cell Tester)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">전자현미경 (Electron Microscope)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">온·습도 사이클 시험기 (Heat & Humidity Cycle Tester)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">XRF 두께 측정기 (XRF Thickness Tester)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">광학 현미경 (Optical Microscope)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">폴리싱(연마) 장비 (Polishing Machine)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">항온항습기 (Thermohygrostat)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">박리(밀착) 시험기 (Peel-off Tester)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">퀵 열충격 시험기 (Quick Thermal Tester)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">STEP 시험기 (STEP Tester)</div>
         </div>
       </div>
 
-      <div class="mt-10 rounded-xl border border-stroke bg-base p-6">
+      <div class="mt-10 rounded-2xl border border-stroke bg-base p-6">
         <h2 class="text-lg font-semibold">연혁(History)</h2>
         <div class="mt-4 grid gap-3">
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">1995</span> · 지원산업 설립</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2005</span> · 모바일 부품용 친환경 3가 크롬(Trivalent Chromium) 기술 도입</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2010</span> · 자동차(차량) 부품 도금 양산 시작</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2011</span> · ISO 9001 / ISO 14001 인증</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2014</span> · ㈜성진로지스 법인 전환</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2017</span> · SQ 인증</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2020</span> · IATF 16949 인증</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2021</span> · 로봇 자동 플라스틱 도금 라인(2공장) 구축</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2023</span> · 친환경 3가 크롬 도금 라인 구축</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2024</span> · 글로벌 프리미엄 OEM 친환경 3가 크롬 공급사 등록</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2025</span> · 화학니켈(무전해) 도금 라인(3공장) 구축</div>
-          <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2026</span> · GM Tier2 3가 크롬 공급사 등록</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">1995</span> · 지원산업 설립</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2005</span> · 모바일 부품용 친환경 3가 크롬 기술 도입</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2010</span> · 자동차(차량) 부품 도금 양산 시작</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2011</span> · ISO 9001 / ISO 14001 인증</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2014</span> · ㈜성진로지스 법인 전환</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2017</span> · SQ 인증</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2020</span> · IATF 16949 인증</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2021</span> · 로봇 자동 플라스틱 도금 라인(2공장) 구축</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2023</span> · 친환경 3가 크롬 도금 라인 구축</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2024</span> · 글로벌 프리미엄 OEM 친환경 3가 크롬 공급사 등록</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2025</span> · 화학니켈(무전해) 도금 라인(3공장) 구축</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2026</span> · GM Tier2 3가 크롬 공급사 등록</div>
         </div>
-        <p class="mt-3 text-xs text-sub">
-          
-        </p>
       </div>
 
       <div class="mt-10 flex flex-wrap items-center gap-3">
-        <a class="rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition"
+        <a class="rounded-2xl bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition"
            href="/kr/downloads/">
           회사소개서 다운로드
         </a>
-        <a class="rounded-xl border border-stroke bg-base px-5 py-3 text-sm font-semibold text-white hover:bg-surface transition"
+        <a class="rounded-2xl border border-stroke bg-base px-5 py-3 text-sm font-semibold text-white hover:bg-surface transition"
            href="/kr/capabilities/">
           공정/역량 보기
         </a>
