@@ -28,12 +28,12 @@ const otherLangLabel = isKR ? 'EN' : 'KR';
 const tagline = isKR ? '프리미엄 도금·표면처리' : 'Premium Plating & Surface Finishing';
 ---
 <header class="sticky top-0 z-50 border-b border-stroke/60 bg-base/80 backdrop-blur">
-  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-6 md:py-7">
     <a href={pathPrefix + '/'} class="flex items-center gap-3">
-      <div class="h-9 w-9 rounded-xl border border-stroke bg-surface shadow-soft"></div>
+      <div class="h-11 w-11 md:h-12 md:w-12 rounded-2xl border border-stroke bg-surface shadow-soft"></div>
       <div class="leading-tight">
-        <div class="text-sm font-semibold tracking-wide">SUNGJINLOGIS</div>
-        <div class="text-xs text-sub">{tagline}</div>
+        <div class="text-base md:text-lg font-bold tracking-[0.18em]">SUNGJINLOGIS</div>
+        <div class="mt-0.5 text-sm text-sub">{tagline}</div>
       </div>
     </a>
 
