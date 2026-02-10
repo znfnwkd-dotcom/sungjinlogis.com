@@ -4,12 +4,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const title = 'Downloads | SUNGJINLOGIS';
 const description = 'Download the company profile (PDF) — we send a link after you submit your email.';
 ---
-
 <BaseLayout title={title} description={description} lang="en" pathPrefix="/en">
   <section class="rounded-xl2 border border-stroke bg-surface p-8 shadow-soft">
     <h1 class="text-2xl font-semibold">Downloads</h1>
     <p class="mt-2 text-sm text-sub">
-      We provide the company profile PDF via a download link sent to your email after submission.
+      We provide the company profile PDF via a download link sent to your email after you submit the form.
     </p>
 
     <form id="brochureForm" class="mt-8 grid gap-4 md:max-w-xl">
@@ -21,7 +20,6 @@ const description = 'Download the company profile (PDF) — we send a link after
           name="email"
           required
           placeholder="name@company.com"
-          autocomplete="email"
         />
       </label>
 
@@ -32,7 +30,6 @@ const description = 'Download the company profile (PDF) — we send a link after
           type="text"
           name="company"
           placeholder="Company"
-          autocomplete="organization"
         />
       </label>
 
@@ -43,14 +40,13 @@ const description = 'Download the company profile (PDF) — we send a link after
           type="text"
           name="name"
           placeholder="Name"
-          autocomplete="name"
         />
       </label>
 
-      {/* Honeypot (spam bot trap) */}
+      <!-- Honeypot (spam bot trap) -->
       <label class="hidden">
         <span>Leave this field empty</span>
-        <input type="text" name="hp" tabindex="-1" autocomplete="off" />
+        <input type="text" name="hp" />
       </label>
 
       <button
@@ -62,51 +58,17 @@ const description = 'Download the company profile (PDF) — we send a link after
 
       <p id="brochureStatus" class="text-sm text-sub"></p>
       <p class="text-xs text-sub">
-        * We will send the download link to the email address you submitted.
+        * We will send the download link to the email address you provided.
       </p>
     </form>
   </section>
 
-  <script is:inline>
-    {`
-      (() => {
-        const form = document.getElementById('brochureForm');
-        const statusEl = document.getElementById('brochureStatus');
-        if (!form || !statusEl) return;
+  <script>
+    const form = document.getElementById('brochureForm');
+    const statusEl = document.getElementById('brochureStatus');
 
-        const setStatus = (msg) => (statusEl.textContent = msg);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = 'Sending...';
 
-        form.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          setStatus('Sending...');
-
-          const fd = new FormData(form);
-
-          try {
-            const res = await fetch('/api/brochure', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                email: fd.get('email'),
-                company: fd.get('company'),
-                name: fd.get('name'),
-                hp: fd.get('hp'),
-                lang: 'en',
-              }),
-            });
-
-            if (!res.ok) {
-              const msg = await res.text();
-              throw new Error(msg || 'Request failed');
-            }
-
-            setStatus('Done! Please check your email (and spam folder).');
-            form.reset();
-          } catch (err) {
-            setStatus('Something went wrong. Please try again in a moment.');
-          }
-        });
-      })();
-    `}
-  </script>
-</BaseLayout>
+      const fd = new FormData
