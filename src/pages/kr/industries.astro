@@ -315,8 +315,8 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
         {`
           (() => {
             const init = () => {
-              const scope = document.getElementById('production-examples');
-              const lb = document.getElementById('lightbox');
+              const scope = document.querySelector('#production-examples');
+              const lb = document.querySelector('#lightbox');
               if (!scope || !lb) return;
 
               if (lb.dataset.bound === '1') return;
