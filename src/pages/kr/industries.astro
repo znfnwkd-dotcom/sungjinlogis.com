@@ -236,50 +236,43 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
       {/* ✅ 클릭 이벤트는 이 컨테이너에 위임됨 */}
       <div id="production-examples" class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {automotiveProducts.map((p) => (
-          <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
-            {/* ✅ 클릭 트리거(버튼) 추가 */}
-            <button
-              type="button"
-              class="group relative block w-full"
-              data-lightbox-trigger
-              data-src={p.src}
-              data-alt={p.alt}
-              data-caption={p.name}
-              aria-label={`${p.name} 확대 보기`}
-            >
-              <div
-                class="flex w-full items-center justify-center bg-base"
-                style="aspect-ratio: 16 / 9; min-height: 220px;"
-              >
-                <img
-                  src={p.src}
-                  alt={p.alt}
-                  class="h-full w-full object-contain"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+  <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
+    {/* ✅ 클릭 트리거를 이미지 영역 버튼에 고정 */}
+    <button
+      type="button"
+      class="group relative block w-full bg-base"
+      style="aspect-ratio: 16 / 9; min-height: 220px;"
+      data-lightbox-trigger
+      data-src={p.src}
+      data-alt={p.alt}
+      data-name={p.name}
+      aria-label={`${p.name} 확대보기`}
+    >
+      <img
+        src={p.src}
+        alt={p.alt}
+        class="h-full w-full object-contain"
+        loading="lazy"
+        decoding="async"
+      />
 
-              {/* ✅ 호버 시 돋보기/안내(클릭 막지 않도록 pointer-events-none) */}
-              <div class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition group-hover:bg-black/35 group-hover:opacity-100">
-                <div class="flex items-center gap-2 rounded-full border border-white/20 bg-black/50 px-3 py-1.5 text-xs text-white">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="opacity-90">
-                    <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                  확대 보기
-                </div>
-              </div>
-            </button>
+      {/* ✅ hover 시 돋보기 오버레이 */}
+      <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
+        <div class="flex items-center gap-2 rounded-full border border-stroke bg-black/40 px-3 py-1.5 text-xs text-white/90 backdrop-blur">
+          <span aria-hidden="true">🔍</span>
+          클릭하여 확대
+        </div>
+      </div>
+    </button>
 
-            <figcaption class="p-3 text-xs text-white/70">
-              {p.name}
-              <span class="ml-2 rounded-full border border-stroke bg-accent/10 px-2 py-0.5 text-[10px] text-accent">
-                양산 적용
-              </span>
-            </figcaption>
-          </figure>
-        ))}
+    <figcaption class="p-3 text-xs text-white/70">
+      {p.name}
+      <span class="ml-2 rounded-full border border-stroke bg-accent/10 px-2 py-0.5 text-[10px] text-accent">
+        양산 적용
+      </span>
+    </figcaption>
+  </figure>
+))}
       </div>
 
       {/* ✅ 라이트박스(모달) */}
@@ -417,4 +410,65 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
       </a>
     </div>
   </section>
+<script is:inline>
+  (() => {
+    const lb = document.querySelector('#lightbox');
+    if (!lb) return;
+
+    const img = lb.querySelector('[data-lightbox-img]');
+    const caption = lb.querySelector('[data-lightbox-caption]');
+
+    const open = ({ src, alt, name }) => {
+      if (!img || !src) return;
+      img.src = src;
+      img.alt = alt || name || '확대 이미지';
+      if (caption) caption.textContent = name || '';
+      lb.classList.remove('hidden'); // hidden 제거 => flex가 살아있으면 표시됨
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const close = () => {
+      lb.classList.add('hidden');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (img) img.src = '';
+      if (caption) caption.textContent = '';
+    };
+
+    // ✅ 이벤트 위임: 어디를 클릭하든 trigger를 찾아서 동작
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('[data-lightbox-trigger]');
+      if (trigger) {
+        e.preventDefault();
+        open({
+          src: trigger.getAttribute('data-src') || trigger.dataset.src,
+          alt: trigger.getAttribute('data-alt') || trigger.dataset.alt,
+          name: trigger.getAttribute('data-name') || trigger.dataset.name,
+        });
+        return;
+      }
+
+      if (e.target.closest('[data-lightbox-close]')) {
+        e.preventDefault();
+        close();
+        return;
+      }
+
+      if (e.target.closest('[data-lightbox-backdrop]')) {
+        e.preventDefault();
+        close();
+        return;
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+
+    // 디버그용(원하면 나중에 삭제)
+    window.__SJ_LIGHTBOX_READY__ = true;
+  })();
+</script>
+
 </BaseLayout>
