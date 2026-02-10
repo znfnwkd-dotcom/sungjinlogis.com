@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = '유산동 | 성진로지스';
+const description =
+  '후단 니켈/크롬 품질을 좌우하는 핵심 기반층(레벨링) 형성 공정으로, 외관·두께 균일과 공정 재현성을 안정적으로 확보합니다.';
+
+const highlights = [
+  {
+    title: '기반층(레벨링) 형성',
+    desc: '후단 니켈/크롬 외관을 좌우하는 평활·충진(레벨링) 기반을 형성해 스펙 대응 품질을 확보합니다.',
+  },
+  {
+    title: '두께·외관 균일',
+    desc: '전류/교반/욕(浴) 조건을 표준화해 면적 편차·코너/홀부 두께 편차를 최소화합니다.',
+  },
+  {
+    title: '생산 안정화',
+    desc: '여과·오염 관리와 데이터 기반 보충/관리로 불량률과 재작업 리스크를 줄입니다.',
+  },
+];
+
+const controlPoints = [
+  'CuSO₄/유리산(H₂SO₄)/Cl⁻ 농도 기준값 유지로 석출 안정화',
+  '첨가제(브라이트너/레벨러/캐리어) 관리로 외관·레벨링·연성 균일 확보',
+  '전류밀도/전압/시간 표준화로 두께 편차 최소화(제품/랙 기준 레시피 운영)',
+  '온도/교반/순환(유량) 관리로 도금 속도 및 외관 균일 확보',
+  '연속 여과 + 양극백(Anode bag) 관리로 슬러지/입자 유입 저감',
+  '헹굼/드래그아웃(이월) 관리로 오염 유입 및 욕 변동 리스크 저감',
+  'Hull Cell 시험/분석(정기)로 욕 상태와 첨가제 밸런스 점검',
+  '치구/접점(컨택) 관리로 타는 현상/도금 누락 등 전기적 불량 예방',
+];
+
+const evidence = [
+  '사내 두께 측정(XRF/두께측정기) 및 외관 평가로 조건 변경 전·후 데이터 관리',
+  'Hull Cell 시험으로 욕 상태/첨가제 밸런스/결함(버닝/줄무늬) 진단',
+  '공정 이력(분석값/보충량/여과/교체) 기록으로 추적성 확보',
+  '품질 시스템(SQ/ISO 등) 요구사항 기반 공정 관리 및 대응',
+];
+
+const applications = [
+  '자동차 내장/장식 트림 등 외관 민감 부품(후단 니켈/크롬 품질 기반)',
+  '모바일 브라켓/장식부품 등 평활·외관 완성도가 중요한 제품',
+  '면적/형상 편차가 큰 제품군의 두께 균일·스펙 대응 제품',
+];
+
+const gallery = [
+  {
+    src: '/images/capabilities/acid-copper/acid-copper-line.png',
+    alt: '유산동 도금 라인',
+    caption: 'Acid Copper 라인(측면)',
+  },
+{
+    src: '/images/capabilities/acid-copper/acid-copper-line-1.png',
+    alt: '유산동 도금 라인',
+    caption: 'Acid Copper 라인(정면)',
+  },
+];
+---
+
+<BaseLayout title={title} description={description} lang="en" pathPrefix="/en">
+  {/* HERO */}
+  <section class="rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <a class="text-sm text-accent hover:underline" href="/en/capabilities/">
+      ← Capabilities
+    </a>
+
+    <h1 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">유산동</h1>
+
+    <p class="mt-3 text-sm md:text-base leading-relaxed !text-sub drop-shadow-md">
+      성진로지스는 <span class="text-white font-semibold">유산동 기반층(레벨링)</span>을 안정적으로 형성하여
+      <span class="text-white font-semibold"> 후단 니켈/크롬 외관</span>과
+      <span class="text-white font-semibold"> 두께 균일</span>을 뒷받침합니다.
+    </p>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      {highlights.map((h) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-5 shadow-soft">
+          <div class="text-sm font-semibold text-white">{h.title}</div>
+          <p class="mt-2 text-sm text-sub leading-relaxed">{h.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* 관리 포인트 */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">관리 포인트</h2>
+    <p class="mt-2 text-sm text-sub">유산동 기반층 품질(평활/두께/외관)을 위한 핵심 관리 항목입니다.</p>
+
+    <div class="mt-4 grid gap-3 md:grid-cols-2">
+      {controlPoints.map((t) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">• {t}</div>
+      ))}
+    </div>
+  </section>
+
+  {/* 검증 근거 */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">검증 근거</h2>
+    <p class="mt-2 text-sm text-sub">측정 가능한 데이터와 시험으로 공정 신뢰성을 확보합니다.</p>
+
+    <div class="mt-4 grid gap-3">
+      {evidence.map((t) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">• {t}</div>
+      ))}
+    </div>
+  </section>
+
+  {/* 대표 적용 */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">대표 적용</h2>
+    <p class="mt-2 text-sm text-sub">외관/스펙 요구가 높은 제품군에 적용합니다.</p>
+
+    <div class="mt-4 grid gap-3 md:grid-cols-2">
+      {applications.map((t) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">• {t}</div>
+      ))}
+    </div>
+  </section>
+
+  {/* 설비 사진 */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">설비 사진</h2>
+    <p class="mt-2 text-sm text-sub">유산동 공정 설비 사진입니다.</p>
+
+    <div class="mt-4 grid gap-4 md:grid-cols-2">
+      {gallery.map((g) => (
+        <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
+          {/* 안 잘리게(contain) + 16:9 프레임 */}
+          <div class="flex w-full items-center justify-center bg-base" style="aspect-ratio: 16 / 9;">
+            <img
+              src={g.src}
+              alt={g.alt}
+              class="max-h-full max-w-full object-contain p-2"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <figcaption class="p-3 text-xs text-white/70">{g.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

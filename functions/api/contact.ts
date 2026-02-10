@@ -11,6 +11,10 @@ export const onRequestPost: PagesFunction = async (context) => {
     const subject = String(data?.subject ?? '').trim() || 'SUNGJINLOGIS Website Contact';
     const message = String(data?.message ?? '').trim();
 
+    const rawLang = String(data?.lang ?? '').trim().toLowerCase();
+    const acceptLang = (context.request.headers.get('accept-language') || '').toLowerCase();
+    const isKR = rawLang.startsWith('ko') || (!rawLang && acceptLang.includes('ko'));
+
     if (!email || !message) {
       return new Response('Missing required fields', { status: 400 });
     }
@@ -27,6 +31,7 @@ export const onRequestPost: PagesFunction = async (context) => {
 
     const internalText =
       `Website contact received\n\n` +
+      `Language: ${isKR ? 'Korean' : 'English'}\n` +
       `From: ${email}\n` +
       `Subject: ${subject}\n` +
       `Received: ${now}\n\n` +
@@ -37,19 +42,26 @@ export const onRequestPost: PagesFunction = async (context) => {
       to,
       subject: `[Website] ${subject}`,
       text: internalText,
-      reply_to: email
+      reply_to: email,
     });
 
-    // Optional: send an acknowledgement to the sender
+    // Acknowledgement to sender
+    const ackSubject = isKR ? 'SUNGJINLOGIS — 문의 접수 완료' : 'SUNGJINLOGIS — We received your message';
+    const ackText = isKR
+      ? `문의가 접수되었습니다.\n\n` +
+        `제목: ${subject}\n` +
+        `회신은 영업일 기준 빠르게 드리겠습니다.\n\n` +
+        `감사합니다.\nSUNGJINLOGIS\n`
+      : `We have received your message.\n\n` +
+        `Subject: ${subject}\n` +
+        `We will get back to you as soon as possible on business days.\n\n` +
+        `Thank you.\nSUNGJINLOGIS\n`;
+
     await sendResend(resendKey, {
       from,
       to: email,
-      subject: 'SUNGJINLOGIS — 문의 접수 완료',
-      text:
-        `문의가 접수되었습니다.\n\n` +
-        `내용: ${subject}\n` +
-        `회신은 영업일 기준 빠르게 드리겠습니다.\n\n` +
-        `감사합니다.\nSUNGJINLOGIS\n`
+      subject: ackSubject,
+      text: ackText,
     });
 
     return new Response('OK', { status: 200 });
@@ -63,9 +75,9 @@ async function sendResend(apiKey: string, payload: Record<string, any>) {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(payload),
   });
 
   if (!res.ok) {

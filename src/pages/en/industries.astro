@@ -1,0 +1,478 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = '적용산업 | 성진로지스';
+const description =
+  '자동차 내장 프리미엄 외관 부품부터 모바일/IT, 가전, 산업용 HMI 하우징까지. 표면 외관·내식·신뢰성 요구에 맞춘 플라스틱 도금 적용 산업을 정리했습니다.';
+
+/**
+ * (선택) SEO 키워드 1줄
+ * - “섹션 아래”가 애매하면, 보통 HERO(페이지 상단 제목/설명) 바로 아래에 sr-only(숨김)로 넣는 게 가장 깔끔합니다.
+ */
+const seoKeywords =
+  '자동차 내장 도금, 프리미엄 외관 부품, 플라스틱 도금(POP), 3가 크롬, 니켈 도금, 모바일 카메라 브라켓, 산업용 HMI 하우징, 표면처리, 내식성, 색상 균일';
+
+/**
+ * 현재 “양산/검증”이 강조되어야 하는 적용산업
+ * - status: '양산 적용' 뱃지 노출
+ */
+const inProduction = [
+  {
+    title: '자동차 내장 데코',
+    subtitle: '프리미엄 외관 부품',
+    status: '양산 적용',
+    desc: '고급 외관·촉감·내식 요구를 만족하는 내장 장식/조작부품 중심.',
+    points: [
+      '키보드 스위치 패널 / 다이얼 베젤 / 노브류 등 조작부 메탈 데코',
+      '외관(광택/색상) + 내식(염수분무 등) 요구 동시 대응',
+      '반광(베이스) + 광택(탑) 니켈 구성 등 사양 맞춤 운용',
+    ],
+  },
+  {
+    title: '모바일/IT 기기 부품',
+    subtitle: '카메라 브라켓 · 외관 데코',
+    status: '양산 적용',
+    desc: '정밀 외관/치수/스크래치 내구가 중요한 소형 부품.',
+    points: [
+      '정밀 외관 부품의 컬러/광택 균일 관리',
+      '후단 공정·조립 공정 고려한 두께/치수/외관 기준 운영',
+      '요구 사양에 따라 공정 조건 표준화 및 이력 관리',
+    ],
+  },
+  {
+    title: '가전제품',
+    subtitle: '프리미엄 외관 트림',
+    status: '적용 가능',
+    desc: '외관 품질과 생활환경 내식 요구가 높은 프리미엄 가전 트림.',
+    points: [
+      '조작부/데코 트림 등 외관 부품 적용',
+      '내식·내오염·세정 내구 등 요구 조건 대응',
+      '대량 생산 기준의 공정 안정화/재현성 관리',
+    ],
+  },
+];
+
+/**
+ * “확장 가능한(미래/추가)” 적용산업
+ * - 검색 유입을 고려해서 텍스트 중심으로 정리
+ */
+const expandable = [
+  {
+    title: '산업용 HMI / 조작패널 / 하우징',
+    subtitle: '산업장비 UI·조작부',
+    desc: '내구/외관/표면 강도와 사용환경(오염/습열) 대응이 중요한 산업용 외장.',
+    points: [
+      '조작 패널/버튼 하우징/커버류 외관 데코',
+      '내구성/내식성/표면 품질 요구 대응',
+      '장비 브랜드/등급 요구에 맞춘 표면 스펙 대응',
+    ],
+  },
+  {
+    title: 'IT/전자기기 외관 데코',
+    subtitle: '프리미엄 디자인 트림',
+    desc: '미세 외관 결함 관리가 중요한 고급 외관 부품 영역.',
+    points: [
+      '고급 광택/색상 균일을 위한 공정 표준화',
+      '표면 결함(핀홀/흔적/균일도) 중심 관리',
+      '후단 공정(인쇄/레이저/코팅) 연계 고려 가능',
+    ],
+  },
+  {
+    title: '스마트홈/프리미엄 생활가전',
+    subtitle: 'UI 트림/장식 부품',
+    desc: '사용자 터치 영역의 외관·촉감 및 내구가 중요한 제품군.',
+    points: [
+      '조작부·장식부(데코) 적용',
+      '생활환경 내식/내오염 요구 대응',
+      '양산 대응 공정 재현성 중심 관리',
+    ],
+  },
+  {
+    title: '전장/모빌리티 UI 부품',
+    subtitle: '차량/모빌리티 조작 인터페이스',
+    desc: '조작부 내구·외관·신뢰성 요구가 동시에 높은 부품.',
+    points: [
+      '조작 다이얼/버튼 베젤 등 외관 부품 범용 적용',
+      '염수분무 등 신뢰성 시험 조건 대응',
+      '사양(두께/외관/후단) 기준으로 공정 조건 운용',
+    ],
+  },
+];
+
+/**
+ * ====== 양산 제품 사진(자동차 내장) ======
+ * - 모델명 제거 캡션만 사용
+ * - (권장) 스티어링휠 전체가 보이는 이미지는 OEM 식별요소가 많아서 기본 제외
+ * - 업로드 전: 이미지 내 ‘GVxx/Gxx’ 텍스트(파란 박스)는 크롭/블러/삭제 권장
+ *
+ * 저장 위치(추천):
+ * public/images/industries/automotive-interior/production/
+ */
+const automotiveProducts = [
+  {
+    name: '키보드 스위치 패널(센터페시아)',
+    src: '/images/industries/automotive-interior/production/keyboard-switch-panel-01.png',
+    alt: '키보드 스위치 패널(센터페시아) 양산 적용 예시',
+  },
+  {
+    name: '키보드 스위치 패널(센터페시아)',
+    src: '/images/industries/automotive-interior/production/keyboard-switch-panel-02.png',
+    alt: '키보드 스위치 패널(센터페시아) 양산 적용 예시',
+  },
+  {
+    name: '키보드 스위치 패널(센터페시아)',
+    src: '/images/industries/automotive-interior/production/keyboard-switch-panel-03.png',
+    alt: '키보드 스위치 패널(센터페시아) 양산 적용 예시',
+  },
+  {
+    name: '키보드 스위치 패널(센터페시아)',
+    src: '/images/industries/automotive-interior/production/keyboard-switch-panel-04.png',
+    alt: '키보드 스위치 패널(센터페시아) 양산 적용 예시',
+  },
+  {
+    name: '센터콘솔 스위치 트림',
+    src: '/images/industries/automotive-interior/production/center-console-switch-trim-01.png',
+    alt: '센터콘솔 스위치 트림 양산 적용 예시',
+  },
+  {
+    name: '레버/패들 트림(메탈 데코)',
+    src: '/images/industries/automotive-interior/production/paddle-lever-trim-01.png',
+    alt: '레버/패들 트림 양산 적용 예시',
+  },
+  {
+    name: '멀티펑션 노브(조작 다이얼)',
+    src: '/images/industries/automotive-interior/production/multifunction-control-knob-01.png',
+    alt: '멀티펑션 노브(조작 다이얼) 양산 적용 예시',
+  },
+  {
+    name: '다이얼 컨트롤 베젤/노브',
+    src: '/images/industries/automotive-interior/production/dial-controller-bezel-knob-01.png',
+    alt: '다이얼 컨트롤 베젤/노브 양산 적용 예시',
+  },
+  {
+    name: '다이얼 컨트롤 베젤/노브',
+    src: '/images/industries/automotive-interior/production/dial-controller-bezel-knob-02.png',
+    alt: '다이얼 컨트롤 베젤/노브 양산 적용 예시',
+  },
+];
+
+const hasAutomotiveProducts = automotiveProducts.length > 0;
+---
+
+<BaseLayout title={title} description={description} lang="en" pathPrefix="/en">
+  {/* HERO */}
+  <section class="rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <a class="text-sm text-accent hover:underline" href="/en/">
+      ← Home
+    </a>
+
+    <h1 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+      적용산업
+    </h1>
+
+    <p class="mt-3 text-sm md:text-base leading-relaxed !text-sub drop-shadow-md">
+      성진로지스의 표면처리/도금 공정은 <span class="text-white font-semibold">프리미엄 외관 부품</span> 중심으로
+      자동차 내장, 모바일/IT, 가전 및 산업용 하우징까지 폭넓게 적용 가능합니다.
+      <br />
+      <span class="text-white/80">
+        ‘양산 적용’ 배지는 현재 양산 이력/운영 품목을 의미합니다.
+      </span>
+    </p>
+
+    {/* (선택) SEO 키워드 1줄: 화면에는 보이지 않게 */}
+    <p class="sr-only">SEO: {seoKeywords}</p>
+  </section>
+
+  {/* 현재 양산/검증 */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">주요 적용산업</h2>
+    <p class="mt-2 text-sm text-sub">
+      주요 적용 산업입니다.
+    </p>
+
+    <div class="mt-4 grid gap-4 md:grid-cols-3">
+      {inProduction.map((item) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-5 shadow-soft">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <div class="text-base font-semibold text-white">{item.title}</div>
+              <div class="mt-1 text-xs text-white/70">{item.subtitle}</div>
+            </div>
+
+            <span
+              class={`shrink-0 rounded-full border border-stroke px-2 py-1 text-[11px] ${
+                item.status === '양산 적용'
+                  ? 'bg-accent/15 text-accent'
+                  : 'bg-white/5 text-white/70'
+              }`}
+            >
+              {item.status}
+            </span>
+          </div>
+
+          <p class="mt-3 text-sm text-sub leading-relaxed">{item.desc}</p>
+
+          <ul class="mt-4 space-y-2 text-sm text-sub">
+            {item.points.map((p) => (
+              <li class="flex gap-2">
+                <span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span>
+                <span>{p}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* 양산 제품 사진(자동차 내장) */}
+  {hasAutomotiveProducts && (
+    <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+      <h2 class="text-lg font-semibold">양산 적용 제품 사진</h2>
+      <p class="mt-2 text-sm text-sub">
+        자동차 내장 프리미엄 외관 부품 사진입니다.
+      </p>
+
+      {/* ✅ 클릭 이벤트는 이 컨테이너에 위임됨 */}
+      <div id="production-examples" class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {automotiveProducts.map((p) => (
+  <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
+    {/* ✅ 클릭 트리거를 이미지 영역 버튼에 고정 */}
+    <button
+      type="button"
+      class="group relative block w-full bg-base"
+      style="aspect-ratio: 16 / 9; min-height: 220px;"
+      data-lightbox-trigger
+      data-src={p.src}
+      data-alt={p.alt}
+      data-name={p.name}
+      aria-label={`${p.name} 확대보기`}
+    >
+      <img
+        src={p.src}
+        alt={p.alt}
+        class="h-full w-full object-contain"
+        loading="lazy"
+        decoding="async"
+      />
+
+      {/* ✅ hover 시 돋보기 오버레이 */}
+      <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
+        <div class="flex items-center gap-2 rounded-full border border-stroke bg-black/40 px-3 py-1.5 text-xs text-white/90 backdrop-blur">
+          <span aria-hidden="true">🔍</span>
+          클릭하여 확대
+        </div>
+      </div>
+    </button>
+   <figcaption class="p-3 text-xs text-white/70">
+      {p.name}
+      <span class="ml-2 rounded-full border border-stroke bg-accent/10 px-2 py-0.5 text-[10px] text-accent">
+        양산 적용
+      </span>
+    </figcaption>
+  </figure>
+))}
+      </div>
+
+      {/* ✅ 라이트박스(모달) */}
+      <div
+        id="lightbox"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-hidden="true"
+      >
+        <div data-lightbox-backdrop class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
+        <div class="relative z-10 w-[96vw] max-w-[1200px] overflow-hidden rounded-2xl border border-stroke bg-base shadow-soft">
+          <div class="flex items-center justify-between gap-3 border-b border-stroke/60 px-4 py-3">
+            <p data-lightbox-caption class="text-sm text-white/80"></p>
+            <button
+              type="button"
+              class="rounded-full border border-stroke bg-white/5 px-3 py-1.5 text-xs text-white/80 hover:bg-white/10"
+              data-lightbox-close
+            >
+              닫기 ✕
+            </button>
+          </div>
+
+          <div class="flex items-center justify-center p-3 md:p-4">
+           <img
+  data-lightbox-img
+  src=""
+  alt=""
+  class="w-full max-w-[1200px] h-auto max-h-[85vh] object-contain"
+/>
+          </div>
+        </div>
+      </div>
+
+      {/* ✅ 스크립트: DOM 준비 후 이벤트 바인딩 */}
+      <script is:inline>
+        {`
+          (() => {
+            const init = () => {
+              const scope = document.querySelector('#production-examples');
+              const lb = document.querySelector('#lightbox');
+              if (!scope || !lb) return;
+
+              if (lb.dataset.bound === '1') return;
+              lb.dataset.bound = '1';
+
+              const img = lb.querySelector('[data-lightbox-img]');
+              const cap = lb.querySelector('[data-lightbox-caption]');
+              const backdrop = lb.querySelector('[data-lightbox-backdrop]');
+
+              const open = (src, alt, caption) => {
+                img.src = src;
+                img.alt = alt || '';
+                cap.textContent = caption || '';
+                lb.classList.remove('hidden');
+                lb.setAttribute('aria-hidden', 'false');
+                document.documentElement.style.overflow = 'hidden';
+              };
+
+              const close = () => {
+                lb.classList.add('hidden');
+                lb.setAttribute('aria-hidden', 'true');
+                img.src = '';
+                document.documentElement.style.overflow = '';
+              };
+
+              scope.addEventListener('click', (e) => {
+                const btn = e.target.closest('[data-lightbox-trigger]');
+                if (!btn) return;
+                open(btn.dataset.src, btn.dataset.alt, btn.dataset.caption);
+              });
+
+              lb.addEventListener('click', (e) => {
+                if (e.target === backdrop) close();
+                if (e.target.closest('[data-lightbox-close]')) close();
+              });
+
+              document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !lb.classList.contains('hidden')) close();
+              });
+            };
+
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', init);
+            } else {
+              init();
+            }
+
+            document.addEventListener('astro:page-load', init);
+          })();
+        `}
+      </script>
+    </section>
+  )}
+
+
+  {/* 확장 가능한 적용산업(미래/추가) */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">확장 가능한 적용산업</h2>
+    <p class="mt-2 text-sm text-sub">
+      요구 사양(외관/내식/두께/후단 공정)에 따라 적용 가능한 제품군을 확장할 수 있습니다.
+    </p>
+
+    <div class="mt-4 grid gap-4 md:grid-cols-2">
+      {expandable.map((item) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-5 shadow-soft">
+          <div class="text-base font-semibold text-white">{item.title}</div>
+          <div class="mt-1 text-xs text-white/70">{item.subtitle}</div>
+          <p class="mt-3 text-sm text-sub leading-relaxed">{item.desc}</p>
+
+          <ul class="mt-4 space-y-2 text-sm text-sub">
+            {item.points.map((p) => (
+              <li class="flex gap-2">
+                <span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span>
+                <span>{p}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* 참고: 상담 유도(선택) */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">적용 검토 안내</h2>
+    <p class="mt-2 text-sm text-sub leading-relaxed">
+      제품의 <span class="text-white font-semibold">외관(광택/색상)</span>, <span class="text-white font-semibold">내식 요구</span>,
+      <span class="text-white font-semibold">후단 공정(인쇄/레이저/조립)</span> 조건에 따라 최적 공정 구성이 달라집니다.<br />
+      필요 시 샘플/도면 기반으로 적용 가능 범위와 관리 포인트를 제안드립니다.
+    </p>
+
+    <div class="mt-4">
+      <a
+        href="/en/contact/"
+        class="inline-flex items-center rounded-2xl border border-stroke bg-accent/15 px-4 py-2 text-sm font-semibold text-accent hover:bg-accent/20"
+      >
+        문의하기 →
+      </a>
+    </div>
+  </section>
+<script is:inline>
+  (() => {
+    const lb = document.querySelector('#lightbox');
+    if (!lb) return;
+
+    const img = lb.querySelector('[data-lightbox-img]');
+    const caption = lb.querySelector('[data-lightbox-caption]');
+
+    const open = ({ src, alt, name }) => {
+      if (!img || !src) return;
+      img.src = src;
+      img.alt = alt || name || '확대 이미지';
+      if (caption) caption.textContent = name || '';
+      lb.classList.remove('hidden'); // hidden 제거 => flex가 살아있으면 표시됨
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const close = () => {
+      lb.classList.add('hidden');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (img) img.src = '';
+      if (caption) caption.textContent = '';
+    };
+
+    // ✅ 이벤트 위임: 어디를 클릭하든 trigger를 찾아서 동작
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('[data-lightbox-trigger]');
+      if (trigger) {
+        e.preventDefault();
+        open({
+          src: trigger.getAttribute('data-src') || trigger.dataset.src,
+          alt: trigger.getAttribute('data-alt') || trigger.dataset.alt,
+          name: trigger.getAttribute('data-name') || trigger.dataset.name,
+        });
+        return;
+      }
+
+      if (e.target.closest('[data-lightbox-close]')) {
+        e.preventDefault();
+        close();
+        return;
+      }
+
+      if (e.target.closest('[data-lightbox-backdrop]')) {
+        e.preventDefault();
+        close();
+        return;
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+
+    // 디버그용(원하면 나중에 삭제)
+    window.__SJ_LIGHTBOX_READY__ = true;
+  })();
+</script>
+
+</BaseLayout>

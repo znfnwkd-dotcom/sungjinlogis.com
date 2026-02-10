@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = '친환경 3가 크롬 | 성진로지스';
+const description =
+  'Hex-free(6가 크롬 미사용) 3가 크롬 공정과 후처리(패시베이션) 시스템으로 규제 대응과 내식/외관 요구를 동시에 만족합니다.';
+
+const highlights = [
+  {
+    title: 'Hex-free 3가 크롬 공정',
+    desc: '6가 크롬을 사용하지 않는 3가 크롬으로 환경 규제 대응과 안정적인 외관 품질을 확보합니다.',
+  },
+  {
+    title: 'TriMac Blue + Tristar Shield',
+    desc: '3가 크롬 도금(TriMac Blue)과 후처리(Tristar Shield)를 연계해 내식성과 외관 균일을 강화합니다.',
+  },
+  {
+    title: '전용 정류기(MUNK) 기반 운용',
+    desc: '전용 정류기(MUNK, Germany) 운용으로 전류 품질과 공정 재현성을 관리합니다.',
+  },
+];
+
+const controlPoints = [
+  '욕(浴) 조건(농도/온도/pH) 기준값을 유지해 색상·광택 편차를 최소화',
+  '전류/전압(파형 포함) 관리로 석출 안정화 및 외관 균일 확보',
+  '후처리(패시베이션) 단계 시간·농도·교반 조건 표준화로 내식성 확보',
+  '헹굼/드레그아웃(이월) 관리로 오염 유입 및 욕 변동 리스크 저감',
+  '정기 샘플링·표준 위치 채취로 데이터 흔들림 최소화(재현성 중심 관리)',
+  '설비 점검(순환/여과/보충) 기준 운영으로 라인 상태를 일정하게 유지',
+];
+
+const evidence = [
+  '사내 두께/외관/밀착 평가 및 공정 데이터 기반 이력 관리',
+  '염수분무(필요 시 CASS 포함) 등 신뢰성 시험 조건 대응',
+  '규제 대응 요구(친환경/Hex-free) 관점에서 공정 관리 문서화 및 추적성 확보',
+  '품질 시스템(SQ/ISO 등) 요구사항 기반 공정 관리 및 대응',
+];
+
+const applications = [
+  '자동차 내장/장식 트림 등 외관·내식 요구가 높은 부품',
+  '모바일/전자기기 장식부품(브라켓/데코) 등 표면 품질 요구 제품',
+  '고객사 규제 대응(Hex-free) 필수 적용 제품군',
+];
+
+const gallery = [
+  {
+    src: '/images/capabilities/trivalent-chrome/trivalent-tank.png',
+    alt: '3가 크롬 도금 탱크 (Trivalent Chromium / TriMac Blue)',
+    caption: 'Trivalent Chromium (TriMac Blue) 탱크',
+  },
+  {
+    src: '/images/capabilities/trivalent-chrome/passivation-device.png',
+    alt: '후처리(패시베이션) 장치 (Tristar Shield)',
+    caption: 'Passivation (Tristar Shield) 설비',
+  },
+  {
+    src: '/images/capabilities/trivalent-chrome/munk-rectifier.png',
+    alt: '전용 정류기 MUNK (Germany)',
+    caption: 'Dedicated Rectifier: MUNK (Germany)',
+  },
+];
+---
+
+<BaseLayout title={title} description={description} lang="en" pathPrefix="/en">
+  {/* HERO */}
+  <section class="rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <a class="text-sm text-accent hover:underline" href="/en/capabilities/">
+      ← Capabilities
+    </a>
+
+    <h1 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+      친환경 3가 크롬
+    </h1>
+
+    <p class="mt-3 text-sm md:text-base leading-relaxed !text-sub drop-shadow-md">
+      성진로지스는 <span class="text-white font-semibold">Hex-free 3가 크롬</span> 공정과
+      <span class="text-white font-semibold"> 후처리(패시베이션)</span> 시스템을 기반으로
+      <span class="text-white font-semibold"> 규제 대응</span>과
+      <span class="text-white font-semibold"> 내식·외관 요구</span>를 동시에 만족합니다.
+    </p>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      {highlights.map((h) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-5 shadow-soft">
+          <div class="text-sm font-semibold text-white">{h.title}</div>
+          <p class="mt-2 text-sm text-sub leading-relaxed">{h.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* 관리 포인트 */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">관리 포인트</h2>
+    <p class="mt-2 text-sm text-sub">
+      3가 크롬 외관·내식 품질을 위한 핵심 관리 항목을 요약했습니다.
+    </p>
+
+    <div class="mt-4 grid gap-3 md:grid-cols-2">
+      {controlPoints.map((t) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">
+          • {t}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* 검증 근거 */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">검증 근거</h2>
+    <p class="mt-2 text-sm text-sub">
+      측정 가능한 데이터와 시스템으로 공정 신뢰성을 확보합니다.
+    </p>
+
+    <div class="mt-4 grid gap-3">
+      {evidence.map((t) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">
+          • {t}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* 대표 적용 */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">대표 적용</h2>
+    <p class="mt-2 text-sm text-sub">
+      규제 대응과 외관/내식 요구가 높은 제품군에 적용합니다.
+    </p>
+
+    <div class="mt-4 grid gap-3 md:grid-cols-2">
+      {applications.map((t) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">
+          • {t}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* 설비 사진 */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">설비 사진</h2>
+    <p class="mt-2 text-sm text-sub">
+      3가 크롬 및 후처리/정류기 설비 예시입니다.
+    </p>
+
+    <div class="mt-4 grid gap-4 md:grid-cols-3">
+      {gallery.map((g) => (
+        <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
+          {/* 16:9 프레임 유지 + 이미지 안 잘리게(contain) */}
+          <div
+            class="flex w-full items-center justify-center bg-base"
+            style="aspect-ratio: 16 / 9;"
+          >
+            <img
+              src={g.src}
+              alt={g.alt}
+              class="max-h-full max-w-full object-contain p-2"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <figcaption class="p-3 text-xs text-white/70">
+            {g.caption}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

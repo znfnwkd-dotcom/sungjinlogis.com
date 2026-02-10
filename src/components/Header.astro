@@ -23,7 +23,19 @@ const navEN = [
 
 const isKR = lang === 'ko' || pathPrefix === '/kr';
 const nav = isKR ? navKR : navEN;
-const otherLangHref = isKR ? '/en/' : '/kr/';
+
+// Keep the same page path when switching languages (/kr/x ↔ /en/x)
+const pathname = Astro.url?.pathname ?? '/';
+const stripPrefix = (p) => {
+  if (p.startsWith('/kr/')) return p.slice(3);
+  if (p.startsWith('/en/')) return p.slice(3);
+  if (p === '/kr' || p === '/en') return '/';
+  return p;
+};
+const tail = stripPrefix(pathname);
+const otherPrefix = isKR ? '/en' : '/kr';
+const otherLangHref = otherPrefix + (tail.startsWith('/') ? tail : '/' + tail);
+
 const otherLangLabel = isKR ? 'EN' : 'KR';
 const tagline = isKR ? '프리미엄 도금·표면처리' : 'Premium Plating & Surface Finishing';
 ---

@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = '광택 니켈 / 반광 니켈 | 성진로지스';
+const description =
+  '반광(베이스) + 광택(탑) 니켈 다층 구성으로 외관 완성도와 내식 성능을 균형 있게 확보합니다.';
+
+const highlights = [
+  {
+    title: '반광(베이스) + 광택(탑) 다층 니켈',
+    desc: '반광 니켈로 기초 평활·내식 기반을 만들고, 광택 니켈로 외관 완성도(광택/색상/스팟)를 확보합니다.',
+  },
+  {
+    title: '외관 품질 중심 운용',
+    desc: '표면 결점(피트/핀홀/흐림)과 색상·광택 편차를 줄이기 위해 욕(浴) 관리·여과·작업 조건을 표준화합니다.',
+  },
+  {
+    title: '사양 대응(두께/내식/외관)',
+    desc: '고객 요구(두께, 외관, 내식, 후단 크롬 등)에 맞춰 공정 조건과 관리 포인트를 조합해 대응합니다.',
+  },
+];
+
+const controlPoints = [
+  '욕(浴) 조건(농도/온도/pH)과 첨가제(광택제/레벨러) 투입 기준을 표준화하여 색상·광택 편차 최소화',
+  '여과/순환 상태 점검으로 미세 이물·부유물 저감 → 피트/핀홀/스팟 리스크 관리',
+  '전류밀도/전압/시간(반광→광택 전환 포함) 관리로 두께 분포와 외관 균일 확보',
+  '치구(랙) 접촉·차폐/음영 구간 개선으로 도금 불균일(모서리 과도/음영 박막) 리스크 저감',
+  '헹굼/드레그아웃(이월) 관리로 오염 유입과 욕 변동 리스크 최소화',
+  '정기 샘플링(표준 위치/표준 시간)으로 분석값 흔들림 최소화 → 재현성 중심 관리',
+];
+
+const evidence = [
+  '사내 두께/외관/밀착 평가 및 공정 데이터 기반 이력 관리',
+  '염수분무(필요 시 CASS 포함) 등 신뢰성 시험 조건 대응',
+  '라인 조건/보충/여과 교체 이력 등 기록 관리로 공정 추적성 확보',
+  '품질 시스템(SQ/ISO 등) 요구사항 기반 공정 관리 및 대응',
+];
+
+const applications = [
+  '자동차 내장/장식 트림 등 외관 요구가 높은 부품',
+  '모바일/전자기기 장식부품(브라켓/데코) 등 표면 품질 중심 제품',
+  '후단 크롬(3가 등) 적용 시 외관/내식 기반이 중요한 제품군',
+];
+
+const gallery = [
+  {
+    src: '/images/capabilities/bright-nickel/bright-carrier.png',
+    alt: '광택 니켈 캐리어(라인)',
+    caption: '광택 니켈 캐리어(라인)',
+  },
+  {
+    src: '/images/capabilities/bright-nickel/semi-bright-carrier.png',
+    alt: '반광 니켈 캐리어(라인)',
+    caption: '반광 니켈 캐리어(라인)',
+  },
+];
+---
+
+<BaseLayout title={title} description={description} lang="en" pathPrefix="/en">
+  {/* HERO */}
+  <section class="rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <a class="text-sm text-accent hover:underline" href="/en/capabilities/">
+      ← Capabilities
+    </a>
+
+    <h1 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+      광택 니켈 / 반광 니켈
+    </h1>
+
+    <p class="mt-3 text-sm md:text-base leading-relaxed !text-sub drop-shadow-md">
+      성진로지스는 <span class="text-white font-semibold">반광(베이스) + 광택(탑) 니켈</span> 구성으로
+      <span class="text-white font-semibold"> 외관 완성도</span>와
+      <span class="text-white font-semibold"> 내식 성능</span>을 균형 있게 확보합니다.<br />
+      요구 사양에 따라 <span class="text-white font-semibold">두께/외관/후단 공정</span> 기준으로 공정을 운영합니다.
+    </p>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      {highlights.map((h) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-5 shadow-soft">
+          <div class="text-sm font-semibold text-white">{h.title}</div>
+          <p class="mt-2 text-sm text-sub leading-relaxed">{h.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* 관리 포인트 */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">관리 포인트</h2>
+    <p class="mt-2 text-sm text-sub">외관·두께·내식 품질을 위한 핵심 관리 항목을 요약했습니다.</p>
+
+    <div class="mt-4 grid gap-3 md:grid-cols-2">
+      {controlPoints.map((t) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">
+          • {t}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* 검증 근거 */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">검증 근거</h2>
+    <p class="mt-2 text-sm text-sub">측정 가능한 데이터와 시스템으로 공정 신뢰성을 확보합니다.</p>
+
+    <div class="mt-4 grid gap-3">
+      {evidence.map((t) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">
+          • {t}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* 대표 적용 */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">대표 적용</h2>
+    <p class="mt-2 text-sm text-sub">외관 및 내식 요구가 높은 제품군에 적용합니다.</p>
+
+    <div class="mt-4 grid gap-3 md:grid-cols-2">
+      {applications.map((t) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">
+          • {t}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* 설비 사진 */}
+  <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">설비 사진</h2>
+    <p class="mt-2 text-sm text-sub">광택/반광 니켈 공정 캐리어 입니다.</p>
+
+    {/* 2장이면 2열, 1장이면 1열 */}
+    <div class={`mt-4 grid gap-4 ${gallery.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'}`}>
+      {gallery.map((g) => (
+        <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
+          {/* ✅ “깨짐(픽셀)” 방지 핵심:
+              - img를 w-full/h-full로 강제 확대하지 않음
+              - object-contain
+              - md 이상에서 max-w를 2/3로 제한 (요청하신 2/3) */}
+          <div class="flex w-full items-center justify-center bg-base" style="aspect-ratio: 3 / 4; min-height: 420px;">
+            <img
+              src={g.src}
+              alt={g.alt}
+              class="h-auto w-auto max-h-[520px] max-w-full md:max-w-[66%] object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <figcaption class="p-3 text-xs text-white/70">{g.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = '무광 + 롱라이프 연속여과장치 | 성진로지스';
+const description =
+  '롱라이프 연속 여과로 이물/부유물을 관리해 무광 외관 균일과 컬러 편차를 안정적으로 유지합니다.';
+
+const highlights = [
+  {
+    title: '롱라이프 연속 여과',
+    desc: '미세 이물·부유물을 실시간 저감해 표면 결점(점/흐림/색 얼룩) 리스크를 줄입니다.',
+  },
+  {
+    title: '외관·컬러 균일',
+    desc: '욕(浴) 청정도와 안정화를 유지해 무광 질감·색상 편차를 최소화합니다.',
+  },
+  {
+    title: '생산 안정화',
+    desc: '연속 생산 환경에서 공정 흔들림을 줄여 불량률과 재작업 리스크를 관리합니다.',
+  },
+];
+
+const controlPoints = [
+  '연속 순환 여과로 작업 중 발생하는 미세 이물·부유물 저감',
+  '여과기 유량/턴오버(순환량) 기준 운영으로 청정도 유지',
+  '차압(ΔP) 상승 시 필터 교체/세정 등 즉시 대응(막힘/포화 관리)',
+  '탱크 바닥 슬러지/부유물 정기 제거로 재부유 방지',
+  '샘플링 위치·시간 표준화로 분석값 흔들림 최소화(데이터 신뢰성)',
+  '필요 시 카본/여과 강화로 유기 오염·미세입자 동시 저감',
+];
+
+const evidence = [
+  '사내 두께/외관/밀착 평가로 조건 변경 전·후 데이터 기반 관리',
+  '염수분무(필요 시 CASS 포함)·열충격·항온항습 등 신뢰성 시험 대응',
+  '여과 교체 이력/차압/유량 등 관리 기록으로 공정 추적성 확보',
+  '품질 시스템(SQ/ISO 등) 요구사항 기반 공정 관리 및 대응',
+];
+
+const applications = [
+  '자동차 내장 트림/버튼류 등 무광 외관 민감 부품',
+  '모바일 브라켓/장식부품 등 외관 품질 요구 제품',
+  '후단 니켈/크롬 외관 품질 안정화가 중요한 제품군',
+];
+
+const gallery = [
+  {
+    src: '/images/capabilities/matte-satin/longlife-filter-01.png',
+    alt: '롱라이프 연속 여과 장치',
+  },
+];
+---
+
+<BaseLayout title={title} description={description} lang="en" pathPrefix="/en">
+  <!-- HERO -->
+  <section class="rounded-3xl border border-stroke bg-base p-6 shadow-soft">
+    <a class="text-sm text-accent hover:underline" href="/en/capabilities/">
+      ← Capabilities
+    </a>
+
+    <h1 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+     무광 + 롱라이프 연속여과장치
+    </h1>
+
+    <p class="mt-3 text-sm md:text-base leading-relaxed !text-sub drop-shadow-md">
+      성진로지스는 <span class="text-white font-semibold">롱라이프 연속 여과</span>로 욕(浴) 내
+      <span class="text-white font-semibold"> 이물·부유물</span>을 관리하고,
+      <span class="text-white font-semibold"> 무광 외관 균일</span>과
+      <span class="text-white font-semibold"> 컬러 편차</span>를 안정적으로 유지합니다.
+    </p>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      {highlights.map((h) => (
+        <div class="rounded-2xl border border-stroke bg-surface p-5 shadow-soft">
+          <div class="text-sm font-semibold text-white">{h.title}</div>
+          <p class="mt-2 text-sm text-sub leading-relaxed">{h.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 관리 포인트 -->
+  <section class="mt-10 rounded-3xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">관리 포인트</h2>
+    <p class="mt-2 text-sm text-sub">
+      무광/반무광 외관 균일을 위한 핵심 관리 항목을 요약했습니다.
+    </p>
+
+    <div class="mt-4 grid gap-3 md:grid-cols-2">
+      {controlPoints.map((t) => (
+        <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">
+          • {t}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 검증 근거 -->
+  <section class="mt-10 rounded-3xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">검증 근거</h2>
+    <p class="mt-2 text-sm text-sub">
+      측정 가능한 데이터와 시스템으로 공정 신뢰성을 확보합니다.
+    </p>
+
+    <div class="mt-4 grid gap-3">
+      {evidence.map((t) => (
+        <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">
+          • {t}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 대표 적용 -->
+  <section class="mt-10 rounded-3xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">대표 적용</h2>
+    <p class="mt-2 text-sm text-sub">외관 품질 요구가 높은 제품군에 적용합니다.</p>
+
+    <div class="mt-4 grid gap-3 md:grid-cols-2">
+      {applications.map((t) => (
+        <div class="rounded-xl border border-stroke bg-surface p-4 text-sm text-sub">
+          • {t}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 설비 사진 -->
+  <section class="mt-10 rounded-3xl border border-stroke bg-base p-6 shadow-soft">
+    <h2 class="text-lg font-semibold">설비 사진</h2>
+    <p class="mt-2 text-sm text-sub">롱라이프 연속 여과 설비 예시입니다.</p>
+
+    <div class="mt-4 grid gap-4 md:grid-cols-2">
+      {gallery.map((g) => (
+        <img
+          src={g.src}
+          alt={g.alt}
+          class="w-full rounded-2xl border border-stroke bg-surface object-cover"
+          loading="lazy"
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

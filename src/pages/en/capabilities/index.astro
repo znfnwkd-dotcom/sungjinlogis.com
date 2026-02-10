@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = 'Capabilities | 성진로지스';
+const description = '로봇 전처리, 무광, 3가크롬, 유산동, 광택/반광 니켈 등 공정 역량';
+
+const items = [
+  {
+    slug: 'robotic-pretreatment',
+    name: '로봇 전처리',
+    desc: '로봇 기반 표준 조건으로 편차를 줄이고 밀착·외관을 안정화'
+  },
+  {
+    slug: 'matte-satin',
+    name: '무광 + 롱라이프 연속여과장치',
+    desc: '이물·부유물 관리로 무광 질감과 컬러 균일도를 지속 유지'
+  },
+  {
+    slug: 'trivalent-chrome',
+    name: '친환경 3가 크롬',
+    desc: 'Hex-free 공정으로 규제 대응과 내식·외관 요구를 동시에 만족'
+  },
+  {
+    slug: 'acid-copper',
+    name: '유산동',
+    desc: '후단 니켈/크롬 품질을 좌우하는 평활 기반층(레벨링) 형성'
+  },
+  {
+    slug: 'bright-nickel',
+    name: '광택 니켈 / 반광 니켈',
+    desc: '고광택 외관과 내식성 확보 및 톤 밸런스와 내구성을 고려한 베이스 니켈/다층 구성'
+  },
+  
+];
+
+---
+<BaseLayout title={title} description={description} lang="en" pathPrefix="/en">
+  <section>
+    <h1 class="text-2xl font-semibold">Capabilities</h1>
+    <p class="mt-2 text-sm text-sub">각 공정 페이지는 나중에 사진/공정 플로우/관리포인트로 확장합니다.</p>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {items.map((i) => (
+        <a class="rounded-xl2 border border-stroke bg-surface p-5 shadow-soft hover:border-accent transition" href={`/en/capabilities/${i.slug}/`}>
+          <div class="text-sm font-semibold">{i.name}</div>
+          <div class="mt-1 text-sm text-sub">{i.desc}</div>
+        </a>
+
+      ))}
+    </div>
+  </section>
+</BaseLayout>

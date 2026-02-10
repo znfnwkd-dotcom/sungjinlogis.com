@@ -1,18 +1,219 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const title = 'SUNGJINLOGIS | Premium Plating & Surface Finishing';
-const description = 'Premium plating partner focused on repeatability, color consistency, and low defect rate.';
+const title = '성진로지스 | 플라스틱 도금·표면처리';
+const description = '로봇 전처리와 공정 안정화로 재현성과 컬러 일치성, 고품질 표면을 반복 재현하는 플라스틱 도금·표면처리 전문 기업';
+
 ---
 <BaseLayout title={title} description={description} lang="en" pathPrefix="/en">
-  <section class="relative overflow-hidden rounded-xl2 border border-stroke bg-surface p-8 shadow-soft">
-    <h1 class="text-3xl font-semibold">English site is being prepared</h1>
-    <p class="mt-3 text-sm text-sub">
-      For now, please refer to the Korean site. We will replace this page with a full EN version soon.
-    </p>
-    <div class="mt-6 flex flex-wrap gap-3">
-      <a class="rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition" href="/kr/">
-        Go to Korean site
+  <!-- Hero -->
+  <section class="relative overflow-hidden rounded-xl2 border border-stroke bg-base shadow-soft">
+    <img
+  src="/images/hero-metal-triptych.webp"
+  alt="Premium metal macro"
+  class="absolute inset-0 z-0 h-full w-full object-cover opacity-85"
+/>
+    <div class="absolute inset-0 z-10 bg-gradient-to-r from-black/90 via-black/70 to-black/30"></div>
+
+<div class="relative z-20 p-8 md:p-12">
+  <div class="relative z-20 inline-block max-w-2xl rounded-2xl border border-white/10 bg-black/45 p-6 backdrop-blur-sm">
+  <!-- ✅ Brand line 추가 -->
+  <div class="text-lg md:text-2xl font-semibold tracking-[0.22em] text-white/90">
+    SUNGJINLOGIS
+  </div>
+  <div class="mt-1 text-xs md:text-sm text-white/70">
+    프리미엄 도금·표면처리<br />
+  </div>
+
+  <h1 class="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
+    <span class="text-accent">재현성</span>으로 증명하는 <br />프리미엄 도금.<br />
+  </h1>
+
+    <p class="mt-4 max-w-2xl text-sm md:text-base font-medium !text-white/90 leading-relaxed drop-shadow">
+  로봇 전처리와 공정 안정화로 컬러 일치성과 표면 품질을 반복 재현합니다.<br />
+  자동차 내장 및 모바일 부품용 플라스틱 도금/표면처리 전문.
+</p>
+
+<p class="mt-2 max-w-2xl text-xs !text-white/75 drop-shadow-md">
+  Robot Pretreatment · Process Stabilization · In-house Verification
+</p>
+
+    <div class="mt-6 flex flex-wrap items-center gap-3">
+      <a class="rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition" href="/en/downloads/">
+        회사소개서 다운로드
+      </a>
+      <a class="rounded-xl border border-accent bg-base px-4 py-3 text-sm font-semibold text-accent hover:text-white hover:bg-accent transition" href="/en/capabilities/">
+        공정/역량 보기
+      </a>
+      <a class="ml-1 text-sm text-accent hover:text-accent-hover" href="/en/quality/">
+        품질/시험 설비 보기 →
+      </a>
+    </div>
+  </div>
+
+      <!-- Key Proof (Hero badges) -->
+      <div class="mt-10 grid gap-3 md:grid-cols-3">
+        <div class="rounded-xl border border-stroke bg-surface p-4">
+          <div class="text-xs text-sub">Key Proof</div>
+          <div class="mt-1 text-sm font-semibold">로봇 전처리 자동화</div>
+          <div class="mt-1 text-xs text-sub">균일 전처리로 재현성 기반 구축</div>
+        </div>
+
+        <div class="rounded-xl border border-stroke bg-surface p-4">
+          <div class="text-xs text-sub">Key Proof</div>
+          <div class="mt-1 text-sm font-semibold">공정 안정화 + 롱라이프 여과</div>
+          <div class="mt-1 text-xs text-sub">이물 저감·외관 균일·컬러 편차 최소화</div>
+        </div>
+
+        <div class="rounded-xl border border-stroke bg-surface p-4">
+          <div class="text-xs text-sub">Key Proof</div>
+          <div class="mt-1 text-sm font-semibold">사내 시험·인증 기반 검증</div>
+          <div class="mt-1 text-xs text-sub">SQ / ISO 9001 / GM 요구사항(CQI-11) 대응</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Capabilities -->
+  <section class="mt-12">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <h2 class="text-xl font-semibold">Capabilities</h2>
+        <p class="mt-1 text-sm text-sub">공정 신뢰를 만드는 핵심 기술</p>
+      </div>
+      <a class="text-sm text-accent hover:text-accent-hover" href="/en/capabilities/">전체보기 →</a>
+    </div>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <a class="rounded-xl2 border border-stroke bg-surface p-5 shadow-soft hover:border-accent transition" href="/en/capabilities/robotic-pretreatment/">
+        <div class="text-sm font-semibold">로봇 전처리</div>
+        <div class="mt-1 text-sm text-sub">균일한 전처리로 공정 재현성 확보</div>
+      </a>
+      <a class="rounded-xl2 border border-stroke bg-surface p-5 shadow-soft hover:border-accent transition" href="/en/capabilities/matte-satin/">
+        <div class="text-sm font-semibold">무광/반무광 + 롱라이프 여과</div>
+        <div class="mt-1 text-sm text-sub">이물 저감·외관 균일</div>
+      </a>
+      <a class="rounded-xl2 border border-stroke bg-surface p-5 shadow-soft hover:border-accent transition" href="/en/capabilities/trivalent-chrome/">
+        <div class="text-sm font-semibold">친환경 3가 크롬</div>
+        <div class="mt-1 text-sm text-sub">Hex-free, 규제 대응 표면 품질</div>
+      </a>
+      <a class="rounded-xl2 border border-stroke bg-surface p-5 shadow-soft hover:border-accent transition" href="/en/capabilities/acid-copper/">
+        <div class="text-sm font-semibold">유산동</div>
+        <div class="mt-1 text-sm text-sub">기초 품질을 만드는 안정 공정</div>
+      </a>
+      <a class="rounded-xl2 border border-stroke bg-surface p-5 shadow-soft hover:border-accent transition" href="/en/capabilities/bright-nickel/">
+        <div class="text-sm font-semibold">광택 니켈/반광 니켈</div>
+        <div class="mt-1 text-sm text-sub">프리미엄 광택·표면 완성도·심미성과 내구의 균형</div>
+      </a>
+      
+    </div>
+  </section>
+
+  <!-- Quality strengths -->
+  <section class="mt-12 rounded-xl2 border border-stroke bg-surface p-8">
+    <h2 class="text-xl font-semibold">What we are best at</h2>
+    <p class="mt-1 text-sm text-sub">성진로지스가 가장 자신있는 가치</p>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      <div class="rounded-xl border border-stroke bg-base p-5">
+        <div class="text-sm font-semibold">Repeatability</div>
+        <div class="mt-1 text-sm text-sub">공정 변동을 줄이는 설계와 관리</div>
+      </div>
+      <div class="rounded-xl border border-stroke bg-base p-5">
+        <div class="text-sm font-semibold">Color Consistency</div>
+        <div class="mt-1 text-sm text-sub">제품 간 컬러 편차 최소화</div>
+      </div>
+      <div class="rounded-xl border border-stroke bg-base p-5">
+        <div class="text-sm font-semibold">Low Defect Rate</div>
+        <div class="mt-1 text-sm text-sub">원인 추적 가능한 품질 체계</div>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <a class="text-sm text-accent hover:text-accent-hover" href="/en/quality/">품질/인증 자세히 보기 →</a>
+    </div>
+  </section>
+
+  <!-- In-house Verification (Testing & Inspection) -->
+  <section class="mt-12 rounded-xl2 border border-stroke bg-surface p-8">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <h2 class="text-xl font-semibold">In-house Verification</h2>
+        <p class="mt-1 text-sm text-sub">
+          사양을 ‘감’이 아니라 <span class="text-white/90 font-semibold">데이터</span>로 검증합니다
+        </p>
+      </div>
+      <a class="text-sm text-accent hover:text-accent-hover" href="/en/quality/">
+        자세히 보기 →
+      </a>
+    </div>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      <div class="rounded-xl border border-stroke bg-base p-5">
+        <div class="text-sm font-semibold">내식·환경 신뢰성</div>
+        <p class="mt-1 text-sm text-sub">사용 환경을 가정한 내구/부식 조건 검증</p>
+        <ul class="mt-4 space-y-2 text-sm text-sub">
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>염수분무시험</span></li>
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>열충격시험</span></li>
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>항온항습(온·습도)</span></li>
+        </ul>
+      </div>
+
+      <div class="rounded-xl border border-stroke bg-base p-5">
+        <div class="text-sm font-semibold">막두께·외관 관리</div>
+        <p class="mt-1 text-sm text-sub">프리미엄 외관 부품의 균일도/재현성 확인</p>
+        <ul class="mt-4 space-y-2 text-sm text-sub">
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>도금 두께 측정</span></li>
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>외관 품질 기준 운영</span></li>
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>공정 조건 표준화/이력 관리</span></li>
+        </ul>
+      </div>
+
+      <div class="rounded-xl border border-stroke bg-base p-5">
+        <div class="text-sm font-semibold">밀착·기계적 성능</div>
+        <p class="mt-1 text-sm text-sub">표면처리 핵심인 밀착 안정성 검증</p>
+        <ul class="mt-4 space-y-2 text-sm text-sub">
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>Peel Test(밀착)</span></li>
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>불량 원인 추적/재발 방지</span></li>
+          <li class="flex gap-2"><span class="mt-[3px] h-1.5 w-1.5 rounded-full bg-white/40"></span><span>고객 사양 기준 대응</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-xl border border-stroke bg-base p-5">
+      <div class="text-sm font-semibold">시험성적서 기반 대응</div>
+      <p class="mt-1 text-sm text-sub">
+        사내 시험 데이터를 기반으로 <span class="text-white/90 font-semibold">양산 안정화</span>와
+        <span class="text-white/90 font-semibold">인증/요구사항</span> 대응을 지원합니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- Industries -->
+  <section class="mt-12">
+    <h2 class="text-xl font-semibold">Industries</h2>
+    <p class="mt-1 text-sm text-sub">적용 분야</p>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-2">
+      <div class="rounded-xl2 border border-stroke bg-surface p-6 shadow-soft">
+        <div class="text-sm font-semibold">Automotive Interior</div>
+        <p class="mt-1 text-sm text-sub">외관 품질과 내구 신뢰가 중요한 내장 부품</p>
+      </div>
+      <div class="rounded-xl2 border border-stroke bg-surface p-6 shadow-soft">
+        <div class="text-sm font-semibold">Mobile Device (Camera Bracket)</div>
+        <p class="mt-1 text-sm text-sub">정밀 부품의 컬러/외관 기준 대응</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Downloads teaser -->
+  <section class="mt-12 rounded-xl2 border border-stroke bg-surface p-8">
+    <h2 class="text-xl font-semibold">Company Profile 다운로드</h2>
+    <p class="mt-1 text-sm text-sub">이메일을 남기시면 PDF 링크를 보내드립니다.</p>
+    <div class="mt-6">
+      <a class="rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition" href="/en/downloads/">
+        다운로드 요청
       </a>
     </div>
   </section>
