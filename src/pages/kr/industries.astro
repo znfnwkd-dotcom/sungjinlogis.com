@@ -226,18 +226,33 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
   </section>
 
   {/* 양산 제품 사진(자동차 내장) */}
-  {hasAutomotiveProducts && (
-    <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
-      <h2 class="text-lg font-semibold">양산 적용 제품 사</h2>
-      <p class="mt-2 text-sm text-sub">
-        자동차 내장 프리미엄 외관 부품 사진입니다.
-        <span class="text-white/70"> </span>
-      </p>
+{hasAutomotiveProducts && (
+  <section
+    id="production-examples"
+    class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft"
+  >
+    <h2 class="text-lg font-semibold">양산 적용 제품 사진</h2>
+    <p class="mt-2 text-sm text-sub">
+      자동차 내장 프리미엄 외관 부품 사진입니다.
+    </p>
 
-      <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {automotiveProducts.map((p) => (
-          <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
-            <div class="flex w-full items-center justify-center bg-base" style="aspect-ratio: 16 / 9; min-height: 220px;">
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {automotiveProducts.map((p) => (
+        <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
+          {/* ✅ 클릭 확대 트리거 */}
+          <button
+            type="button"
+            class="group relative block w-full"
+            data-lightbox-trigger
+            data-src={p.src}
+            data-alt={p.alt}
+            data-caption={p.name}
+            aria-label={`${p.name} 확대보기`}
+          >
+            <div
+              class="flex w-full items-center justify-center bg-base"
+              style="aspect-ratio: 16 / 9; min-height: 220px;"
+            >
               <img
                 src={p.src}
                 alt={p.alt}
@@ -246,17 +261,119 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
                 decoding="async"
               />
             </div>
-            <figcaption class="p-3 text-xs text-white/70">
-              {p.name}
-              <span class="ml-2 rounded-full border border-stroke bg-accent/10 px-2 py-0.5 text-[10px] text-accent">
-                양산 적용
-              </span>
-            </figcaption>
-          </figure>
-        ))}
+
+            {/* ✅ 마우스 올리면 돋보기 안내 */}
+            <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
+              <div class="flex items-center gap-2 rounded-full bg-black/55 px-4 py-2 text-xs text-white">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
+                    stroke="currentColor" stroke-width="2"
+                  />
+                  <path
+                    d="M16.5 16.5 21 21"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  />
+                </svg>
+                클릭하여 확대
+              </div>
+            </div>
+          </button>
+
+          <figcaption class="p-3 text-xs text-white/70">
+            {p.name}
+            <span class="ml-2 rounded-full border border-stroke bg-accent/10 px-2 py-0.5 text-[10px] text-accent">
+              양산 적용
+            </span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    {/* ✅ 라이트박스(모달) */}
+    <div
+      id="lightbox"
+      class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+      aria-hidden="true"
+    >
+      {/* 바깥 클릭 닫기용 배경 */}
+      <div data-lightbox-backdrop class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
+      <div class="relative z-10 w-full max-w-6xl">
+        <button
+          type="button"
+          data-lightbox-close
+          class="absolute -top-3 right-0 rounded-full border border-stroke bg-base/80 px-3 py-2 text-xs text-white hover:bg-base"
+          aria-label="닫기"
+        >
+          닫기 ✕
+        </button>
+
+        <div class="overflow-hidden rounded-2xl border border-stroke bg-base shadow-soft">
+          <img
+            data-lightbox-img
+            src=""
+            alt=""
+            class="max-h-[80vh] w-full object-contain bg-black/10"
+            decoding="async"
+          />
+          <div data-lightbox-caption class="p-3 text-sm text-white/75"></div>
+        </div>
       </div>
-    </section>
-  )}
+    </div>
+
+    {/* ✅ 동작 스크립트: 이 섹션에만 적용 */}
+    <script is:inline>
+      {`
+        (() => {
+          const scope = document.getElementById('production-examples');
+          const lb = document.getElementById('lightbox');
+          if (!scope || !lb) return;
+
+          const img = lb.querySelector('[data-lightbox-img]');
+          const cap = lb.querySelector('[data-lightbox-caption]');
+          const backdrop = lb.querySelector('[data-lightbox-backdrop]');
+
+          const open = (src, alt, caption) => {
+            img.setAttribute('src', src);
+            img.setAttribute('alt', alt || '');
+            cap.textContent = caption || '';
+            lb.classList.remove('hidden');
+            lb.classList.add('flex');
+            lb.setAttribute('aria-hidden', 'false');
+            document.documentElement.style.overflow = 'hidden';
+          };
+
+          const close = () => {
+            lb.classList.add('hidden');
+            lb.classList.remove('flex');
+            lb.setAttribute('aria-hidden', 'true');
+            img.setAttribute('src', '');
+            document.documentElement.style.overflow = '';
+          };
+
+          // 썸네일 클릭 → 열기
+          scope.addEventListener('click', (e) => {
+            const btn = e.target.closest('[data-lightbox-trigger]');
+            if (!btn) return;
+            open(btn.dataset.src, btn.dataset.alt, btn.dataset.caption);
+          });
+
+          // 배경 클릭/닫기 버튼 → 닫기
+          lb.addEventListener('click', (e) => {
+            if (e.target === backdrop) close();
+            if (e.target.closest('[data-lightbox-close]')) close();
+          });
+
+          // ESC → 닫기
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !lb.classList.contains('hidden')) close();
+          });
+        })();
+      `}
+    </script>
+  </section>
+)}
 
   {/* 확장 가능한 적용산업(미래/추가) */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
