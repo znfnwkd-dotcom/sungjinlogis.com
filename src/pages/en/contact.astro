@@ -2,14 +2,13 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = 'Contact | SUNGJINLOGIS';
-const description = 'Contact us — technical & quality-focused consultation.';
+const description = 'Inquiries — technical & quality-focused consultation.';
 ---
-
 <BaseLayout title={title} description={description} lang="en" pathPrefix="/en">
   <section class="rounded-xl2 border border-stroke bg-surface p-8 shadow-soft">
     <h1 class="text-2xl font-semibold">Contact</h1>
     <p class="mt-2 text-sm text-sub">
-      We prioritize technical and quality-focused consultation over simple price-only inquiries.
+      We prioritize process and quality-focused consultation over simple quote requests.
     </p>
 
     <div class="mt-6 rounded-xl border border-stroke bg-base p-5">
@@ -28,7 +27,6 @@ const description = 'Contact us — technical & quality-focused consultation.';
           name="email"
           required
           placeholder="name@company.com"
-          autocomplete="email"
         />
       </label>
 
@@ -39,7 +37,6 @@ const description = 'Contact us — technical & quality-focused consultation.';
           type="text"
           name="subject"
           placeholder="Subject"
-          autocomplete="off"
         />
       </label>
 
@@ -53,10 +50,10 @@ const description = 'Contact us — technical & quality-focused consultation.';
         ></textarea>
       </label>
 
-      {/* Honeypot (spam bot trap) */}
+      <!-- Honeypot -->
       <label class="hidden">
         <span>Leave this field empty</span>
-        <input type="text" name="hp" tabindex="-1" autocomplete="off" />
+        <input type="text" name="hp" />
       </label>
 
       <button
@@ -70,46 +67,37 @@ const description = 'Contact us — technical & quality-focused consultation.';
     </form>
   </section>
 
-  <script is:inline>
-    {`
-      (() => {
-        const form = document.getElementById('contactForm');
-        const statusEl = document.getElementById('contactStatus');
-        if (!form || !statusEl) return;
+  <script>
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('contactStatus');
 
-        const setStatus = (msg) => (statusEl.textContent = msg);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = 'Sending...';
+      const fd = new FormData(form);
 
-        form.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          setStatus('Sending...');
-
-          const fd = new FormData(form);
-
-          try {
-            const res = await fetch('/api/contact', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                email: fd.get('email'),
-                subject: fd.get('subject'),
-                message: fd.get('message'),
-                hp: fd.get('hp'),
-                lang: 'en',
-              }),
-            });
-
-            if (!res.ok) {
-              const msg = await res.text();
-              throw new Error(msg || 'Request failed');
-            }
-
-            setStatus('Sent! We will review and get back to you soon.');
-            form.reset();
-          } catch (err) {
-            setStatus('Something went wrong. Please try again in a moment.');
-          }
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: fd.get('email'),
+            subject: fd.get('subject'),
+            message: fd.get('message'),
+            hp: fd.get('hp')
+          })
         });
-      })();
-    `}
+
+        if (!res.ok) {
+          const msg = await res.text();
+          throw new Error(msg || 'Request failed');
+        }
+
+        statusEl.textContent = "Sent! We'll review and get back to you soon.";
+        form.reset();
+      } catch (err) {
+        statusEl.textContent = 'Something went wrong. Please try again in a moment.';
+      }
+    });
   </script>
 </BaseLayout>
