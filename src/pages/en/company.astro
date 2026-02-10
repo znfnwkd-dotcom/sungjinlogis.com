@@ -1,26 +1,26 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const title = '회사소개 | 성진로지스';
+const title = 'Company | SUNGJINLOGIS';
 const description =
-  '성진로지스는 자동차 내장 및 모바일 부품을 위한 플라스틱 도금·표면처리 전문 기업입니다. 로봇 전처리, 공정 안정화, 사내 검증으로 재현성과 컬러 일치성을 구현합니다.';
+  'SUNGJINLOGIS is a specialist in plastic plating and surface finishing for automotive interior and mobile components. We achieve repeatability and color consistency through robotic pretreatment, process stabilization, and in-house verification.';
 
 const companyImages = {
   map: {
     src: '/images/about/location-map.png',
-    alt: '성진로지스 위치(인천) 안내 지도',
+    alt: 'Map guide to SUNGJINLOGIS (Incheon, Korea)',
   },
   exterior: {
     src: '/images/about/factory-exterior.jpg',
-    alt: '성진로지스 공장 전경',
+    alt: 'SUNGJINLOGIS factory exterior',
   },
 };
 
 const companyInfo = [
-  { label: '법인명', value: '㈜성진로지스' },
-  { label: '주소', value: '인천광역시 서구 중봉대로240번길 24' },
-  { label: '대표', value: '지원석' },
-  { label: '임직원', value: '60명' },
+  { label: 'Legal name', value: 'SUNGJINLOGIS Co., Ltd. (㈜성진로지스)' },
+  { label: 'Address', value: '24, Jungbong-daero 240beon-gil, Seo-gu, Incheon, Korea (인천광역시 서구 중봉대로240번길 24)' },
+  { label: 'CEO', value: 'Wonseok Ji (지원석)' },
+  { label: 'Employees', value: '60' },
   { label: 'Tel', value: '+82-32-573-4789' },
   { label: 'Fax', value: '+82-32-573-4790' },
   { label: 'Email', value: 'chiwon1@kakao.net', href: 'mailto:chiwon1@kakao.net' },
@@ -38,33 +38,34 @@ const mapLink =
       </a>
 
       <h1 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-        플라스틱 도금·표면처리 전문
+        Plastic Plating & Surface Finishing Specialist
       </h1>
 
       <p class="mt-3 text-sm md:text-base leading-relaxed !text-sub drop-shadow-md">
-        성진로지스는 <span class="text-white font-semibold">재현성</span>을 기준으로 공정을 설계하고,
-        <span class="text-white font-semibold">컬러 일치성·표면 품질</span>을 안정적으로 구현합니다.<br />
-        자동차 내장 및 모바일 부품용 <span class="text-white font-semibold">프리미엄 외관 부품</span> 도금/표면처리를 제공합니다.
+        At SUNGJINLOGIS, we design and manage our processes around <span class="text-white font-semibold">repeatability</span>,
+        delivering stable <span class="text-white font-semibold">color consistency and surface quality</span>.<br />
+        We provide plastic plating/surface finishing for <span class="text-white font-semibold">premium appearance parts</span>
+        used in automotive interiors and mobile components.
       </p>
 
       <div class="mt-6 grid gap-4 md:grid-cols-3">
         <div class="rounded-2xl border border-stroke bg-base p-5">
-          <div class="text-sm font-semibold">재현성 기반 공정</div>
-          <p class="mt-1 text-sm text-sub">조건 표준화와 변동 요인 통제로 동일 품질을 반복 구현</p>
+          <div class="text-sm font-semibold">Repeatability-driven Process</div>
+          <p class="mt-1 text-sm text-sub">Standardized conditions and variation control to reproduce the same quality</p>
         </div>
         <div class="rounded-2xl border border-stroke bg-base p-5">
-          <div class="text-sm font-semibold">프리미엄 표면 품질</div>
-          <p class="mt-1 text-sm text-sub">외관·촉감·색상 일치성을 목표로 한 품질 중심 운영</p>
+          <div class="text-sm font-semibold">Premium Surface Quality</div>
+          <p class="mt-1 text-sm text-sub">Quality-first operation focused on appearance, feel, and color matching</p>
         </div>
         <div class="rounded-2xl border border-stroke bg-base p-5">
-          <div class="text-sm font-semibold">친환경 공정 대응</div>
-          <p class="mt-1 text-sm text-sub">친환경 3가 크롬(Trivalent Chromium) 라인 운영</p>
+          <div class="text-sm font-semibold">Eco-friendly Compliance</div>
+          <p class="mt-1 text-sm text-sub">Operating a trivalent chromium (Cr3+) line aligned with regulations</p>
         </div>
       </div>
 
-      {/* ✅ 회사 전경 · 회사 정보 섹션 추가 */}
+      {/* Company images · Company information */}
       <div class="mt-10 grid gap-6 lg:grid-cols-5">
-        {/* 이미지 영역 */}
+        {/* Image area */}
         <div class="lg:col-span-3 grid gap-4">
           <figure class="overflow-hidden rounded-2xl border border-stroke bg-base shadow-soft">
             <div class="flex items-center justify-center bg-black/10" style="aspect-ratio: 16 / 10;">
@@ -92,16 +93,16 @@ const mapLink =
               />
             </div>
             <figcaption class="px-4 py-3 text-xs text-white/70">
-              Factory Exterior · 성진로지스 전경
+              Factory Exterior · SUNGJINLOGIS
             </figcaption>
           </figure>
         </div>
 
-        {/* 회사 정보 영역 */}
+        {/* Company info area */}
         <div class="lg:col-span-2 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
-          <h2 class="text-lg font-semibold">회사 정보</h2>
+          <h2 class="text-lg font-semibold">Company Information</h2>
           <p class="mt-2 text-sm text-sub">
-            상담/방문 시 필요한 기본 정보를 정리했습니다.
+            Key details for consultation and visits.
           </p>
 
           <dl class="mt-4 divide-y divide-stroke/60">
@@ -128,101 +129,104 @@ const mapLink =
               target="_blank"
               rel="noopener noreferrer"
             >
-              지도에서 보기 →
+              View on Google Maps →
             </a>
             <a
               class="inline-flex items-center rounded-2xl border border-stroke bg-white/5 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10"
               href="/en/contact/"
             >
-              문의하기 →
+              Contact us →
             </a>
           </div>
 
           <p class="mt-3 text-xs text-white/60">
-            * 주소: 인천광역시 서구 중봉대로240번길 24
+            * Address: Incheon, Seo-gu, Jungbong-daero 240beon-gil 24 (인천광역시 서구 중봉대로240번길 24)
           </p>
         </div>
       </div>
 
-      {/* 기존 섹션 유지 */}
+      {/* Existing sections */}
       <div class="mt-10 grid gap-6 md:grid-cols-2">
         <div class="rounded-2xl border border-stroke bg-base p-6">
-          <h2 class="text-lg font-semibold">핵심 역량</h2>
+          <h2 class="text-lg font-semibold">Core Capabilities</h2>
           <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-sub">
-            <li><span class="text-white">산업용 로봇 전처리</span>로 균일한 기반 품질 확보</li>
-            <li><span class="text-white">롱라이프 여과 기반 무광/반무광 공정</span>으로 공정 안정화</li>
-            <li><span class="text-white">친환경 3가 크롬</span> 라인 운영(규제 대응)</li>
-            <li><span class="text-white">유산동</span> 및 <span class="text-white">광택/반광 니켈</span> 캐리어 공정 운영</li>
+            <li><span class="text-white">Robotic pretreatment</span> to secure a uniform quality foundation</li>
+            <li><span class="text-white">Matte/Satin process with long-life filtration</span> for stable operation</li>
+            <li><span class="text-white">Trivalent chrome (Cr3+)</span> line operation for regulatory compliance</li>
+            <li><span class="text-white">Acid copper</span> and <span class="text-white">bright/semi-bright nickel</span> carrier processes</li>
           </ul>
         </div>
 
         <div class="rounded-2xl border border-stroke bg-base p-6">
-          <h2 class="text-lg font-semibold">주요 적용 분야</h2>
+          <h2 class="text-lg font-semibold">Key Industries</h2>
           <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-sub">
-            <li>자동차 내장 부품(Interior parts)</li>
-            <li>모바일 부품(예: 카메라 브라켓 등)</li>
+            <li>Automotive interior parts</li>
+            <li>Mobile components (e.g., camera brackets)</li>
           </ul>
 
           <div class="mt-6 rounded-2xl border border-stroke bg-surface p-5">
-            <div class="text-sm font-semibold">품질·인증</div>
+            <div class="text-sm font-semibold">Quality & Certifications</div>
             <p class="mt-1 text-sm text-sub">
-              현대 SQ · ISO 9001 · GM 인증(요구사항 대응, CQI-11)
+              Hyundai SQ · ISO 9001 · GM requirements support (CQI-11)
             </p>
           </div>
         </div>
       </div>
 
       <div class="mt-10 rounded-2xl border border-stroke bg-base p-6">
-        <h2 class="text-lg font-semibold">사내 검증(Verification) 설비</h2>
+        <h2 class="text-lg font-semibold">In-house Verification Equipment</h2>
         <p class="mt-2 text-sm text-sub">
-          공정 신뢰를 “측정 가능한 데이터”로 관리합니다.
+          We manage process trust with measurable data.
         </p>
         <div class="mt-4 grid gap-3 md:grid-cols-2">
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">도금두께 측정기(Thickness Tester, 2 set)</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">CASS 시험기 (CASS Tester)</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">Hull Cell 시험기 (Hull Cell Tester)</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">전자현미경 (Electron Microscope)</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">온·습도 사이클 시험기 (Heat & Humidity Cycle Tester)</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">XRF 두께 측정기 (XRF Thickness Tester)</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">광학 현미경 (Optical Microscope)</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">폴리싱(연마) 장비 (Polishing Machine)</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">항온항습기 (Thermohygrostat)</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">박리(밀착) 시험기 (Peel-off Tester)</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">퀵 열충격 시험기 (Quick Thermal Tester)</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">STEP 시험기 (STEP Tester)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">Plating Thickness Tester (2 sets)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">CASS Tester</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">Hull Cell Tester</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">Electron Microscope</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">Temperature & Humidity Cycle Tester</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">XRF Thickness Tester</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">Optical Microscope</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">Polishing Machine</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">Thermohygrostat (Constant Temp/Humidity Chamber)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">Peel-off Tester (Adhesion)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">Quick Thermal Shock Tester</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub">STEP Tester</div>
         </div>
       </div>
 
       <div class="mt-10 rounded-2xl border border-stroke bg-base p-6">
-        <h2 class="text-lg font-semibold">연혁(History)</h2>
+        <h2 class="text-lg font-semibold">History</h2>
         <div class="mt-4 grid gap-3">
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">1995</span> · 지원산업 설립</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2005</span> · 모바일 부품용 친환경 3가 크롬 기술 도입</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2010</span> · 자동차(차량) 부품 도금 양산 시작</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2011</span> · ISO 9001 / ISO 14001 인증</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2014</span> · ㈜성진로지스 법인 전환</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2017</span> · SQ 인증</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2020</span> · IATF 16949 인증</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2021</span> · 로봇 자동 플라스틱 도금 라인(2공장) 구축</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2023</span> · 친환경 3가 크롬 도금 라인 구축</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2024</span> · 글로벌 프리미엄 OEM 친환경 3가 크롬 공급사 등록</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2025</span> · 화학니켈(무전해) 도금 라인(3공장) 구축</div>
-          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2026</span> · GM Tier2 3가 크롬 공급사 등록</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">1995</span> · Founded as Jiwon Industry</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2005</span> · Introduced eco-friendly trivalent chrome technology for mobile components</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2010</span> · Started mass production plating for automotive parts</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2011</span> · ISO 9001 / ISO 14001 certification</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2014</span> · Incorporated as SUNGJINLOGIS Co., Ltd.</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2017</span> · Achieved Hyundai SQ certification</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2020</span> · IATF 16949 certification</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2021</span> · Built a robotic plastic plating line (Plant 2)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2023</span> · Built an eco-friendly trivalent chrome plating line</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2024</span> · Registered as an approved supplier for a global premium OEM (trivalent chrome)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2025</span> · Built an electroless nickel plating line (Plant 3)</div>
+          <div class="rounded-2xl border border-stroke bg-surface p-4 text-sm text-sub"><span class="text-white font-semibold">2026</span> · Registered as a GM Tier-2 supplier for trivalent chrome</div>
         </div>
       </div>
 
       <div class="mt-10 flex flex-wrap items-center gap-3">
-        <a class="rounded-2xl bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition"
-           href="/en/downloads/">
-          회사소개서 다운로드
+        <a
+          class="rounded-2xl bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition"
+          href="/en/downloads/"
+        >
+          Download Company Profile
         </a>
-        <a class="rounded-2xl border border-stroke bg-base px-5 py-3 text-sm font-semibold text-white hover:bg-surface transition"
-           href="/en/capabilities/">
-          공정/역량 보기
+        <a
+          class="rounded-2xl border border-stroke bg-base px-5 py-3 text-sm font-semibold text-white hover:bg-surface transition"
+          href="/en/capabilities/"
+        >
+          View Capabilities
         </a>
-        <a class="text-sm text-accent hover:text-accent-hover"
-           href="mailto:chiwon1@kakao.net">
-          문의: chiwon1@kakao.net →
+        <a class="text-sm text-accent hover:text-accent-hover" href="mailto:chiwon1@kakao.net">
+          Email: chiwon1@kakao.net →
         </a>
       </div>
     </div>
