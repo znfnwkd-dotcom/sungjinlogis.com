@@ -1,123 +1,123 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const title = '설비/라인 | 성진로지스';
+const title = 'Facilities & Lines | SUNGJINLOGIS';
 const description =
-  '로봇 전처리, 대형 캐리어 라인, 롱라이프 여과, 친환경 3가 크롬, 시험/검증 설비, 화학 분석 실험실까지 공정 재현성과 품질 신뢰성을 뒷받침하는 인프라를 운영합니다.';
+  'We operate infrastructure that supports repeatability and quality trust—from robotic pretreatment and large carrier lines to long-life filtration, eco-friendly trivalent chrome, in-house verification equipment, and a chemical analysis lab.';
 
 const summaryCards = [
   {
     title: 'Industrial Robot Pretreatment',
-    subtitle: '로봇 기반 전처리 자동화',
-    desc: '시간/온도/이송 조건을 표준화해 공정 편차를 줄이고, 후단 도금 품질의 기반 재현성을 확보합니다.',
-    tags: ['표준 레시피', '조건 고정', '재현성'],
+    subtitle: 'Robotic pretreatment automation',
+    desc: 'By standardizing time, temperature, and transfer conditions, we reduce process variation and secure a repeatable foundation for downstream plating quality.',
+    tags: ['Standard recipes', 'Fixed parameters', 'Repeatability'],
   },
   {
     title: 'Large Carrier Line',
-    subtitle: '유산동·광택/반광 니켈 캐리어 기반 라인',
-    desc: '대형 캐리어 운용으로 생산 안정성을 확보하고, 두께/외관/후단 공정 요구에 맞춘 조건 관리가 가능합니다.',
-    tags: ['캐리어 운용', '외관/두께 대응', '라인 안정화'],
+    subtitle: 'Acid copper + bright/semi-bright nickel carrier line',
+    desc: 'Large carrier operation stabilizes production and allows condition control aligned with thickness, appearance, and downstream process requirements.',
+    tags: ['Carrier operation', 'Appearance & thickness', 'Stable line'],
   },
   {
     title: 'Long-life Filtration',
-    subtitle: '무광/반무광 공정 롱라이프 연속 여과',
-    desc: '미세 이물·부유물을 연속 저감해 무광 외관 결점(점/흐림/얼룩) 리스크를 낮추고, 컬러 편차를 안정화합니다.',
-    tags: ['턴오버 기준', '차압(ΔP) 관리', '청정도'],
+    subtitle: 'Continuous filtration for matte/satin processes',
+    desc: 'Continuous reduction of fine particles and suspended matter lowers defect risks (specks, haze, stains) and stabilizes color variation for matte finishes.',
+    tags: ['Turnover 기준', 'ΔP control', 'Cleanliness'],
   },
   {
     title: 'Trivalent Chrome Line',
-    subtitle: '친환경 Hex-free 3가 크롬 + 후처리',
-    desc: '3가 크롬 도금과 후처리(패시베이션) 시스템을 연계 운영해 규제 대응과 내식/외관 요구를 동시에 만족합니다.',
-    tags: ['Hex-free', '내식 강화', '공정 표준화'],
+    subtitle: 'Eco-friendly hex-free Cr3+ chrome + post-treatment',
+    desc: 'We operate trivalent chrome plating integrated with post-treatment (passivation) to meet regulations while satisfying corrosion resistance and appearance requirements.',
+    tags: ['Hex-free', 'Corrosion resistance', 'Standardized process'],
   },
   {
     title: 'Testing & Verification',
-    subtitle: '사내 시험/검증 기반 품질 시스템',
-    desc: '두께/외관/밀착/내식 등 핵심 특성을 내부에서 확인 가능한 체계를 운영하여 고객사 요구에 신속 대응합니다.',
-    tags: ['두께', '밀착', '염수/CASS'],
+    subtitle: 'In-house testing-based quality system',
+    desc: 'We run an internal system to confirm key characteristics—thickness, appearance, adhesion, and corrosion—enabling fast response to customer requirements.',
+    tags: ['Thickness', 'Adhesion', 'Salt spray / CASS'],
   },
   {
     title: 'Chemical Analysis Lab',
-    subtitle: '욕(浴) 분석 및 공정 데이터 관리',
-    desc: '욕 조성/오염/변동을 분석하고 이력 기반으로 관리하여 공정 안정화와 품질 추적성을 강화합니다.',
-    tags: ['욕 분석', '이력관리', '변동 저감'],
+    subtitle: 'Bath analysis & process data management',
+    desc: 'We analyze bath composition, contamination, and variation, managing history-based data to strengthen stability and traceability.',
+    tags: ['Bath analysis', 'Traceability', 'Variation reduction'],
   },
 ];
 
-// 라인 구성표(텍스트 인벤토리) — 숫자/스펙은 확정된 것만 넣고, 운영/관리 위주로 작성
+// Line inventory — focus on operations/controls rather than sensitive specs
 const lineInventory = [
   {
-    name: 'Robot Pretreatment (전처리 자동화)',
-    processes: ['전처리(표면 활성/세정/조건화)', '표준 이송/시간 제어'],
-    strengths: ['공정 조건 표준화로 편차 최소화', '후단 도금 기반 품질 확보'],
-    controls: ['시간·온도·농도 표준 레시피', '샘플링 위치/시간 표준화'],
-    verification: ['외관', '밀착(필요 시)', '공정 이력'],
+    name: 'Robot Pretreatment (Automation)',
+    processes: ['Pretreatment (activation / cleaning / conditioning)', 'Standard transfer & time control'],
+    strengths: ['Minimize variation through standardized conditions', 'Secure a stable foundation for downstream plating quality'],
+    controls: ['Standard recipes for time · temperature · concentration', 'Standardized sampling location/time'],
+    verification: ['Appearance', 'Adhesion (as needed)', 'Process history'],
   },
   {
-    name: 'Large Carrier Line (유산동/니켈)',
-    processes: ['유산동(레벨링 기반 형성)', '반광(베이스) 니켈', '광택(탑) 니켈'],
-    strengths: ['외관 완성도/내식 성능의 균형', '사양(두께/외관/후단) 대응 운용'],
-    controls: ['전류/전압/시간 관리', '헹굼·드래그아웃(이월) 관리'],
-    verification: ['두께', '외관', '밀착', '내식(요구 시)'],
+    name: 'Large Carrier Line (Acid Copper / Nickel)',
+    processes: ['Acid copper (leveling base build)', 'Semi-bright nickel (base)', 'Bright nickel (top)'],
+    strengths: ['Balanced appearance quality and corrosion performance', 'Flexible operation aligned with spec (thickness/appearance/downstream)'],
+    controls: ['Current / voltage / time control', 'Rinse & drag-out management'],
+    verification: ['Thickness', 'Appearance', 'Adhesion', 'Corrosion (as required)'],
   },
   {
     name: 'Matte / Satin + Long-life Filtration',
-    processes: ['무광/반무광 니켈', '롱라이프 연속 여과(청정도 유지)'],
-    strengths: ['점/흐림/색 얼룩 리스크 저감', '컬러·질감 균일화'],
-    controls: ['턴오버(순환량) 기준', '차압(ΔP) 상승 시 교체/세정'],
-    verification: ['외관', '컬러 편차 확인', '공정 이력'],
+    processes: ['Matte / satin nickel', 'Continuous long-life filtration (cleanliness control)'],
+    strengths: ['Lower risk of specks/haze/stains', 'More uniform color and texture'],
+    controls: ['Turnover (circulation rate) criteria', 'Replace/clean when ΔP rises'],
+    verification: ['Appearance', 'Color deviation check', 'Process history'],
   },
   {
     name: 'Trivalent Chromium + Passivation',
-    processes: ['3가 크롬 도금(Trivalent)', '후처리(패시베이션)'],
-    strengths: ['Hex-free 규제 대응', '내식/외관 요구 동시 만족'],
-    controls: ['욕(浴) 조건(온도/pH/농도) 유지', '후처리 시간·농도·교반 표준화'],
-    verification: ['내식(염수/CASS 요구 시)', '외관', '공정 이력'],
+    processes: ['Trivalent chromium plating (Cr3+)', 'Post-treatment (passivation)'],
+    strengths: ['Hex-free regulatory compliance', 'Meet corrosion and appearance requirements together'],
+    controls: ['Maintain bath conditions (temperature/pH/concentration)', 'Standardize post-treatment time · concentration · agitation'],
+    verification: ['Corrosion (salt spray / CASS as required)', 'Appearance', 'Process history'],
   },
 ];
 
 const opsPoints = [
   {
-    title: '표준 조건 운영(Standard Recipe)',
+    title: 'Standard Recipe Operation',
     items: [
-      '시간/온도/농도 기준값을 정의하고 레시피 기반으로 운영',
-      '샘플링 위치·시간 표준화로 데이터 흔들림 최소화',
-      '이상 발생 시 원인 추적 가능한 이력(투입/교체/점검) 관리',
+      'Define baseline targets for time/temperature/concentration and operate by recipes',
+      'Standardize sampling location and timing to minimize data fluctuation',
+      'Maintain traceable history (additions/replacements/inspections) for root-cause analysis',
     ],
   },
   {
-    title: '오염·이월 관리(Drag-out & Contamination)',
+    title: 'Drag-out & Contamination Control',
     items: [
-      '헹굼 단계 운영 기준으로 이월(Drag-out) 최소화',
-      '여과/순환 상태 점검으로 미세 입자·부유물 저감',
-      '필요 시 카본/여과 강화로 유기오염/미세입자 동시 대응',
+      'Minimize drag-out through rinse-stage operating standards',
+      'Reduce fine particles and suspended matter by checking filtration/circulation status',
+      'When needed, strengthen carbon/filtration to address organics and fine particles together',
     ],
   },
   {
-    title: '설비 점검 & 유지보수(Maintenance)',
+    title: 'Maintenance & Preventive Checks',
     items: [
-      '차압(ΔP)·유량 등 지표 기반으로 여과 상태 관리',
-      '정류기/전원 품질 및 전류 조건 안정화 운영',
-      '정기 점검 체계로 라인 컨디션 변동 최소화',
+      'Manage filtration condition based on indicators such as ΔP and flow rate',
+      'Stabilize rectifier/power quality and current conditions',
+      'Reduce line condition drift through a regular inspection system',
     ],
   },
 ];
 
 const testAndInspection = [
-  '도금두께 측정(Thickness)',
-  '염수분무(필요 시 CASS 포함)',
-  'Hull Cell(욕 상태/첨가제 경향 확인)',
-  '현미경(광학/전자) 관찰(필요 시)',
-  '항온항습/열충격(요구 시)',
-  '밀착/Peel 시험(요구 시)',
-  'XRF 두께 측정(보유 시/적용 가능)',
+  'Plating thickness measurement',
+  'Salt spray testing (including CASS when required)',
+  'Hull cell (bath condition / additive tendency check)',
+  'Microscopy (optical/electron) observation as needed',
+  'Temperature/humidity cycling & thermal shock as required',
+  'Adhesion / peel testing as required',
+  'XRF thickness measurement (if available/applicable)',
 ];
 
 const labPoints = [
-  '욕(浴) 분석 기반의 조성/변동 관리(예: pH, 주요 성분, 오염 경향)',
-  '샘플/이력 관리로 공정 추적성(Traceability) 확보',
-  '공정 조건 변경 전·후 데이터 기반 비교(품질 리스크 최소화)',
-  '고객사 요구에 맞춘 시험/성적서 대응 체계(가능 범위 내)',
+  'Bath chemistry analysis to manage composition and variation (e.g., pH, key constituents, contamination trends)',
+  'Sample and history management to secure traceability',
+  'Data-based comparison before/after condition changes to minimize quality risk',
+  'Support test reports aligned with customer requirements (within capability and scope)',
 ];
 ---
 
@@ -126,10 +126,11 @@ const labPoints = [
   <section class="rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">Facilities</h1>
     <p class="mt-2 text-sm text-sub">
-      공정 재현성과 품질 신뢰성을 뒷받침하는 설비/라인 인프라를 요약합니다. (고화질 라인 사진은 요청 시 제공)
+      A summary of facilities and lines that support repeatability and quality trust.
+      (High-resolution line photos are available upon request.)
     </p>
 
-    {/* 요약 카드 6개 */}
+    {/* Summary cards (6) */}
     <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {summaryCards.map((c) => (
         <div class="rounded-2xl border border-stroke bg-surface p-5 shadow-soft">
@@ -149,22 +150,22 @@ const labPoints = [
     </div>
   </section>
 
-  {/* 라인 구성(인벤토리 표) */}
+  {/* Line inventory */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
-    <h2 class="text-lg font-semibold">라인 구성</h2>
+    <h2 class="text-lg font-semibold">Line Overview</h2>
     <p class="mt-2 text-sm text-sub">
-      생산 라인/설비를 “공정 범위 + 운영 포인트 + 검증 가능 항목” 관점에서 정리했습니다.
+      We describe each line from the perspective of process scope, operational control points, and verifiable items.
     </p>
 
     <div class="mt-4 overflow-x-auto">
       <table class="min-w-[980px] w-full border-separate border-spacing-0 overflow-hidden rounded-2xl border border-stroke bg-surface">
         <thead class="bg-base">
           <tr>
-            <th class="border-b border-stroke px-4 py-3 text-left text-xs font-semibold text-white/80">라인/설비</th>
-            <th class="border-b border-stroke px-4 py-3 text-left text-xs font-semibold text-white/80">적용 공정</th>
-            <th class="border-b border-stroke px-4 py-3 text-left text-xs font-semibold text-white/80">핵심 특징</th>
-            <th class="border-b border-stroke px-4 py-3 text-left text-xs font-semibold text-white/80">관리 포인트</th>
-            <th class="border-b border-stroke px-4 py-3 text-left text-xs font-semibold text-white/80">검증/확인</th>
+            <th class="border-b border-stroke px-4 py-3 text-left text-xs font-semibold text-white/80">Line / Facility</th>
+            <th class="border-b border-stroke px-4 py-3 text-left text-xs font-semibold text-white/80">Process Scope</th>
+            <th class="border-b border-stroke px-4 py-3 text-left text-xs font-semibold text-white/80">Key Strengths</th>
+            <th class="border-b border-stroke px-4 py-3 text-left text-xs font-semibold text-white/80">Control Points</th>
+            <th class="border-b border-stroke px-4 py-3 text-left text-xs font-semibold text-white/80">Verification</th>
           </tr>
         </thead>
         <tbody>
@@ -214,11 +215,11 @@ const labPoints = [
     </div>
   </section>
 
-  {/* 운영/관리 체계 */}
+  {/* Operational management */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
-    <h2 class="text-lg font-semibold">운영/관리 체계</h2>
+    <h2 class="text-lg font-semibold">Operation & Control</h2>
     <p class="mt-2 text-sm text-sub">
-      설비 성능을 “지속적으로” 유지하기 위한 운영 포인트를 요약했습니다.
+      Key operating points to keep line performance stable over time.
     </p>
 
     <div class="mt-4 grid gap-4 lg:grid-cols-3">
@@ -235,18 +236,18 @@ const labPoints = [
     </div>
   </section>
 
-  {/* 시험/검증 + 실험실 */}
+  {/* Verification infrastructure */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
-    <h2 class="text-lg font-semibold">검증 인프라</h2>
+    <h2 class="text-lg font-semibold">Verification Infrastructure</h2>
     <p class="mt-2 text-sm text-sub">
-      공정 신뢰성은 “측정 가능성”에서 나옵니다. 사내 시험/분석 기반으로 대응합니다.
+      Process trust starts with measurability. We respond with in-house testing and analysis capability.
     </p>
 
     <div class="mt-4 grid gap-4 lg:grid-cols-2">
-      {/* 시험/검증 */}
+      {/* Testing */}
       <div class="rounded-2xl border border-stroke bg-surface p-5 shadow-soft">
         <div class="text-sm font-semibold text-white">Testing & Inspection</div>
-        <p class="mt-2 text-sm text-sub">두께/외관/밀착/내식 등 주요 항목을 확인·관리합니다.</p>
+        <p class="mt-2 text-sm text-sub">We confirm and manage major items such as thickness, appearance, adhesion, and corrosion.</p>
         <ul class="mt-3 space-y-2 text-sm text-sub">
           {testAndInspection.map((t) => (
             <li class="leading-relaxed">• {t}</li>
@@ -254,11 +255,11 @@ const labPoints = [
         </ul>
       </div>
 
-      {/* 실험실 */}
+      {/* Lab */}
       <div class="rounded-2xl border border-stroke bg-surface p-5 shadow-soft">
         <div class="text-sm font-semibold text-white">Chemical Analysis Laboratory</div>
         <p class="mt-2 text-sm text-sub">
-          욕(浴) 분석 및 데이터 기반 관리로 공정 변동을 줄이고 추적성을 확보합니다.
+          Bath analysis and data-based management reduce process variation and strengthen traceability.
         </p>
         <ul class="mt-3 space-y-2 text-sm text-sub">
           {labPoints.map((t) => (
@@ -270,18 +271,18 @@ const labPoints = [
 
     {/* CTA */}
     <div class="mt-6 rounded-2xl border border-stroke bg-surface p-5 shadow-soft">
-      <div class="text-sm font-semibold text-white">자료 제공 안내</div>
+      <div class="text-sm font-semibold text-white">Information Availability</div>
       <p class="mt-2 text-sm text-sub leading-relaxed">
-        라인 고화질 사진/상세 스펙/시험 가능 범위(요구 조건)는 고객사 요청 시 제공 및 협의 가능합니다.
-        필요하시면 “문의”로 요구 항목(제품/규격/시험 조건)을 알려주세요.
+        High-resolution photos, detailed specs, and test capability ranges can be provided and discussed upon customer request.
+        Please share your needs (part, specification, test conditions) via Contact.
       </p>
 
       <div class="mt-4 flex flex-wrap gap-3">
         <a href="/en/contact/" class="rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white hover:opacity-90">
-          문의하기
+          Contact us
         </a>
         <a href="/en/capabilities/" class="rounded-full border border-stroke bg-base px-4 py-2 text-sm font-semibold text-white/80 hover:bg-surface">
-          공정/역량 보기 →
+          View Capabilities →
         </a>
       </div>
     </div>
