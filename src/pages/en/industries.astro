@@ -3,23 +3,29 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = 'Industries | SUNGJINLOGIS';
 const description =
-  'From premium automotive interior appearance parts to mobile/IT, home appliances, and industrial HMI housings—an overview of industries where plastic plating and surface finishing are applied based on appearance, corrosion resistance, and reliability requirements.';
+  'From premium automotive interior appearance parts to mobile/IT, home appliances, and industrial HMI housings. We summarize industries where plastic plating is applied based on appearance, corrosion resistance, and reliability requirements.';
 
-/** (Optional) SEO keywords (hidden) */
+/**
+ * (Optional) SEO keywords
+ * - If you’re not sure where to place this, putting it as sr-only right under the HERO section is usually the cleanest.
+ */
 const seoKeywords =
   'automotive interior plating, premium appearance parts, plastic plating (POP), trivalent chrome, nickel plating, mobile camera bracket, industrial HMI housing, surface finishing, corrosion resistance, color consistency';
 
-/** Key industries to highlight (production/proven) */
+/**
+ * Key industries (production/proven)
+ * - status: shows "In Production" badge
+ */
 const inProduction = [
   {
     title: 'Automotive Interior Decor',
     subtitle: 'Premium appearance parts',
     status: 'In Production',
-    desc: 'Interior decorative and control parts designed to meet premium appearance, tactile feel, and corrosion-resistance requirements.',
+    desc: 'Primarily interior decorative and control parts designed to meet premium appearance, tactile feel, and corrosion-resistance requirements.',
     points: [
-      'Metal deco for switch panels, dial bezels, knobs, and control interfaces',
+      'Metal deco for control interfaces such as switch panels, dial bezels, and knobs',
       'Meets both appearance (gloss/color) and corrosion requirements (salt spray, etc.)',
-      'Specification-driven operation (e.g., semi-bright base + bright top nickel stack)',
+      'Specification-driven operation, e.g., semi-bright (base) + bright (top) nickel stack',
     ],
   },
   {
@@ -37,7 +43,7 @@ const inProduction = [
     title: 'Home Appliances',
     subtitle: 'Premium appearance trim',
     status: 'Applicable',
-    desc: 'Premium appliance trims that require strong appearance quality and corrosion resistance in daily environments.',
+    desc: 'Premium appliance trims requiring strong appearance quality and corrosion resistance in everyday environments.',
     points: [
       'Applicable to control panels and decorative trim parts',
       'Supports corrosion resistance, stain resistance, and cleaning durability requirements',
@@ -46,12 +52,15 @@ const inProduction = [
   },
 ];
 
-/** Expandable industries (future/additional) */
+/**
+ * Expandable industries (future/additional)
+ * - Text-focused for search visibility
+ */
 const expandable = [
   {
     title: 'Industrial HMI / Control Panels / Housings',
     subtitle: 'Industrial equipment UI & control parts',
-    desc: 'Industrial exteriors where durability, appearance, and performance under harsh environments (contamination/heat/humidity) are required.',
+    desc: 'Industrial exteriors requiring durability, appearance quality, and environmental robustness (contamination/heat/humidity).',
     points: [
       'Decorative control panels, button housings, and cover parts',
       'Supports durability, corrosion resistance, and surface-quality requirements',
@@ -85,35 +94,40 @@ const expandable = [
     points: [
       'Applicable to dial controls, button bezels, and general control appearance parts',
       'Supports reliability requirements such as salt spray testing',
-      'Operated based on spec targets (thickness/appearance/downstream process)',
+      'Operated based on spec targets (thickness/appearance/downstream processes)',
     ],
   },
 ];
 
 /**
- * Production examples (Automotive interior)
+ * ====== Production examples (Automotive interior) ======
+ * - Caption only (no model names)
+ * - Recommended: avoid full steering wheel shots due to OEM-identifiable elements
+ * - Before upload: crop/blur/remove any "GVxx/Gxx" text in images if present
+ *
+ * Recommended path:
  * public/images/industries/automotive-interior/production/
  */
 const automotiveProducts = [
   {
-    name: 'Center fascia switch panel (keyboard type) - 01',
+    name: 'Keyboard-type switch panel (center fascia)',
     src: '/images/industries/automotive-interior/production/keyboard-switch-panel-01.png',
-    alt: 'Center fascia switch panel production example',
+    alt: 'Keyboard-type switch panel (center fascia) production example',
   },
   {
-    name: 'Center fascia switch panel (keyboard type) - 02',
+    name: 'Keyboard-type switch panel (center fascia)',
     src: '/images/industries/automotive-interior/production/keyboard-switch-panel-02.png',
-    alt: 'Center fascia switch panel production example',
+    alt: 'Keyboard-type switch panel (center fascia) production example',
   },
   {
-    name: 'Center fascia switch panel (keyboard type) - 03',
+    name: 'Keyboard-type switch panel (center fascia)',
     src: '/images/industries/automotive-interior/production/keyboard-switch-panel-03.png',
-    alt: 'Center fascia switch panel production example',
+    alt: 'Keyboard-type switch panel (center fascia) production example',
   },
   {
-    name: 'Center fascia switch panel (keyboard type) - 04',
+    name: 'Keyboard-type switch panel (center fascia)',
     src: '/images/industries/automotive-interior/production/keyboard-switch-panel-04.png',
-    alt: 'Center fascia switch panel production example',
+    alt: 'Keyboard-type switch panel (center fascia) production example',
   },
   {
     name: 'Center console switch trim',
@@ -123,7 +137,7 @@ const automotiveProducts = [
   {
     name: 'Lever / paddle trim (metal deco)',
     src: '/images/industries/automotive-interior/production/paddle-lever-trim-01.png',
-    alt: 'Lever / paddle trim production example',
+    alt: 'Lever / paddle trim (metal deco) production example',
   },
   {
     name: 'Multi-function control knob',
@@ -131,12 +145,12 @@ const automotiveProducts = [
     alt: 'Multi-function control knob production example',
   },
   {
-    name: 'Dial controller bezel/knob - 01',
+    name: 'Dial controller bezel/knob',
     src: '/images/industries/automotive-interior/production/dial-controller-bezel-knob-01.png',
     alt: 'Dial controller bezel/knob production example',
   },
   {
-    name: 'Dial controller bezel/knob - 02',
+    name: 'Dial controller bezel/knob',
     src: '/images/industries/automotive-interior/production/dial-controller-bezel-knob-02.png',
     alt: 'Dial controller bezel/knob production example',
   },
@@ -157,7 +171,7 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
     </h1>
 
     <p class="mt-3 text-sm md:text-base leading-relaxed !text-sub drop-shadow-md">
-      SUNGJINLOGIS plating/surface finishing is applicable across a wide range of premium appearance parts—from
+      SUNGJINLOGIS plating and surface finishing is applicable across a wide range of premium appearance parts—from
       automotive interiors and mobile/IT to home appliances and industrial housings.
       <br />
       <span class="text-white/80">
@@ -165,13 +179,16 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
       </span>
     </p>
 
+    {/* (Optional) SEO keywords: hidden */}
     <p class="sr-only">SEO: {seoKeywords}</p>
   </section>
 
-  {/* Key industries */}
+  {/* Current production/proven */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <h2 class="text-lg font-semibold">Key Industries</h2>
-    <p class="mt-2 text-sm text-sub">Primary application areas.</p>
+    <p class="mt-2 text-sm text-sub">
+      Primary application areas.
+    </p>
 
     <div class="mt-4 grid gap-4 md:grid-cols-3">
       {inProduction.map((item) => (
@@ -208,52 +225,56 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
     </div>
   </section>
 
-  {/* Production photos */}
+  {/* Production photos (Automotive interior) */}
   {hasAutomotiveProducts && (
     <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
-      <h2 class="text-lg font-semibold">Production Examples (Photos)</h2>
-      <p class="mt-2 text-sm text-sub">Premium automotive interior appearance parts.</p>
+      <h2 class="text-lg font-semibold">Production Examples</h2>
+      <p class="mt-2 text-sm text-sub">
+        Premium automotive interior appearance parts.
+      </p>
 
+      {/* ✅ Click events are delegated to this container */}
       <div id="production-examples" class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {automotiveProducts.map((p) => (
-          <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
-            <button
-              type="button"
-              class="group relative block w-full bg-base"
-              style="aspect-ratio: 16 / 9; min-height: 220px;"
-              data-lightbox-trigger
-              data-src={p.src}
-              data-alt={p.alt}
-              data-name={p.name}
-              aria-label={`Open image: ${p.name}`}
-            >
-              <img
-                src={p.src}
-                alt={p.alt}
-                class="h-full w-full object-contain"
-                loading="lazy"
-                decoding="async"
-              />
+  <figure class="overflow-hidden rounded-2xl border border-stroke bg-surface shadow-soft">
+    {/* ✅ Fix click trigger on the image button */}
+    <button
+      type="button"
+      class="group relative block w-full bg-base"
+      style="aspect-ratio: 16 / 9; min-height: 220px;"
+      data-lightbox-trigger
+      data-src={p.src}
+      data-alt={p.alt}
+      data-name={p.name}
+      aria-label={`Enlarge: ${p.name}`}
+    >
+      <img
+        src={p.src}
+        alt={p.alt}
+        class="h-full w-full object-contain"
+        loading="lazy"
+        decoding="async"
+      />
 
-              <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
-                <div class="flex items-center gap-2 rounded-full border border-stroke bg-black/40 px-3 py-1.5 text-xs text-white/90 backdrop-blur">
-                  <span aria-hidden="true">🔍</span>
-                  Click to enlarge
-                </div>
-              </div>
-            </button>
-
-            <figcaption class="p-3 text-xs text-white/70">
-              {p.name}
-              <span class="ml-2 rounded-full border border-stroke bg-accent/10 px-2 py-0.5 text-[10px] text-accent">
-                In Production
-              </span>
-            </figcaption>
-          </figure>
-        ))}
+      {/* ✅ Hover overlay */}
+      <div class="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
+        <div class="flex items-center gap-2 rounded-full border border-stroke bg-black/40 px-3 py-1.5 text-xs text-white/90 backdrop-blur">
+          <span aria-hidden="true">🔍</span>
+          Click to enlarge
+        </div>
+      </div>
+    </button>
+   <figcaption class="p-3 text-xs text-white/70">
+      {p.name}
+      <span class="ml-2 rounded-full border border-stroke bg-accent/10 px-2 py-0.5 text-[10px] text-accent">
+        In Production
+      </span>
+    </figcaption>
+  </figure>
+))}
       </div>
 
-      {/* Lightbox modal */}
+      {/* ✅ Lightbox (modal) */}
       <div
         id="lightbox"
         class="fixed inset-0 z-50 hidden flex items-center justify-center p-4"
@@ -276,17 +297,17 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
           </div>
 
           <div class="flex items-center justify-center p-3 md:p-4">
-            <img
-              data-lightbox-img
-              src=""
-              alt=""
-              class="w-full max-w-[1200px] h-auto max-h-[85vh] object-contain"
-            />
+           <img
+  data-lightbox-img
+  src=""
+  alt=""
+  class="w-full max-w-[1200px] h-auto max-h-[85vh] object-contain"
+/>
           </div>
         </div>
       </div>
 
-      {/* Single, reliable script */}
+      {/* ✅ Script: bind after DOM is ready */}
       <script is:inline>
         {`
           (() => {
@@ -303,10 +324,9 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
               const backdrop = lb.querySelector('[data-lightbox-backdrop]');
 
               const open = (src, alt, caption) => {
-                if (!img || !src) return;
                 img.src = src;
                 img.alt = alt || '';
-                if (cap) cap.textContent = caption || '';
+                cap.textContent = caption || '';
                 lb.classList.remove('hidden');
                 lb.setAttribute('aria-hidden', 'false');
                 document.documentElement.style.overflow = 'hidden';
@@ -315,15 +335,14 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
               const close = () => {
                 lb.classList.add('hidden');
                 lb.setAttribute('aria-hidden', 'true');
-                if (img) img.src = '';
-                if (cap) cap.textContent = '';
+                img.src = '';
                 document.documentElement.style.overflow = '';
               };
 
               scope.addEventListener('click', (e) => {
                 const btn = e.target.closest('[data-lightbox-trigger]');
                 if (!btn) return;
-                open(btn.dataset.src, btn.dataset.alt, btn.dataset.name);
+                open(btn.dataset.src, btn.dataset.alt, btn.dataset.caption);
               });
 
               lb.addEventListener('click', (e) => {
@@ -349,7 +368,8 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
     </section>
   )}
 
-  {/* Expandable industries */}
+
+  {/* Expandable industries (future/additional) */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <h2 class="text-lg font-semibold">Expandable Industries</h2>
     <p class="mt-2 text-sm text-sub">
@@ -376,14 +396,13 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
     </div>
   </section>
 
-  {/* CTA */}
+  {/* Reference: consultation CTA (optional) */}
   <section class="mt-10 rounded-2xl border border-stroke bg-base p-6 shadow-soft">
     <h2 class="text-lg font-semibold">Application Review</h2>
     <p class="mt-2 text-sm text-sub leading-relaxed">
-      The optimal process configuration depends on your product’s
-      <span class="text-white font-semibold"> appearance (gloss/color)</span>,
-      <span class="text-white font-semibold"> corrosion requirements</span>, and
-      <span class="text-white font-semibold"> downstream processes (printing/laser/assembly)</span>.<br />
+      The optimal process configuration depends on your product’s <span class="text-white font-semibold">appearance (gloss/color)</span>,
+      <span class="text-white font-semibold">corrosion requirements</span>, and
+      <span class="text-white font-semibold">downstream processes (printing/laser/assembly)</span>.<br />
       If needed, we can review samples/drawings and propose feasible scope and key control points.
     </p>
 
@@ -396,4 +415,65 @@ const hasAutomotiveProducts = automotiveProducts.length > 0;
       </a>
     </div>
   </section>
+<script is:inline>
+  (() => {
+    const lb = document.querySelector('#lightbox');
+    if (!lb) return;
+
+    const img = lb.querySelector('[data-lightbox-img]');
+    const caption = lb.querySelector('[data-lightbox-caption]');
+
+    const open = ({ src, alt, name }) => {
+      if (!img || !src) return;
+      img.src = src;
+      img.alt = alt || name || 'Enlarged image';
+      if (caption) caption.textContent = name || '';
+      lb.classList.remove('hidden'); // Remove hidden => if flex exists, it becomes visible
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const close = () => {
+      lb.classList.add('hidden');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (img) img.src = '';
+      if (caption) caption.textContent = '';
+    };
+
+    // ✅ Event delegation: works no matter where you click within the trigger
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('[data-lightbox-trigger]');
+      if (trigger) {
+        e.preventDefault();
+        open({
+          src: trigger.getAttribute('data-src') || trigger.dataset.src,
+          alt: trigger.getAttribute('data-alt') || trigger.dataset.alt,
+          name: trigger.getAttribute('data-name') || trigger.dataset.name,
+        });
+        return;
+      }
+
+      if (e.target.closest('[data-lightbox-close]')) {
+        e.preventDefault();
+        close();
+        return;
+      }
+
+      if (e.target.closest('[data-lightbox-backdrop]')) {
+        e.preventDefault();
+        close();
+        return;
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+
+    // Debug (optional)
+    window.__SJ_LIGHTBOX_READY__ = true;
+  })();
+</script>
+
 </BaseLayout>
