@@ -71,4 +71,29 @@ const description = 'Download the company profile (PDF) — we send a link after
       e.preventDefault();
       statusEl.textContent = 'Sending...';
 
-      const fd = new FormData
+      const fd = new FormData(form);
+      try {
+        const res = await fetch('/api/brochure', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: fd.get('email'),
+            company: fd.get('company'),
+            name: fd.get('name'),
+            hp: fd.get('hp')
+          })
+        });
+
+        if (!res.ok) {
+          const msg = await res.text();
+          throw new Error(msg || 'Request failed');
+        }
+
+        statusEl.textContent = 'Done! Please check your email (including your spam folder).';
+        form.reset();
+      } catch (err) {
+        statusEl.textContent = 'Something went wrong. Please try again in a moment.';
+      }
+    });
+  </script>
+</BaseLayout>
