@@ -41,28 +41,33 @@ export const onRequestPost: PagesFunction = async (context) => {
     }
 
     // ✅ Verify Turnstile (server-side)
-    const form = new URLSearchParams();
-    form.set('secret', turnstileSecret);
-    form.set('response', token);
+const body = new URLSearchParams();
+body.set('secret', turnstileSecret);
+body.set('response', token);
 
-    const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'POST',
-      body: form,
-    });
+const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+  method: 'POST',
+  headers: {
+    'content-type': 'application/x-www-form-urlencoded',
+  },
+  body: body.toString(),
+});
 
-    const verifyJson = await verifyRes.json<any>();
-    if (!verifyJson?.success) {
-      // 콘솔에서 확인 가능 (Cloudflare Pages > Logs)
-      console.log('Turnstile failed:', {
-        codes: verifyJson?.['error-codes'],
-        hostname: verifyJson?.hostname,
-      });
+const verifyJson = await verifyRes.json<any>();
 
-      return new Response(
-        `Turnstile verification failed: ${JSON.stringify(verifyJson?.['error-codes'] || [])}`,
-        { status: 400 }
-      );
-    }
+if (!verifyJson?.success) {
+  console.log('Turnstile failed:', {
+    codes: verifyJson?.['error-codes'],
+    hostname: verifyJson?.hostname,
+  });
+
+  // 운영에서는 코드 노출 안 하는 게 좋습니다(지금은 디버깅용)
+  return new Response(
+    `Turnstile verification failed: ${JSON.stringify(verifyJson?.['error-codes'] || [])}`,
+    { status: 400 }
+  );
+}
+
 
     // ✅ Resend settings
     const resendKey = context.env.RESEND_API_KEY;
