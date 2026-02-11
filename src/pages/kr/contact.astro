@@ -64,11 +64,15 @@ const description = '문의 — 기술/품질 중심 상담';
       const fd = new FormData(form);
 
       // Turnstile이 자동으로 생성하는 hidden input
-      const token = String(fd.get('cf-turnstile-response') || '').trim();
-      if (!token) {
-        statusEl.textContent = '캡차 확인을 완료해주세요.';
-        return;
-      }
+      const tokenEl = form.querySelector(
+  'input[name="cf-turnstile-response"], textarea[name="cf-turnstile-response"]'
+);
+const token = (tokenEl?.value || '').trim();
+
+if (!token) {
+  statusEl.textContent = '캡차 확인을 완료해주세요.';
+  return;
+}
 
       try {
         const res = await fetch('/api/contact', {
