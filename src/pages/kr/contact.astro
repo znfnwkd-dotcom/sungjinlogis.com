@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const title = 'Contact | 성진로지스';
 const description = '문의 — 기술/품질 중심 상담';
 ---
+
 <BaseLayout title={title} description={description} lang="ko" pathPrefix="/kr">
   <section class="rounded-xl2 border border-stroke bg-surface p-8 shadow-soft">
     <h1 class="text-2xl font-semibold">Contact</h1>
@@ -24,12 +25,12 @@ const description = '문의 — 기술/품질 중심 상담';
 
       <label class="grid gap-2">
         <span class="text-sm text-sub">제목</span>
-        <input class="rounded-xl border border-stroke bg-base px-4 py-3 text-sm" type="text" name="subject" placeholder="Subject" />
+        <input class="rounded-xl border border-stroke bg-base px-4 py-3 text-sm" type="text" name="subject" placeholder="예) 도금 견적 문의" />
       </label>
 
       <label class="grid gap-2">
         <span class="text-sm text-sub">내용 *</span>
-        <textarea class="min-h-[140px] rounded-xl border border-stroke bg-base px-4 py-3 text-sm" name="message" required placeholder="Message"></textarea>
+        <textarea class="min-h-[140px] rounded-xl border border-stroke bg-base px-4 py-3 text-sm" name="message" required placeholder="문의 내용을 입력해주세요."></textarea>
       </label>
 
       <!-- Honeypot -->
@@ -38,17 +39,12 @@ const description = '문의 — 기술/품질 중심 상담';
         <input type="text" name="hp" autocomplete="off" />
       </label>
 
-      <!-- ✅ Turnstile Widget -->
-      <!-- 아래 SITE_KEY만 본인 Site key로 교체하세요 -->
-<div
-  class="cf-turnstile"
-  data-sitekey="0x4AAAAAACaY6RpQXbUGM9ai"
-  data-theme="dark"
-  data-callback="onTurnstileSuccess"
-  data-expired-callback="onTurnstileExpired"
-  data-error-callback="onTurnstileError"
-></div>
-     
+      <!-- Turnstile -->
+      <div
+        class="cf-turnstile"
+        data-sitekey="0x4AAAAAACaY6RpQXbUGM9ai"
+        data-theme="dark"
+      ></div>
 
       <button class="rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition" type="submit">
         문의 보내기
@@ -58,76 +54,63 @@ const description = '문의 — 기술/품질 중심 상담';
     </form>
   </section>
 
-  <!-- ✅ Turnstile script -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
   <script>
-  const form = document.getElementById('contactForm');
-  const statusEl = document.getElementById('contactStatus');
-  const btn = form.querySelector('button[type="submit"]');
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('contactStatus');
+    const btn = form.querySelector('button[type="submit"]');
 
-  let tsToken = '';
-  let submitting = false;
+    let submitting = false;
 
-  // ✅ Turnstile callbacks (전역 함수여야 함)
-  window.onTurnstileSuccess = (token) => {
-    tsToken = String(token || '').trim();
-    // console.log('turnstile token length:', tsToken.length);
-  };
-  window.onTurnstileExpired = () => {
-    tsToken = '';
-  };
-  window.onTurnstileError = () => {
-    tsToken = '';
-  };
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (submitting) return;
-
-    if (!tsToken) {
-      statusEl.textContent = '캡차 확인을 완료해주세요.';
-      return;
+    function getTurnstileToken() {
+      const el = form.querySelector('input[name="cf-turnstile-response"]');
+      return (el && el.value ? String(el.value) : '').trim();
     }
 
-    submitting = true;
-    btn.disabled = true;
-    statusEl.textContent = '전송 중...';
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (submitting) return;
 
-    const fd = new FormData(form);
+      const token = getTurnstileToken();
+      if (!token) {
+        statusEl.textContent = '캡차 확인을 완료해주세요.';
+        return;
+      }
 
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          lang: 'ko', // 영문 페이지는 'en'으로
-          email: fd.get('email'),
-          subject: fd.get('subject'),
-          message: fd.get('message'),
-          hp: fd.get('hp'),
-          turnstileToken: tsToken,
-        })
-      });
+      submitting = true;
+      btn.disabled = true;
+      statusEl.textContent = '전송 중...';
 
-      const msg = await res.text();
-      if (!res.ok) throw new Error(msg || 'Request failed');
+      const fd = new FormData(form);
 
-      statusEl.textContent = '전송 완료! 확인 후 회신드리겠습니다.';
-      form.reset();
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            lang: 'ko',
+            email: fd.get('email'),
+            subject: fd.get('subject'),
+            message: fd.get('message'),
+            hp: fd.get('hp'),
+            turnstileToken: token,
+          })
+        });
 
-      // ✅ 토큰/위젯 리셋
-      tsToken = '';
-      if (window.turnstile) window.turnstile.reset();
-    } catch (err) {
-      statusEl.textContent = err?.message ? err.message : '오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
-      tsToken = '';
-      if (window.turnstile) window.turnstile.reset();
-    } finally {
-      submitting = false;
-      btn.disabled = false;
-    }
-  });
-</script>
+        const msg = await res.text();
+        if (!res.ok) throw new Error(msg || 'Request failed');
 
+        statusEl.textContent = '전송 완료! 확인 후 회신드리겠습니다.';
+        form.reset();
+        if (window.turnstile) window.turnstile.reset();
+      } catch (err) {
+        statusEl.textContent = err?.message ? err.message : '오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+        if (window.turnstile) window.turnstile.reset();
+      } finally {
+        submitting = false;
+        btn.disabled = false;
+      }
+    });
+  </script>
 </BaseLayout>
