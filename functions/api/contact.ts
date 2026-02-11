@@ -38,12 +38,13 @@ export const onRequestPost: PagesFunction = async (context) => {
       `Message:\n${message}\n`;
 
     await sendResend(resendKey, {
-      from,
-      to,
-      subject: `[Website] ${subject}`,
-      text: internalText,
-      reply_to: email,
-    });
+  from,
+  to,
+  subject: `[Website] ${subject}`,
+  text: internalText,
+  replyTo: email, // ✅ reply_to -> replyTo 로 변경
+});
+
 
     // Acknowledgement to sender
     const ackSubject = isKR ? 'SUNGJINLOGIS — 문의 접수 완료' : 'SUNGJINLOGIS — We received your message';
@@ -57,12 +58,12 @@ export const onRequestPost: PagesFunction = async (context) => {
         `We will get back to you as soon as possible on business days.\n\n` +
         `Thank you.\nSUNGJINLOGIS\n`;
 
-    await sendResend(resendKey, {
-      from,
-      to: email,
-      subject: ackSubject,
-      text: ackText,
-    });
+    //await sendResend(resendKey, {
+      //from,
+      //to: email,
+      //subject: ackSubject,
+      //text: ackText,
+    //});
 
     return new Response('OK', { status: 200 });
   } catch (err) {
