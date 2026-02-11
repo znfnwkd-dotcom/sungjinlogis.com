@@ -41,33 +41,49 @@ export const onRequestPost: PagesFunction = async (context) => {
     }
 
     // ✅ Verify Turnstile (server-side)
-const body = new URLSearchParams();
-body.set('secret', turnstileSecret);
-body.set('response', token);
+    const body = new URLSearchParams();
+    body.set('secret', turnstileSecret);
+    body.set('response', token);
 
-const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-  method: 'POST',
-  headers: {
-    'content-type': 'application/x-www-form-urlencoded',
-  },
-  body: body.toString(),
-});
+    const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+      body: body.toString(),
+    });
 
-const verifyJson = await verifyRes.json<any>();
+    const verifyJson = await verifyRes.json<any>();
 
-if (!verifyJson?.success) {
-  console.log('Turnstile failed:', {
-    codes: verifyJson?.['error-codes'],
-    hostname: verifyJson?.hostname,
-  });
+    if (!verifyJson?.success) {
+      console.log('Turnstile failed:', {
+        codes: verifyJson?.['error-codes'],
+        hostname: verifyJson?.hostname,
+      });
 
-  // 운영에서는 코드 노출 안 하는 게 좋습니다(지금은 디버깅용)
-  return new Response(
-    `Turnstile verification failed: ${JSON.stringify(verifyJson?.['error-codes'] || [])}`,
-    { status: 400 }
-  );
-}
+      // 운영에서는 코드 노출 안 하는 게 좋습니다(지금은 디버깅용)
+      return new Response(
+        `Turnstile verification failed: ${JSON.stringify(verifyJson?.['error-codes'] || [])}`,
+        { status: 400 }
+      );
+    }
 
+    // ✅ Rate limit (Turnstile 통과한 요청만 카운트)
+    const kv = (context.env as any).RATE_LIMIT_KV as KVNamespace | undefined;
+    const ip = context.request.headers.get('cf-connecting-ip') || 'unknown';
+
+    if (kv && ip !== 'unknown') {
+      const windowSec = 60; // 1분
+      const limit = 5;      // 1분에 5회
+      const bucket = Math.floor(Date.now() / (windowSec * 1000));
+      const key = `rl:contact:${ip}:${bucket}`;
+
+      const cur = Number((await kv.get(key)) || '0');
+      if (cur >= limit) {
+        return new Response('Too many requests. Please try again later.', { status: 429 });
+      }
+      await kv.put(key, String(cur + 1), { expirationTtl: windowSec + 5 });
+    }
 
     // ✅ Resend settings
     const resendKey = context.env.RESEND_API_KEY;
@@ -75,7 +91,10 @@ if (!verifyJson?.success) {
     const from = context.env.FROM_EMAIL;
 
     if (!resendKey || !to || !from) {
-      return new Response('Server not configured (RESEND_API_KEY/CONTACT_TO/FROM_EMAIL)', { status: 500 });
+      return new Response(
+        'Server not configured (RESEND_API_KEY/CONTACT_TO/FROM_EMAIL)',
+        { status: 500 }
+      );
     }
 
     // ✅ “회사 스타일” 제목/본문
@@ -88,7 +107,6 @@ if (!verifyJson?.success) {
     const nowISO = new Date().toISOString();
     const pageLang = isKR ? 'Korean' : 'English';
     const ua = context.request.headers.get('user-agent') || '';
-    const ip = context.request.headers.get('cf-connecting-ip') || '';
 
     const internalText = isKR
       ? [
