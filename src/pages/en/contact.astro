@@ -8,7 +8,9 @@ const description = 'Inquiries — technical & quality-focused consultation.';
 <BaseLayout title={title} description={description} lang="en" pathPrefix="/en">
   <section class="rounded-xl2 border border-stroke bg-surface p-8 shadow-soft">
     <h1 class="text-2xl font-semibold">Contact</h1>
-    <p class="mt-2 text-sm text-sub">We prioritize process and quality-focused consultation over simple quote requests.</p>
+    <p class="mt-2 text-sm text-sub">
+      We prioritize process and quality-focused consultation over simple quote requests.
+    </p>
 
     <div class="mt-6 rounded-xl border border-stroke bg-base p-5">
       <div class="text-sm font-semibold">Email</div>
@@ -18,12 +20,58 @@ const description = 'Inquiries — technical & quality-focused consultation.';
     </div>
 
     <form id="contactForm" class="mt-8 grid gap-4 md:max-w-xl">
-      <!-- inputs 동일 -->
-      <label class="hidden"><span>Leave this field empty</span><input type="text" name="hp" autocomplete="off" /></label>
+      <label class="grid gap-2">
+        <span class="text-sm text-sub">Email *</span>
+        <input
+          class="rounded-xl border border-stroke bg-base px-4 py-3 text-sm"
+          type="email"
+          name="email"
+          required
+          placeholder="name@company.com"
+        />
+      </label>
 
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAACaY6RpQXbUGM9ai" data-theme="dark"></div>
+      <label class="grid gap-2">
+        <span class="text-sm text-sub">Subject</span>
+        <input
+          class="rounded-xl border border-stroke bg-base px-4 py-3 text-sm"
+          type="text"
+          name="subject"
+          placeholder="Subject"
+        />
+      </label>
 
-      <button class="rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition" type="submit">
+      <label class="grid gap-2">
+        <span class="text-sm text-sub">Message *</span>
+        <textarea
+          class="min-h-[140px] rounded-xl border border-stroke bg-base px-4 py-3 text-sm"
+          name="message"
+          required
+          placeholder="Please type your message."
+        ></textarea>
+      </label>
+
+      <!-- Honeypot -->
+      <label class="hidden">
+        <span>Leave this field empty</span>
+        <input type="text" name="hp" autocomplete="off" />
+      </label>
+
+      <!-- ✅ Turnstile (must be inside the form so hidden input is generated) -->
+      <div class="mt-2">
+        <div
+          class="cf-turnstile"
+          data-sitekey="0x4AAAAAACac46CKaUe5Pgtx"
+          data-theme="dark"
+        ></div>
+      </div>
+
+      <!-- ✅ Submit button -->
+      <button
+        id="contactSubmitBtn"
+        class="mt-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition"
+        type="submit"
+      >
         Send inquiry
       </button>
 
@@ -36,20 +84,18 @@ const description = 'Inquiries — technical & quality-focused consultation.';
   <script>
     const form = document.getElementById('contactForm');
     const statusEl = document.getElementById('contactStatus');
-    const btn = form.querySelector('button[type="submit"]');
-    let submitting = false;
+    const btn = document.getElementById('contactSubmitBtn');
 
-    function getTurnstileToken() {
-      const el = form.querySelector('input[name="cf-turnstile-response"]');
-      return (el && el.value ? String(el.value) : '').trim();
-    }
+    let submitting = false;
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (submitting) return;
 
-      const token = getTurnstileToken();
-      if (!token) {
+      const fd = new FormData(form);
+      const tsToken = String(fd.get('cf-turnstile-response') || '').trim();
+
+      if (!tsToken) {
         statusEl.textContent = 'Please complete the CAPTCHA.';
         return;
       }
@@ -57,8 +103,6 @@ const description = 'Inquiries — technical & quality-focused consultation.';
       submitting = true;
       btn.disabled = true;
       statusEl.textContent = 'Sending...';
-
-      const fd = new FormData(form);
 
       try {
         const res = await fetch('/api/contact', {
@@ -70,18 +114,18 @@ const description = 'Inquiries — technical & quality-focused consultation.';
             subject: fd.get('subject'),
             message: fd.get('message'),
             hp: fd.get('hp'),
-            turnstileToken: token,
-          })
+            'cf-turnstile-response': tsToken,
+          }),
         });
 
         const msg = await res.text();
         if (!res.ok) throw new Error(msg || 'Request failed');
 
-        statusEl.textContent = "Sent! We'll get back to you soon.";
+        statusEl.textContent = "Sent! We'll review and get back to you soon.";
         form.reset();
         if (window.turnstile) window.turnstile.reset();
       } catch (err) {
-        statusEl.textContent = err?.message ? err.message : 'Something went wrong. Please try again.';
+        statusEl.textContent = err?.message || 'Something went wrong. Please try again in a moment.';
         if (window.turnstile) window.turnstile.reset();
       } finally {
         submitting = false;
