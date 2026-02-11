@@ -45,8 +45,16 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
     // ✅ Verify Turnstile
     const ip = context.request.headers.get('CF-Connecting-IP') || undefined;
-    const verified = await verifyTurnstile(turnstileSecret, turnstileToken, ip);
-    if (!verified) return new Response('Turnstile verification failed', { status: 403 });
+
+const tv = await verifyTurnstile(turnstileSecret, turnstileToken, ip);
+
+if (!tv?.success) {
+  console.log('Turnstile failed:', tv);
+  return new Response(
+    `Turnstile verification failed: ${JSON.stringify(tv?.['error-codes'] || tv)}`,
+    { status: 403 }
+  );
+}
 
     // Subject style
     const cleanedSubject = subjectRaw || (isKR ? '제목 없음' : 'No subject');
@@ -90,7 +98,8 @@ async function verifyTurnstile(secret: string, token: string, remoteip?: string)
   const form = new URLSearchParams();
   form.set('secret', secret);
   form.set('response', token);
-  if (remoteip) form.set('remoteip', remoteip);
+  // remoteip는 문제를 만들 수도 있어서, 일단 빼고 확인하는 것도 방법입니다.
+  // if (remoteip) form.set('remoteip', remoteip);
 
   const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
     method: 'POST',
@@ -98,10 +107,8 @@ async function verifyTurnstile(secret: string, token: string, remoteip?: string)
     body: form.toString(),
   });
 
-  if (!res.ok) return false;
-
   const data = await res.json().catch(() => null);
-  return Boolean(data?.success);
+  return data; // ✅ success / error-codes / hostname 등이 들어있음
 }
 
 async function sendResend(apiKey: string, payload: Record<string, any>) {
