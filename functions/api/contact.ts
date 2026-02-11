@@ -74,7 +74,7 @@ export const onRequestPost: PagesFunction = async (context) => {
 
     if (kv && ip !== 'unknown') {
       const windowSec = 60; // 1분
-      const limit = 5;      // 1분에 5회
+      const limit = 3;      // 1분에 3회
       const bucket = Math.floor(Date.now() / (windowSec * 1000));
       const key = `rl:contact:${ip}:${bucket}`;
 
