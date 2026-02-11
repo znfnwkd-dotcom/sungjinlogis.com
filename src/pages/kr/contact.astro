@@ -96,9 +96,10 @@ const description = '문의 — 기술/품질 중심 상담';
         // Turnstile 재사용 가능하게 리셋
         if (window.turnstile) window.turnstile.reset();
       } catch (err) {
-        statusEl.textContent = '오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
-        if (window.turnstile) window.turnstile.reset();
-      }
+  statusEl.textContent = err?.message ? err.message : String(err);
+  if (window.turnstile) window.turnstile.reset();
+}
+
     });
   </script>
 </BaseLayout>
