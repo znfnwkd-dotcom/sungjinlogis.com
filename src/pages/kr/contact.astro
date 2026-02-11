@@ -11,7 +11,9 @@ const description = '문의 — 기술/품질 중심 상담';
 
     <div class="mt-6 rounded-xl border border-stroke bg-base p-5">
       <div class="text-sm font-semibold">Email</div>
-      <p class="mt-1 text-sm text-sub"><a class="text-text hover:text-accent" href="mailto:contact@sungjinlogis.com">contact@sungjinlogis.com</a></p>
+      <p class="mt-1 text-sm text-sub">
+        <a class="text-text hover:text-accent" href="mailto:contact@sungjinlogis.com">contact@sungjinlogis.com</a>
+      </p>
     </div>
 
     <form id="contactForm" class="mt-8 grid gap-4 md:max-w-xl">
@@ -19,19 +21,26 @@ const description = '문의 — 기술/품질 중심 상담';
         <span class="text-sm text-sub">이메일 *</span>
         <input class="rounded-xl border border-stroke bg-base px-4 py-3 text-sm" type="email" name="email" required placeholder="name@company.com" />
       </label>
+
       <label class="grid gap-2">
         <span class="text-sm text-sub">제목</span>
         <input class="rounded-xl border border-stroke bg-base px-4 py-3 text-sm" type="text" name="subject" placeholder="Subject" />
       </label>
+
       <label class="grid gap-2">
         <span class="text-sm text-sub">내용 *</span>
         <textarea class="min-h-[140px] rounded-xl border border-stroke bg-base px-4 py-3 text-sm" name="message" required placeholder="Message"></textarea>
       </label>
+
       <!-- Honeypot -->
       <label class="hidden">
         <span>Leave this field empty</span>
-        <input type="text" name="hp" />
+        <input type="text" name="hp" autocomplete="off" />
       </label>
+
+      <!-- ✅ Turnstile Widget -->
+      <!-- 아래 SITE_KEY만 본인 Site key로 교체하세요 -->
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAACaY6RpQXbUGM9ai" data-theme="dark"></div>
 
       <button class="rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition" type="submit">
         문의 보내기
@@ -41,6 +50,9 @@ const description = '문의 — 기술/품질 중심 상담';
     </form>
   </section>
 
+  <!-- ✅ Turnstile script -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
   <script>
     const form = document.getElementById('contactForm');
     const statusEl = document.getElementById('contactStatus');
@@ -48,26 +60,44 @@ const description = '문의 — 기술/품질 중심 상담';
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       statusEl.textContent = '전송 중...';
+
       const fd = new FormData(form);
+
+      // Turnstile이 자동으로 생성하는 hidden input
+      const token = String(fd.get('cf-turnstile-response') || '').trim();
+      if (!token) {
+        statusEl.textContent = '캡차 확인을 완료해주세요.';
+        return;
+      }
+
       try {
         const res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            lang: 'ko',
             email: fd.get('email'),
             subject: fd.get('subject'),
             message: fd.get('message'),
-            hp: fd.get('hp')
+            hp: fd.get('hp'),
+            turnstileToken: token,
           })
         });
+
+        const msg = await res.text();
+
         if (!res.ok) {
-          const msg = await res.text();
           throw new Error(msg || 'Request failed');
         }
+
         statusEl.textContent = '전송 완료! 확인 후 회신드리겠습니다.';
         form.reset();
+
+        // Turnstile 재사용 가능하게 리셋
+        if (window.turnstile) window.turnstile.reset();
       } catch (err) {
         statusEl.textContent = '오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+        if (window.turnstile) window.turnstile.reset();
       }
     });
   </script>
