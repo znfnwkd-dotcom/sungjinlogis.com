@@ -25,7 +25,7 @@ const description = '문의 — 기술/품질 중심 상담';
 
       <label class="grid gap-2">
         <span class="text-sm text-sub">제목</span>
-        <input class="rounded-xl border border-stroke bg-base px-4 py-3 text-sm" type="text" name="subject" placeholder="예) 도금 견적 문의" />
+        <input class="rounded-xl border border-stroke bg-base px-4 py-3 text-sm" type="text" name="subject" placeholder="제목" />
       </label>
 
       <label class="grid gap-2">
@@ -39,74 +39,80 @@ const description = '문의 — 기술/품질 중심 상담';
         <input type="text" name="hp" autocomplete="off" />
       </label>
 
-      <!-- Turnstile Widget (form 안에 있어야 함) -->
-<div
-  class="cf-turnstile"
-  data-sitekey="0x4AAAAAACaY6RpQXbUGM9ai"
-  data-theme="dark"
-></div>
+      <!-- ✅ Turnstile (form 안에 있어야 hidden input이 생깁니다) -->
+      <div class="mt-2">
+        <div
+          class="cf-turnstile"
+          data-sitekey="여기에_본인_SITE_KEY"
+          data-theme="dark"
+        ></div>
+      </div>
 
-<!-- Turnstile script -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+      <!-- ✅ 버튼이 반드시 존재해야 합니다 -->
+      <button
+        id="contactSubmitBtn"
+        class="mt-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition"
+        type="submit"
+      >
+        문의 보내기
+      </button>
 
-<script>
-  const form = document.getElementById('contactForm');
-  const statusEl = document.getElementById('contactStatus');
-  const btn = form.querySelector('button[type="submit"]');
+      <p id="contactStatus" class="text-sm text-sub"></p>
+    </form>
+  </section>
 
-  let submitting = false;
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (submitting) return;
+  <script>
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('contactStatus');
+    const btn = document.getElementById('contactSubmitBtn');
 
-    statusEl.textContent = '전송 중...';
-    submitting = true;
-    btn.disabled = true;
+    let submitting = false;
 
-    const fd = new FormData(form);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (submitting) return;
 
-    // ✅ Turnstile이 자동으로 넣어주는 hidden input에서 토큰을 읽습니다.
-    const tsToken = String(fd.get('cf-turnstile-response') || '').trim();
+      const fd = new FormData(form);
+      const tsToken = String(fd.get('cf-turnstile-response') || '').trim();
 
-    if (!tsToken) {
-      statusEl.textContent = '캡차 확인을 완료해주세요.';
-      submitting = false;
-      btn.disabled = false;
-      return;
-    }
+      if (!tsToken) {
+        statusEl.textContent = '캡차 확인을 완료해주세요.';
+        return;
+      }
 
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          lang: 'ko',
-          email: fd.get('email'),
-          subject: fd.get('subject'),
-          message: fd.get('message'),
-          hp: fd.get('hp'),
-          // ✅ 서버에서 여러 이름으로 받게 해둘 거라 둘 중 하나만 보내도 됩니다.
-          'cf-turnstile-response': tsToken,
-        }),
-      });
+      submitting = true;
+      btn.disabled = true;
+      statusEl.textContent = '전송 중...';
 
-      const msg = await res.text();
-      if (!res.ok) throw new Error(msg || 'Request failed');
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            lang: 'ko',
+            email: fd.get('email'),
+            subject: fd.get('subject'),
+            message: fd.get('message'),
+            hp: fd.get('hp'),
+            'cf-turnstile-response': tsToken,
+          }),
+        });
 
-      statusEl.textContent = '전송 완료! 확인 후 회신드리겠습니다.';
-      form.reset();
+        const msg = await res.text();
+        if (!res.ok) throw new Error(msg || 'Request failed');
 
-      // ✅ 다음 제출을 위해 위젯 리셋
-      if (window.turnstile) window.turnstile.reset();
-    } catch (err) {
-      statusEl.textContent = err?.message || '오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
-      if (window.turnstile) window.turnstile.reset();
-    } finally {
-      submitting = false;
-      btn.disabled = false;
-    }
-  });
-</script>
-
+        statusEl.textContent = '전송 완료! 확인 후 회신드리겠습니다.';
+        form.reset();
+        if (window.turnstile) window.turnstile.reset();
+      } catch (err) {
+        statusEl.textContent = err?.message || '오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+        if (window.turnstile) window.turnstile.reset();
+      } finally {
+        submitting = false;
+        btn.disabled = false;
+      }
+    });
+  </script>
 </BaseLayout>
