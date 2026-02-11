@@ -14,7 +14,7 @@ const description = 'Inquiries — technical & quality-focused consultation.';
     <div class="mt-6 rounded-xl border border-stroke bg-base p-5">
       <div class="text-sm font-semibold">Email</div>
       <p class="mt-1 text-sm text-sub">
-        <a class="text-text hover:text-accent" href="mailto:chiwon1@daum.net">chiwon1@daum.net</a>
+        <a class="text-text hover:text-accent" href="mailto:contact@sungjinlogis.com">contact@sungjinlogis.com</a>
       </p>
     </div>
 
@@ -53,8 +53,11 @@ const description = 'Inquiries — technical & quality-focused consultation.';
       <!-- Honeypot -->
       <label class="hidden">
         <span>Leave this field empty</span>
-        <input type="text" name="hp" />
+        <input type="text" name="hp" autocomplete="off" />
       </label>
+
+      <!-- ✅ Turnstile Widget -->
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAACaY6RpQXbUGM9ai" data-theme="dark"></div>
 
       <button
         class="rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition"
@@ -67,6 +70,8 @@ const description = 'Inquiries — technical & quality-focused consultation.';
     </form>
   </section>
 
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
   <script>
     const form = document.getElementById('contactForm');
     const statusEl = document.getElementById('contactStatus');
@@ -74,29 +79,39 @@ const description = 'Inquiries — technical & quality-focused consultation.';
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       statusEl.textContent = 'Sending...';
+
       const fd = new FormData(form);
+      const token = String(fd.get('cf-turnstile-response') || '').trim();
+
+      if (!token) {
+        statusEl.textContent = 'Please complete the CAPTCHA check.';
+        return;
+      }
 
       try {
         const res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            lang: 'en',
             email: fd.get('email'),
             subject: fd.get('subject'),
             message: fd.get('message'),
-            hp: fd.get('hp')
+            hp: fd.get('hp'),
+            turnstileToken: token,
           })
         });
 
-        if (!res.ok) {
-          const msg = await res.text();
-          throw new Error(msg || 'Request failed');
-        }
+        const msg = await res.text();
+        if (!res.ok) throw new Error(msg || 'Request failed');
 
         statusEl.textContent = "Sent! We'll review and get back to you soon.";
         form.reset();
+
+        if (window.turnstile) window.turnstile.reset();
       } catch (err) {
         statusEl.textContent = 'Something went wrong. Please try again in a moment.';
+        if (window.turnstile) window.turnstile.reset();
       }
     });
   </script>
