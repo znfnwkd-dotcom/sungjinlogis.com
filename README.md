@@ -30,3 +30,7 @@ This repository is a starter for **sungjinlogis.com**.
 
 ## Content updates
 See `CONTENT_GUIDE.md`.
+## Repository notes
+- `REPO_ANALYSIS.md`: repository analysis memo at the repo root.
+- `.gitignore`: ignore rules file at the repo root (hidden dotfile).
+
