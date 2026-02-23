@@ -193,33 +193,38 @@ const mapLink =
         </div>
       </div>
 
-      {/* 기존 섹션 유지 */}
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
-        <div class="rounded-2xl border border-stroke bg-base p-6">
-          <h2 class="text-lg font-semibold">핵심 역량</h2>
-          <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-sub">
-            <li><span class="text-white">산업용 로봇 전처리</span>로 균일한 기반 품질 확보</li>
-            <li><span class="text-white">롱라이프 여과 기반 무광/반무광 공정</span>으로 공정 안정화</li>
-            <li><span class="text-white">친환경 3가 크롬</span> 라인 운영(규제 대응)</li>
-            <li><span class="text-white">유산동</span> 및 <span class="text-white">광택/반광 니켈</span> 캐리어 공정 운영</li>
-          </ul>
-        </div>
+{/* 회사소개서 요약(3카드) */}
+<div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+  {/* 1) 핵심 역량 */}
+  <div class="rounded-2xl border border-stroke bg-base p-6">
+    <h2 class="text-lg font-semibold">핵심 역량</h2>
+    <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-sub">
+      <li><span class="text-white">산업용 로봇 전처리</span>로 균일한 기반 품질 확보</li>
+      <li><span class="text-white">롱라이프 여과 기반 무광/반무광 공정</span>으로 공정 안정화</li>
+      <li><span class="text-white">친환경 3가 크롬</span> 라인 운영(규제 대응)</li>
+      <li><span class="text-white">유산동</span> 및 <span class="text-white">광택/반광 니켈</span> 캐리어 공정 운영</li>
+    </ul>
+  </div>
 
-        <div class="rounded-2xl border border-stroke bg-base p-6">
-  <h2 class="text-lg font-semibold">주요 적용 분야</h2>
-  <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-sub">
-    <li>자동차 내·외장 부품 (Interior / Exterior Parts)</li>
-    <li>모바일 및 IT기기 정밀 부품</li>
-    <li>전자·가전 제품 외관 부품</li>
-    <li>의료·헬스케어 기기 외장 및 조작부품</li>
-    <li>산업·로봇·자동화 설비 부품</li>
-    <li>프리미엄 생활·레저용품 부품</li>
-    <li>스마트 보안 시스템 부품</li>
-  </ul>
+  {/* 2) 주요 적용 분야 (내용은 그대로, 2열 그리드로 가독성만 개선) */}
+  <div class="rounded-2xl border border-stroke bg-base p-6">
+    <h2 class="text-lg font-semibold">주요 적용 분야</h2>
+    <ul class="mt-3 grid grid-cols-1 gap-x-6 gap-y-2 pl-5 text-sm text-sub list-disc sm:grid-cols-2">
+      <li>자동차 내·외장 부품 (Interior / Exterior Parts)</li>
+      <li>모바일 및 IT기기 정밀 부품</li>
+      <li>전자·가전 제품 외관 부품</li>
+      <li>의료·헬스케어 기기 외장 및 조작부품</li>
+      <li>산업·로봇·자동화 설비 부품</li>
+      <li>프리미엄 생활·레저용품 부품</li>
+      <li>스마트 보안 시스템 부품</li>
+    </ul>
+  </div>
 
-  <div class="mt-6 rounded-2xl border border-stroke bg-surface p-5">
-    <div class="text-sm font-semibold">품질·인증</div>
-    <p class="mt-1 text-sm text-sub">
+  {/* 3) 품질·인증 (기존 박스를 “독립 카드”로 분리) */}
+  <div class="rounded-2xl border border-stroke bg-base p-6">
+    <h2 class="text-lg font-semibold">품질·인증</h2>
+
+    <p class="mt-3 text-sm text-sub leading-relaxed">
       IATF 16949 / ISO 9001 / ISO 14001 인증 보유<br />
       현대·기아 SQ 인증 업체<br />
       GM Global Tier2 Supplier 등록<br />
@@ -228,7 +233,6 @@ const mapLink =
     </p>
   </div>
 </div>
-      </div>
 
       <div class="mt-10 rounded-2xl border border-stroke bg-base p-6">
         <h2 class="text-lg font-semibold">사내 검증(Verification) 설비</h2>
